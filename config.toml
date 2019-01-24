@@ -1,5 +1,5 @@
 baseurl = "https://brave-bassi-f57481.netlify.com/"
-title = "Creative portfolio"
+title = "Amanda Peterson-Plunkett"
 theme = "hugo-creative-portfolio-theme"
 languageCode = "en-us"
 # Enable comments by entering your Disqus shortname
@@ -12,10 +12,10 @@ googleAnalytics = ""
   # Use custom.css for your custom styling
   style = "default"
   description = "Describe your website"
-  copyright = "&copy;2016 Your name or company"
+  copyright = "&copy;2019 Amanda Peterson-Plunkett"
   sidebarAbout = [
-    "I am a creative illustrator and graphic designer with more than 10 years of experience.",
-    "Originally from Toronto, currently based in London."
+    "I am a matheatician/statistician/data scientist with more than 15 years of experience.",
+    "Originally from Michigan, currently based near Washington DC."
   ]
   # Contact page
      # Since this template is static, the contact form uses www.formspree.io as a
@@ -46,13 +46,13 @@ googleAnalytics = ""
   url = "contact/"
 
   [params.social]
-  facebook      = "full page or profile url in facebook"
-  googleplus    = "full profile url in googleplus"
+  #facebook      = "full page or profile url in facebook"
+  #googleplus    = "full profile url in googleplus"
   email         = "email@example.com"
-  twitter       = "full profile url in twitter"
-  linkedin      = "full profile url in linkedin"
-  stackoverflow = "full profile url in stackoverflow"
-  instagram     = "full profile url in instagram"
-  github        = "full profile url in github"
-  youtube       = "full profile url in youtube"
-  whatsapp      = "wa.me service link"
+  twitter       = "twitter.com/AmandaRPlunkett"
+  linkedin      = "linkedin.com/in/amanda-plunkett-29138399"
+  #stackoverflow = "full profile url in stackoverflow"
+  #instagram     = "full profile url in instagram"
+  github        = "https://github.com/AmandaRP"
+  #youtube       = "full profile url in youtube"
+  #whatsapp      = "wa.me service link"
