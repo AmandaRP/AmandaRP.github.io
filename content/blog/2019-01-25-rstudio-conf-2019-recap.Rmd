@@ -23,6 +23,7 @@ Next year: San Francisco Jan 27-30
 * Watch the video for lots of cool examples.
 * Next version will contain 3D ggplots
 
+
 ##### gganimate Live Cookbook
 **Thomas Lin Pedersen (Software Engineer, RStudio)**
 
@@ -30,15 +31,20 @@ Next year: San Francisco Jan 27-30
 * Rewritten completely in the last year.
 * Now available on CRAN.
 * How to use:
+
   + Transitions: you want your data to change
   + Views: you want your viewpoint to change
+
 * Shadows: you want the animation to have memory
 * Documentation:
+
   + www.gganimate.com
   + https://youtu.be/21ZWDrTukEs
+
 * Transition_reveal: multiple enter/exit options 
 * See slides for examples:  www.data-imaginist.com/slides/rstudioconf….
 * Can also update labels automatically throughout animation.
+
 
 ### Modeling
 
@@ -50,6 +56,7 @@ Next year: San Francisco Jan 27-30
   + Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc)
   + Reproducability
   + Lots of different modeling packages and ways to deploy them.
+
 
 *Solving the model representation problem with broom*
 *Alex Hayes (Tidyverse Intern, RStudio)*
