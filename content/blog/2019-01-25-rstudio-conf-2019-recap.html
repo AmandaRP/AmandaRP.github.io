@@ -11,22 +11,44 @@ tags:
 
 
 
-<div id="summary" class="section level1">
-<h1>Summary</h1>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
 <p>1700+ attendees Next year: San Francisco Jan 27-30</p>
 </div>
-<div id="visualization" class="section level1">
-<h1>Visualization</h1>
-<p><strong>3D mapping, plotting, and printing with rayshader</strong> <em>Tyler Morgan-Wall (Institute for Defense Analysis)</em> Rayshader: building realistic 3D maps from elevation data Can overlay images onto map. Animations possible. 3-D printing of maps. Watch the video for lots of cool examples. Next version will contain 3D ggplots</p>
-<p><em>gganimate Live Cookbook</em> <em>Thomas Lin Pedersen (Software Engineer, RStudio)</em> An implementation of the grammar of animated graphics, extension to ggplot2. Rewritten completely in the last year. Now available on CRAN. How to use: Transitions: you want your data to change Views: you want your viewpoint to change Shadows: you want the animation to have memory Documentation: www.gganimate.com <a href="https://youtu.be/21ZWDrTukEs" class="uri">https://youtu.be/21ZWDrTukEs</a> Transition_reveal: multiple enter/exit options See slides for examples: www.data-imaginist.com/slides/rstudioconf…. Can also update labels automatically throughout animation.</p>
+<div id="visualization" class="section level2">
+<h2>Visualization</h2>
+<div id="d-mapping-plotting-and-printing-with-rayshader" class="section level3">
+<h3>3D mapping, plotting, and printing with rayshader</h3>
+<p><strong>Tyler Morgan-Wall (Institute for Defense Analysis)</strong></p>
+<p>Rayshader: building realistic 3D maps from elevation data Can overlay images onto map. Animations possible. 3-D printing of maps. Watch the video for lots of cool examples. Next version will contain 3D ggplots</p>
 </div>
-<div id="modeling" class="section level1">
-<h1>Modeling</h1>
-<p><em>Introducing MLflow</em> <em>Kevin Kuo (Software Engineer, RStudio)</em> MLfow: an open source platform for the machine learning lifecycle. Motivation: Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc) Reproducability Lots of different modeling packages and ways to deploy them.</p>
+<div id="gganimate-live-cookbook" class="section level3">
+<h3>gganimate Live Cookbook</h3>
+<p><strong>Thomas Lin Pedersen (Software Engineer, RStudio)</strong></p>
+<p>An implementation of the grammar of animated graphics, extension to ggplot2. Rewritten completely in the last year. Now available on CRAN. How to use:</p>
+<ul>
+<li>Transitions: you want your data to change</li>
+<li>Views: you want your viewpoint to change</li>
+</ul>
+<p>Shadows: you want the animation to have memory Documentation:</p>
+<ul>
+<li>www.gganimate.com</li>
+<li><a href="https://youtu.be/21ZWDrTukEs" class="uri">https://youtu.be/21ZWDrTukEs</a></li>
+</ul>
+<p>Transition_reveal: multiple enter/exit options See slides for examples: www.data-imaginist.com/slides/rstudioconf…. Can also update labels automatically throughout animation.</p>
+</div>
+</div>
+<div id="modeling" class="section level2">
+<h2>Modeling</h2>
+<div id="introducing-mlflow" class="section level3">
+<h3>Introducing MLflow</h3>
+<p><em>Kevin Kuo (Software Engineer, RStudio)</em></p>
+<p>MLfow: an open source platform for the machine learning lifecycle. Motivation: Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc) Reproducability Lots of different modeling packages and ways to deploy them.</p>
 <p><em>Solving the model representation problem with broom</em> <em>Alex Hayes (Tidyverse Intern, RStudio)</em> Model representation problem: Need a standard way to represent models. Broom tools: tidy(): summarize info about fit components. Broom cleans up fit for us. glance(): report goodness of fit measures augment(): add info about observations to a dataset – not currently defined yet. Print really pretty table of fit desc: tidy(fit) %&gt;% kable2()<br />
 Compare different models using purrr. (See code on slides) Real power: working with multiple models at once. Resource: broom.tidyverse.org See slides!!! <a href="https://buff.ly/2FGKFkj" class="uri">https://buff.ly/2FGKFkj</a></p>
 <p><em>Parsnip - a tidy model interface (building models)</em> <em>Max Kuhn (Engineer, RStudio)</em> Why parsnip name? White carrot (related to caret) Motivation for parsnip: Different packages have different modeling interfaces. Functions run na.omit silently. Delete data. Parsnip has a tidy interface Similar to broom, nicely prints output. (See modeling package guidelines.) Ex: set_engine(“glmnet”) , however, engine doesn’t necessarily have to be an R engine. Next steps: Add more models and classes of models Formalize the API and tools for others to add parsnip models to their packages</p>
 <p><em>Why Tensorflow Eager Execution matters</em> <em>Sigrid Keydana</em> Typically a static graph is generated. New way: eager execution See blog articles: <a href="https://blogs.rstudio.com/tensorflow/" class="uri">https://blogs.rstudio.com/tensorflow/</a></p>
+</div>
 </div>
 <div id="other-r-packages" class="section level1">
 <h1>Other R Packages</h1>
