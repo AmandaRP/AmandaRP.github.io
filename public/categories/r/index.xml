@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Random Variations</title>
+    <title>R on Creative portfolio</title>
     <link>/categories/r/</link>
-    <description>Recent content in R on Random Variations</description>
+    <description>Recent content in R on Creative portfolio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 26 Jan 2019 00:00:00 +0000</lastBuildDate>
@@ -13,10 +13,10 @@
     
     <item>
       <title>rstudio::conf 2019 Recap</title>
-      <link>/2019/01/rstudioconf-2019-recap/</link>
+      <link>/post/2019-01-25-rstudio-conf-2019-recap/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/01/rstudioconf-2019-recap/</guid>
+      <guid>/post/2019-01-25-rstudio-conf-2019-recap/</guid>
       <description>1700+ attendees Next year: San Francisco Jan 27-30
 Visualization 3D mapping, plotting, and printing with rayshader Tyler Morgan-Wall (Institute for Defense Analysis)
  Rayshader: building realistic 3D maps from elevation data Can overlay images onto map. Animations possible. 3-D printing of maps. Watch the video for lots of cool examples. Next version will contain 3D ggplots  gganimate Live Cookbook Thomas Lin Pedersen (Software Engineer, RStudio)
@@ -25,10 +25,10 @@ Visualization 3D mapping, plotting, and printing with rayshader Tyler Morgan-Wal
     
     <item>
       <title>Hello R Markdown</title>
-      <link>/2015/07/hello-r-markdown/</link>
+      <link>/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>/2015/07/hello-r-markdown/</guid>
+      <guid>/post/2015-07-23-r-rmarkdown/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
