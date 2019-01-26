@@ -1,17 +1,11 @@
 ---
-date: "2019-1-26"
+date: 2019-01-26
 title: "rstudio::conf 2019 Recap"
-slug: "rstudio-conf-2019-recap"
-showonlyimage: false
-draft: false
-#image: "blog/img/mainImages/2016-12-17_DSCourses.jpg"
-type: "post"
+#slug: "rstudio-conf-2019-recap"
 author: "Amanda Peterson-Plunkett"
 description: "My notes from 2019 rstudio::conf"
-categories:
-  - R
-tags:
-  - conference
+categories: ["R"]
+tags: ["Conference"]
 ---
 
 
@@ -20,17 +14,16 @@ Next year: San Francisco Jan 27-30
 
 ### Visualization
 
-##### 3D mapping, plotting, and printing with rayshader
-**Tyler Morgan-Wall (Institute for Defense Analysis)**
+**3D mapping, plotting, and printing with rayshader**
+*Tyler Morgan-Wall (Institute for Defense Analysis)*
 
 * Rayshader: building realistic 3D maps from elevation data
 * Can overlay images onto map. Animations possible. 3-D printing of maps. 
 * Watch the video for lots of cool examples.
 * Next version will contain 3D ggplots
 
-
-##### gganimate Live Cookbook
-**Thomas Lin Pedersen (Software Engineer, RStudio)**
+**gganimate Live Cookbook**
+*Thomas Lin Pedersen (Software Engineer, RStudio)*
 
 * An implementation of the grammar of animated graphics, extension to ggplot2.
 * Rewritten completely in the last year.
