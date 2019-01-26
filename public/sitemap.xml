@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>/post/work9/</loc>
+    <lastmod>2016-11-05T20:02:19+05:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/portfolio/work10/</loc>
     <lastmod>2016-11-05T20:22:08+05:30</lastmod>
   </url>
@@ -78,6 +83,12 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2016-11-05T19:41:01+05:30</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
@@ -85,12 +96,6 @@
   <url>
     <loc>/tags/conference/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2016-11-05T19:41:01+05:30</lastmod>
     <priority>0</priority>
   </url>
   
@@ -108,7 +113,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
+    <lastmod>2016-11-05T20:02:19+05:30</lastmod>
     <priority>0</priority>
   </url>
   
