@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://brave-bassi-f57481.netlify.com/"
 languageCode = "en-us"
 title = "Amanda Plunkett"
 theme = "hugo-lithium"
