@@ -47,18 +47,18 @@ Next year: San Francisco Jan 27-30
 
 * MLfow: an open source platform for the machine learning lifecycle.
 * Motivation: 
-  + Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc)
-  + Reproducability
-  + Lots of different modeling packages and ways to deploy them.
+    + Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc)
+    + Reproducability
+    + Lots of different modeling packages and ways to deploy them.
 
 
 **Solving the model representation problem with broom**,
 *Alex Hayes (Tidyverse Intern, RStudio)*
 * Model representation problem: Need a standard way to represent models.
 * Broom tools:
-  + tidy(): summarize info about fit components. Broom cleans up fit for us.
-  + glance(): report goodness of fit measures
-  + augment(): add info about observations to a dataset -- not currently defined yet.
+    + tidy(): summarize info about fit components. Broom cleans up fit for us.
+    + glance(): report goodness of fit measures
+    + augment(): add info about observations to a dataset -- not currently defined yet.
 * Print really pretty table of fit desc: tidy(fit) %>% kable2()  
 * Compare different models using purrr. (See code on slides)
 * Real power: working with multiple models at once. 
@@ -70,15 +70,15 @@ Next year: San Francisco Jan 27-30
 
 * Why parsnip name? White carrot (related to caret)
 *Motivation for parsnip: 
-  + Different packages have different modeling interfaces. 
-  + Functions run na.omit silently.  Delete data.
+    + Different packages have different modeling interfaces. 
+    + Functions run na.omit silently.  Delete data.
 * Parsnip has a tidy interface
 * Similar to broom, nicely prints output.
 * (See modeling package guidelines.)
 * Ex: set_engine(“glmnet”) , however, engine doesn’t necessarily have to be an R engine.
 * Next steps:
-  + Add more models and classes of models
-  + Formalize the API and tools for others to add parsnip models to their packages
+    + Add more models and classes of models
+    + Formalize the API and tools for others to add parsnip models to their packages
 
 **Why Tensorflow Eager Execution matters**,
 *Sigrid Keydana*
@@ -92,9 +92,9 @@ Next year: San Francisco Jan 27-30
 *Earo Wang (PhD student, Monash University)*
 
 * Packages: 
-  + Tsibble: to tidy and transform ts data
-  + Mable: table of models
-  + Fable: tidy forecasting (table of forecasts)
+    + Tsibble: to tidy and transform ts data
+    + Mable: table of models
+    + Fable: tidy forecasting (table of forecasts)
 * Can use familiar broom functions on a mable: tidy, glance, augment. Then use geom_forecast (ggplot) to visualize.
 
 **Working with categorical data in R without losing your mind**,
@@ -132,11 +132,11 @@ Next year: San Francisco Jan 27-30
 * pagedeown creates paged documents (e.g. PDF) from web pages.
 * Chrome or chromium is recommended browser to view.
 * Can also use to create:
-  + business cards.
-  + Resume (e.g. https://pagedown.rbind.io/html-resume)
-  + Posters
-  + Letters
-  + Books
+    + business cards.
+    + Resume (e.g. https://pagedown.rbind.io/html-resume)
+    + Posters
+    + Letters
+    + Books
 * Slides: http://bit.ly/pagedown
 
 **Introducing the the gt Package**,
@@ -158,9 +158,9 @@ Next year: San Francisco Jan 27-30
 * Use case: Use plumber to expose R models via an API
 * Most recent updates avail in github repo
 * Resources:
-  + Plumber: www.rplumber.io
-  + openAPI: https://swagger.io/docs/specification/about
-  + Github: github.com/sol-eng/plumber-model
+    + Plumber: www.rplumber.io
+    + openAPI: https://swagger.io/docs/specification/about
+    + Github: github.com/sol-eng/plumber-model
 
 **Vctrs: tools for making size and type consistent functions**,
 *Hadley Wickham (Chief Scientist, RStudio)* @hadleywickham
@@ -184,8 +184,8 @@ Next year: San Francisco Jan 27-30
 *Kara Woo (Research Scientist, Sage Bionetworks)*
 
 * Talked through an example of a difficult debugging problem (for the ggplot2 package). * Advice: 
-  + Use a reprex (minimal reproducible example) to determine/reproduce problem.
-  + Use “debug” function. (Let’s you step through function.)
+    + Use a reprex (minimal reproducible example) to determine/reproduce problem.
+    + Use “debug” function. (Let’s you step through function.)
 * How do you know when you are done? Don’t let perfect be the enemy of good.
 
 ## Interoperability with other languages
@@ -198,16 +198,16 @@ Next year: San Francisco Jan 27-30
 * To start: sc <- spark_connect(master=”local”)
 * Can use dplyr or sql code for data manipulation/query
 * New features: 
-  + Introduced pipelines. Can export to be used by ppl working in other languages.
-  + Spark structured streams: process streaming data with R dataframes. Apply usual dplyr transformations.
+    + Introduced pipelines. Can export to be used by ppl working in other languages.
+    + Spark structured streams: process streaming data with R dataframes. Apply usual dplyr transformations.
 * Currently working on:
-  + Support for Apache arrow. Install R arrow package from github.
-  + Xgboost models in spark
+    + Support for Apache arrow. Install R arrow package from github.
+    + Xgboost models in spark
 * Resources:
-  + Docs: spark.rstudio.com
-  + Blog: blog.rstudio.com/tags/sparklyr
-  + tackoverfllow.com/tags/skparklyr
-  + Chat: gitter.im/rstudio.sparklyr
+    + Docs: spark.rstudio.com
+    + Blog: blog.rstudio.com/tags/sparklyr
+    + tackoverfllow.com/tags/skparklyr
+    + Chat: gitter.im/rstudio.sparklyr
 
 **Ursa Labs and Apache Arrow in 2019: Infrastructure for next-gen data science toolbox**,
 *Wes McKinney (Ursa Labs, Python Pandas Creator)*
@@ -228,10 +228,10 @@ Next year: San Francisco Jan 27-30
 * NLP models to classify incoming customer message (including account info) to give live agent a heads up about the likely topic. (They used a CNN via the keras R package.)
 * Their workflow steps: First rmarkdown for exploratory data analysis. Second show model to business people using a shiny demo to get them interested. Success: Given millions of $ to put it into production.
 * Was told: “If you want to do ML in production, you have to use Python.” Idea: Treat R like a real programming language (because it is one)! Didn’t want to re-write everything. Steps:
-  + Turn R into an API using plumber
-  + Use docker images (rocker)
-  + Plumber doesn’t support https. Used an appache2 server to reroute.
-  + Container was too big. Swapped miniconda for anaconda. Removed RStudio & some unnecessary Linux, R, and python packages.
+    + Turn R into an API using plumber
+    + Use docker images (rocker)
+    + Plumber doesn’t support https. Used an appache2 server to reroute.
+    + Container was too big. Swapped miniconda for anaconda. Removed RStudio & some unnecessary Linux, R, and python packages.
 * This model is now deployed and used in production at T-mobile.
 * Their docker container is now open source: https://github.com/tmobile/r-tensorflow-api
 * Slides: nollisllc.com/rstudio19
@@ -250,18 +250,18 @@ Next year: San Francisco Jan 27-30
 Challenges: Cultural (shiny apps usually developed by R users, who aren’t necessarily SWEs). Organizational (IT and management can be skeptical). Technical (shiny lowers bar for creating web app… but not easy to automated testing, load testing, profiling, and deployment … but RStudio has worked on making this better).
 * Pet peeve: “R is not a real programming language.” (eye roll)
 * New tools for shiny in production:
-  + RStudio Connect - Shiny serving with push-button deployment
-  + Shinytest (now on cran) - automated ui testing for shiny
-  + Shinyloadtest - load testing for shiny
-  + Profvis - profiler for R
-  + Plot caching - in Shiny 1.2. Speed up plots. Use if plots are 1) slow, 2) significant fraction of total amt of time the app spending thinking, 3) most users likely to request the same few plots.
-  + Async - last resort for slow portions.
+    + RStudio Connect - Shiny serving with push-button deployment
+    + Shinytest (now on cran) - automated ui testing for shiny
+    + Shinyloadtest - load testing for shiny
+    + Profvis - profiler for R
+    + Plot caching - in Shiny 1.2. Speed up plots. Use if plots are 1) slow, 2) significant fraction of total amt of time the app spending thinking, 3) most users likely to request the same few plots.
+    + Async - last resort for slow portions.
 * Use shinyloadtest to see if it’s fast enough (generates large amounts of traffic). If not, use profvis to see what’s making it slow. Then optimize: move work out of shiny (very often). Make code faster (very often), using caching (sometimes), use async (occasionally). Repeat.
 * Deploy apps to either RStudioConnect or Shiny Server.
 * Reading from feather files is faster than csv.
 * Resources:
-  + Book: Shiny in Production (in progress); http://bit.ly/shiny-prod-book
-  + Slide deck: https://speakerdeck.com/jcheng5/shiny-in-production
+    + Book: Shiny in Production (in progress); http://bit.ly/shiny-prod-book
+    + Slide deck: https://speakerdeck.com/jcheng5/shiny-in-production
 
 **R in Production**
 *Mark Sellers (Data Engineer, Mango Solutions)*
@@ -279,9 +279,9 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Goals: more comprehensive R project workbench. Embrace other languages commonly used in R data science projects, reduce context switching. 
 * Non-goals: Become a general purpose IDE. Lose focus on R.
 * Demo-ed the following languages within one R notebook.
-  + SQL: Connections tab -> new connection -> ODBC. Write SQL in RStudio (as a code chunk in R notebook, or in a SQL file).
-  + Python: reticulate package 
-  + D3: r2d4 function
+    + SQL: Connections tab -> new connection -> ODBC. Write SQL in RStudio (as a code chunk in R notebook, or in a SQL file).
+    + Python: reticulate package 
+    + D3: r2d4 function
 * Background scripts: “source as local job” button to run job in the background. Can do other things in RStudio while it’s running. Multiple jobs can be run at once. Useful for long running computations.
 * Make powerpoint presentation with RMarkdown: New file -> presentation -> PowerPoint
 * Stable release of 1.2 this spring.
@@ -315,10 +315,10 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * ⅔ of R users use tidyverse today.
 * 15% of R users have no one else in their work group that knows R :( 
 * Resources:
-  + RStudio teacher certification available.
-  + Free academic licensing for RStudio pro tools. Just send course syllabus from a certified academic institution. Research (instead of teaching) gets a 50% discount.
-  + Data Science in a box: https://datasciencebox.org
-  + Lots of free online books: R for Data Science, Advanced R, Blogdown, Hands on programming with R, Geocomputation in R.
+    + RStudio teacher certification available.
+    + Free academic licensing for RStudio pro tools. Just send course syllabus from a certified academic institution. Research (instead of teaching) gets a 50% discount.
+    + Data Science in a box: https://datasciencebox.org
+    + Lots of free online books: R for Data Science, Advanced R, Blogdown, Hands on programming with R, Geocomputation in R.
   * rstudio.cloud (free) primers for self learning.
 
 **Introductory Statistics with R: Easing the transition to software for beginning students**,
@@ -328,9 +328,9 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Learnr package was used to build shiny apps.
 * Github repo with exercises: github.com/kbodwin/Introductory-Statistics-Labs
 * Demos:
-  + https://kbodwin.shinyapps.io/Lab_Exercise_CatVars2
-  + https://kbodwin.shinyapps.io/Lab_Exercise_tDist
-  + https://kbodwin.shinyapps.io/t_tests2
+    + https://kbodwin.shinyapps.io/Lab_Exercise_CatVars2
+    + https://kbodwin.shinyapps.io/Lab_Exercise_tDist
+    + https://kbodwin.shinyapps.io/t_tests2
 
 
 **Teaching data science with puzzles**,
@@ -346,8 +346,8 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 *Mary Rudis (Math Dept Chair, Great Bay Community College)*
 
 * Shiny apps for teaching stats:
-  + https://statistics.calpoly.edu/shiny
-  + https://shinyapps.science.psu.edu 
+    + https://statistics.calpoly.edu/shiny
+    + https://shinyapps.science.psu.edu 
 * Github: github.com/mrshrbrmstr/RStudioConf2019 (includes lesson plans)
 
 
@@ -379,33 +379,33 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * When you’ve given the same in-person advice 3 times, write a blog post.
 * If you start a data-related blog, tweet link to @drob and he’ll tweet about your first post.
 * What to blog about? 
-  + Any paper you’re written. (more exposure)
-  + Current events
-  + TidyTuesday
-  + Teach a concept
-  + Blog about something that you’re learning.
-  + Examples: #datablog hashtag on Twitter
+    + Any paper you’re written. (more exposure)
+    + Current events
+    + TidyTuesday
+    + Teach a concept
+    + Blog about something that you’re learning.
+    + Examples: #datablog hashtag on Twitter
 * Twitter:
-  + One for each blog post.
-  + Promote others’ work
-  + Tidytuesday evaluation.
-  + What you’ve learned at a conference 
-  + Not a great way to document knowledge for long term. Blog better for that.
-  + From:username to search within one person’s tweets.
+    + One for each blog post.
+    + Promote others’ work
+    + Tidytuesday evaluation.
+    + What you’ve learned at a conference 
+    + Not a great way to document knowledge for long term. Blog better for that.
+    + From:username to search within one person’s tweets.
 * Contribute to open source:
-  + See Ten Steps to Becoming a Tidyverse Contributor by Nic Crane
-  + Contribute to a beginner-friendly issue
-  + Write R packages (See R Packages book)
+    + See Ten Steps to Becoming a Tidyverse Contributor by Nic Crane
+    + Contribute to a beginner-friendly issue
+    + Write R packages (See R Packages book)
 * Give talks:
-  + See “How to give a data science talk” blog by Emily Robinson
-  + Introvert tip: It makes networking at conferences easier.
-  + Be sure to publish your slides.
+    + See “How to give a data science talk” blog by Emily Robinson
+    + Introvert tip: It makes networking at conferences easier.
+    + Be sure to publish your slides.
 * Record screencasts:
-  + Limitation: you need to be capable and confident enough to improvise. 
-  + Rachel Tatman does live coding on  Twitch.
+    + Limitation: you need to be capable and confident enough to improvise. 
+    + Rachel Tatman does live coding on  Twitch.
 * Write a book:
-  + You need a good amount to say and some practice saying it.
-  + R bookdown package. 
+    + You need a good amount to say and some practice saying it.
+    + R bookdown package. 
 *Slides: bit.ly/drob-rstudio-2019
 
 
@@ -413,30 +413,30 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 *Speakers: Hilary Parker (Data Scientist, Stitch Fix), Karthik Ram (Data Science Fellow, UC Berkeley), Angela Bassa  (Director of Data Science, iRobot), Tracy Teal (Exec Dir, Carpentries), Eduardo (Data Science Leader, Instagram)*
 * See Hilary’s “Not so standard data science” podcast
 * What is the most important thing for success as a data scientist:
-  + Flexibility in tooling (no space for a tooling purist)... but know at least one language fluently. Softer skills (e.g. empathy, understanding user/reader)
-  + If an organization is giving you a hard time about your lack of knowledge as a junior data scientist, consider a different company. Don’t shy away from saying “I don’t know.” Her interview guide has impossible questions to answer… she’s looking for humility to say “I don’t know.”
+    + Flexibility in tooling (no space for a tooling purist)... but know at least one language fluently. Softer skills (e.g. empathy, understanding user/reader)
+    + If an organization is giving you a hard time about your lack of knowledge as a junior data scientist, consider a different company. Don’t shy away from saying “I don’t know.” Her interview guide has impossible questions to answer… she’s looking for humility to say “I don’t know.”
 * How to choose to become a DS lead vs staying technical:
-  + Data scientists aren’t necessarily given opportunity to learn/grow leadership skills. Need to be more strategic to grow better leaders. Some DS’s stumble into a management/leadership position. 
-  + Angela didn’t want to become a manager and wanted to stay in trenches at first, but now loves it (took the position b/c didn’t want to let her management down)..   +   +   “Management is a skill that is learnable.” If you feel accomplishment from management, great rock it. If you don’t, then no worries don’t be a manger.
-  + It takes personal growth to stop self-depricating yourself as a manager: “I just read email and schedule meetings.”
-  + Fear: Skills will atrophy. Remember “loops are still loops.” Opportunity to develop additional skills. Redefine what success means: How can I enable people to do their best work?
+    + Data scientists aren’t necessarily given opportunity to learn/grow leadership skills. Need to be more strategic to grow better leaders. Some DS’s stumble into a management/leadership position. 
+    + Angela didn’t want to become a manager and wanted to stay in trenches at first, but now loves it (took the position b/c didn’t want to let her management down)..     “Management is a skill that is learnable.” If you feel accomplishment from management, great rock it. If you don’t, then no worries don’t be a manger.
+    + It takes personal growth to stop self-depricating yourself as a manager: “I just read email and schedule meetings.”
+    + Fear: Skills will atrophy. Remember “loops are still loops.” Opportunity to develop additional skills. Redefine what success means: How can I enable people to do their best work?
 * In a growing organization that you’ve been at, what is the most important lesson to do/not do?
-  + Don’t hire DS if you don’t have data.
-  + Adapt as the business grows.
-  + Invest in systems that let people work effectively together
-  + Don’t over hire. No clear success criteria. 
-  + For machine learning projects, useful to have a PM that understand machine learning. There types of people can be rare.
+    + Don’t hire DS if you don’t have data.
+    + Adapt as the business grows.
+    + Invest in systems that let people work effectively together
+    + Don’t over hire. No clear success criteria. 
+    + For machine learning projects, useful to have a PM that understand machine learning. There types of people can be rare.
 * Responsibilities as Data scientists:
-  + Data are artifacts...not ground truth.
-  + Own your mistakes.
-  + Make work reproducible.
-  + See datasciencemanifesto.org
+    + Data are artifacts...not ground truth.
+    + Own your mistakes.
+    + Make work reproducible.
+    + See datasciencemanifesto.org
 * What is the most effective way that program management and DS works together:
-  + Product has a road map. Make sure that DS also has a road map and that they are correlated.
+    + Product has a road map. Make sure that DS also has a road map and that they are correlated.
 * What are common ways that data scientists fail?
-  + By not saying “no” enough then only providing a cursery analysis that has little impact.
-  + Assuming the PM knows enough to ask the question in the best way. 
-  + Caring more about the stats method/model than solving the problem for the business.
+    + By not saying “no” enough then only providing a cursery analysis that has little impact.
+    + Assuming the PM knows enough to ask the question in the best way. 
+    + Caring more about the stats method/model than solving the problem for the business.
 
 
 
@@ -446,8 +446,8 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Check out tidymodels library.
 * See drob’s blog post about the intuition of beta distribution.
 * Books to check out:
-  + O’Reily book on Tidy text
-  + Text Mining with R
+    + O’Reily book on Tidy text
+    + Text Mining with R
 
 
 Generic info learned”:
