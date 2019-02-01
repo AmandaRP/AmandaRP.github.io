@@ -362,7 +362,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 **Data Science as a Team Sport**,
 *Angela Bassa (Director of Data Science, iRobot)* @angebassa
 
-* Just because a data scientist can do everything, doesn’t mean they should.
+* Just because a data scientist can do everything, doesn’t mean they should. 
 * Data engineer != data scientist
 * When to grow? When you’d like to grow scope & maturity. Adding people will slow things down (additional complexity) unless systems are improved.
 * When adding people: add specialization (people have different roles in the DS pipeline), add process (documentation, authentication, governance, data provenance, automation: testing, deployment), add resilience (hiring, methodical on-boarding, culture, diversity & inclusion)
@@ -411,6 +411,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 **Panel Discussion: Growth and Data Science: Individuals, leaders, organizations and responsibilities**,
 *Speakers: Hilary Parker (Data Scientist, Stitch Fix), Karthik Ram (Data Science Fellow, UC Berkeley), Angela Bassa  (Director of Data Science, iRobot), Tracy Teal (Exec Dir, Carpentries), Eduardo (Data Science Leader, Instagram)*
+
 * See Hilary’s “Not so standard data science” podcast
 * What is the most important thing for success as a data scientist:
     + Flexibility in tooling (no space for a tooling purist)... but know at least one language fluently. Softer skills (e.g. empathy, understanding user/reader)
