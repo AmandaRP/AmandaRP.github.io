@@ -6,6 +6,10 @@ author: "Amanda Peterson-Plunkett"
 description: "My notes from 2019 rstudio::conf"
 categories: ["R"]
 tags: ["Conference"]
+output: 
+  html_document:
+    toc: yes
+    toc_float: yes
 ---
 
 This year I attended the 2019 rstudio::conf in Austin, TX. 
@@ -440,7 +444,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 
 
-**My after-conference TODO list:**
+## My after-conference TODO list:
 
 * Idea: An internal R slack channel (done)
 * Check out tidymodels library.
