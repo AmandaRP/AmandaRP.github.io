@@ -27,14 +27,12 @@ Next year: San Francisco Jan 27-30
 
 * An implementation of the grammar of animated graphics, extension to ggplot2.
 * Rewritten completely in the last year. 
-* Now available on CRAN.
+* Now available on [CRAN](https://cran.r-project.org/web/packages/rayshader/index.html).
 * How to use:
     + Transitions: you want your data to change
     + Views: you want your viewpoint to change
 * Shadows: you want the animation to have memory
-* Documentation:
-    + www.gganimate.com
-    + https://youtu.be/21ZWDrTukEs
+* Documentation: https://youtu.be/21ZWDrTukEs
 * Transition_reveal: multiple enter/exit options 
 * See slides for examples:  www.data-imaginist.com/slides/rstudioconf….
 * Can also update labels automatically throughout animation.
@@ -55,21 +53,21 @@ Next year: San Francisco Jan 27-30
 **Solving the model representation problem with broom**,
 *Alex Hayes (Tidyverse Intern, RStudio)*
 * Model representation problem: Need a standard way to represent models.
-* Broom tools:
+* [broom](https://cran.r-project.org/web/packages/broom/index.html) tools:
     + tidy(): summarize info about fit components. Broom cleans up fit for us.
     + glance(): report goodness of fit measures
     + augment(): add info about observations to a dataset -- not currently defined yet.
 * Print really pretty table of fit desc: tidy(fit) %>% kable2()  
 * Compare different models using purrr. (See code on slides)
 * Real power: working with multiple models at once. 
-* Resource: broom.tidyverse.org
+* Resource: [broom.tidyverse.org](https://broom.tidyverse.org)
 * See slides!!!   https://buff.ly/2FGKFkj 
 
 **Parsnip - a tidy model interface (building models)**,
 *Max Kuhn (Engineer, RStudio)*
 
 * Why parsnip name? White carrot (related to caret)
-*Motivation for parsnip: 
+*Motivation for [parsnip](https://cran.r-project.org/web/packages/parsnip/index.html): 
     + Different packages have different modeling interfaces. 
     + Functions run na.omit silently.  Delete data.
 * Parsnip has a tidy interface
@@ -92,9 +90,9 @@ Next year: San Francisco Jan 27-30
 *Earo Wang (PhD student, Monash University)*
 
 * Packages: 
-    + Tsibble: to tidy and transform ts data
-    + Mable: table of models
-    + Fable: tidy forecasting (table of forecasts)
+    + [tsibble](https://cran.r-project.org/web/packages/tsibble/index.html): to tidy and transform ts data
+    + [mable](https://cran.r-project.org/web/packages/mable/index.html): table of models
+    + fable: tidy forecasting (table of forecasts)
 * Can use familiar broom functions on a mable: tidy, glance, augment. Then use geom_forecast (ggplot) to visualize.
 
 **Working with categorical data in R without losing your mind**,
@@ -105,7 +103,7 @@ Next year: San Francisco Jan 27-30
 * Factors are nice for 1) modeling, 2) reordering items in ggplot.
 * Paper: Wrangling categorical data in R. Shows how factors behave unexpectedly. 
 * Use read_csv instead of read.csv! Better options for data formats.
-* *Forcats*: package to easily work with factors. Solves many of the issues that base R has with factors.    
+* [forcats](https://cran.r-project.org/web/packages/forcats/index.html): package to easily work with factors. Solves many of the issues that base R has with factors.    
 * See her cheat sheet on RStudio: syntax comparison.
 * summary() is your friend (along with testthat) to make sure data isn’t changing unexpectedly.
 
@@ -113,7 +111,7 @@ Next year: San Francisco Jan 27-30
 **Building an A/B testing analytics system with R and Shiny**, 
 *Emily Robinson (Data Scientist, DataCamp)*
 
-* funneljoin - R package for common A/B testing analyses. Available at  github.com/datacamp/funneljoin. 
+* funneljoin - R package for common A/B testing analyses. Available at  [github.com/datacamp/funneljoin](https://github.com/datacamp/funneljoin). 
 
 
 ## Documentation 
@@ -121,7 +119,7 @@ Next year: San Francisco Jan 27-30
 **R Markdown: The Bigger Picture**,
 *Garrett Grolemund (Data scientist and Educator, RStudio)*
 
-* Wrote book: R Markdown the Definitive Guide (free online: bookdown.org/yihui/rmarkdown)
+* Wrote book: R Markdown the Definitive Guide (free online: [bookdown.org/yihui/rmarkdown](https://bookdown.org/yihui/rmarkdown/))
 * Replication crisis example: Estimate: 75%-90% of preclinical results cannot be reproduced, which costs $28 billion per year in the US.
 * Rmarkdown provides a map for other scientists to reproduce your results.
 
@@ -129,7 +127,7 @@ Next year: San Francisco Jan 27-30
 *Yihui Xie (Software Engineer, RStudio) -- collaborator: Romain Lesur*
 
 * Status: package is still experimental (obtain from github)
-* pagedeown creates paged documents (e.g. PDF) from web pages.
+* [pagedeown](https://github.com/rstudio/pagedown) creates paged documents (e.g. PDF) from web pages.
 * Chrome or chromium is recommended browser to view.
 * Can also use to create:
     + business cards.
@@ -142,7 +140,7 @@ Next year: San Francisco Jan 27-30
 **Introducing the the gt Package**,
 *Rich Iannone (Software Engineer, RStudio)* @riannone
 
-* Let’s you build pretty display tables with easy-to-use functions for HTML, LaTeX and RTF.
+* [gt](https://github.com/rstudio/gt) lets you build pretty display tables with easy-to-use functions for HTML, LaTeX and RTF.
 * Currently on Github (not yet on CRAN)
 * Tibble or dataframe %>% gt() 
 * See slides for an example of sending an email (with a table) from RStudio.
@@ -153,19 +151,19 @@ Next year: San Francisco Jan 27-30
 **Democratizing R with Plumber APIs**,
 *James Blair (Solutions Engineers, RStudio)*
 
-* Plumber: Easily create API endpoints around R functions.
+* [plumber](https://cran.r-project.org/web/packages/plumber/index.html): Easily create API endpoints around R functions.
 * Interacts with OPENAPI (Swagger)
 * Use case: Use plumber to expose R models via an API
 * Most recent updates avail in github repo
 * Resources:
-    + Plumber: www.rplumber.io
+    + Plumber: [www.rplumber.io](https://www.rplumber.io/)
     + openAPI: https://swagger.io/docs/specification/about
-    + Github: github.com/sol-eng/plumber-model
+    + Github: [github.com/sol-eng/plumber-model](https://github.com/sol-eng/plumber-model)
 
 **Vctrs: tools for making size and type consistent functions**,
 *Hadley Wickham (Chief Scientist, RStudio)* @hadleywickham
 
-* Vctrs: a new package that provides tools to ensure that functions behave consistently with respect to inputs of varying length and type. 
+* [vctrs](https://cran.r-project.org/web/packages/vctrs/index.html): a new package that provides tools to ensure that functions behave consistently with respect to inputs of varying length and type. 
 * Base R: When combining objects of different classes using c(), the following order of precidence occurs: Logical -> integer -> double -> character (combine 2 types in an atomic vector and you get the type on the right)
 * Vctrs is more strict than an atomic vector in base R.
 * Will be integrated into tidyverse packages (behind the scenes) during 2019.
@@ -176,7 +174,7 @@ Next year: San Francisco Jan 27-30
 * Tidy evaluation is a toolkit for metaprogramming (code that writes/mutates code) in R.
 * Tidyverse itself does alot of metaprogramming (behind the scenes). 
 * Similar to nonstandard evaluation or unquoted variable names.
-* Package: rlang (rlang.r-lib.org) … a developer facing package.. Most people will not need to use.
+* Package: rlang ([rlang.r-lib.org](https://rlang.r-lib.org/)) is a developer facing package. Most people will not need to use.
 * Might need enquo or !! if passing variables to tidyverse function. 
 * My comments: This is more in the low level weeds than I need.
 
@@ -184,7 +182,7 @@ Next year: San Francisco Jan 27-30
 *Kara Woo (Research Scientist, Sage Bionetworks)*
 
 * Talked through an example of a difficult debugging problem (for the ggplot2 package). * Advice: 
-    + Use a reprex (minimal reproducible example) to determine/reproduce problem.
+    + Use a [reprex](https://cran.r-project.org/web/packages/reprex/index.html) (minimal reproducible example) to determine/reproduce problem.
     + Use “debug” function. (Let’s you step through function.)
 * How do you know when you are done? Don’t let perfect be the enemy of good.
 
@@ -193,7 +191,7 @@ Next year: San Francisco Jan 27-30
 **Scaling R with Spark**,
 *Javier Luraschi (Software Engineer, RStudio)*
 
-* Sparklyr package avail on cran (also need spark on machine)
+* [sparklyr](https://cran.r-project.org/web/packages/sparklyr/index.html) package avail on cran (also need spark on machine)
 * Connecting to Spark: “Connections” pain in the upper right tab. -> new connection -> spark. Click the “Connect from” dropdown to see interaction options (e.g.: command line, R notebook)
 * To start: sc <- spark_connect(master=”local”)
 * Can use dplyr or sql code for data manipulation/query
@@ -204,10 +202,9 @@ Next year: San Francisco Jan 27-30
     + Support for Apache arrow. Install R arrow package from github.
     + Xgboost models in spark
 * Resources:
-    + Docs: spark.rstudio.com
-    + Blog: blog.rstudio.com/tags/sparklyr
-    + tackoverfllow.com/tags/skparklyr
-    + Chat: gitter.im/rstudio.sparklyr
+    + Docs: [spark.rstudio.com](https://spark.rstudio.com/)
+    + Blog: [blog.rstudio.com/tags/sparklyr](https://blog.rstudio.com/tags/sparklyr)
+    + Stackoverflow: [stackoverflow.com/tags/skparklyr](https://stackoverflow.com/tags/skparklyr)
 
 **Ursa Labs and Apache Arrow in 2019: Infrastructure for next-gen data science toolbox**,
 *Wes McKinney (Ursa Labs, Python Pandas Creator)*
@@ -217,7 +214,7 @@ Next year: San Francisco Jan 27-30
 * Vision: multicore algorithms, lazy eval, sophisticated memory management, interoperable memory models, interchangeable between languages. 
 * Arrow: founded in 2016. Language agnostic, open standard in-memory format for data frames. Tools (languages) share arrow memory. Goals: faster access to data, move data efficiently, compute analytics fast.
 * Arrow for R: Building bindings for R. 
-* Plans to improve the feather package. The feather file format is readable by both R and Python.
+* Plans to improve the [feather](https://cran.r-project.org/web/packages/feather/index.html) package. The feather file format is readable by both R and Python.
 
 ## R in Production
 
@@ -245,15 +242,15 @@ Next year: San Francisco Jan 27-30
 **Keynote: Shiny in Production**,
 *Joe Cheng (CTO of RStudio)*
 
-* Cloud.r-project.org : cran mirror managed by RStudio. Download logs available (for that mirror).
-* Q: Can shiny be used for production. Ans: Yes! (It’s quite easy.)
+* [Cloud.r-project.org](https://cloud.r-project.org/): cran mirror managed by RStudio. Download logs available (for that mirror).
+* Q: Can [shiny](https://cran.r-project.org/web/packages/shiny/index.html) be used for production. Ans: Yes! (It’s quite easy.)
 Challenges: Cultural (shiny apps usually developed by R users, who aren’t necessarily SWEs). Organizational (IT and management can be skeptical). Technical (shiny lowers bar for creating web app… but not easy to automated testing, load testing, profiling, and deployment … but RStudio has worked on making this better).
 * Pet peeve: “R is not a real programming language.” (eye roll)
 * New tools for shiny in production:
     + RStudio Connect - Shiny serving with push-button deployment
-    + Shinytest (now on cran) - automated ui testing for shiny
+    + [Shinytest](https://cran.r-project.org/web/packages/shinytest/index.html) (now on cran) - automated ui testing for shiny
     + Shinyloadtest - load testing for shiny
-    + Profvis - profiler for R
+    + [profvis](https://cran.r-project.org/web/packages/profvis/index.html) - profiler for R
     + Plot caching - in Shiny 1.2. Speed up plots. Use if plots are 1) slow, 2) significant fraction of total amt of time the app spending thinking, 3) most users likely to request the same few plots.
     + Async - last resort for slow portions.
 * Use shinyloadtest to see if it’s fast enough (generates large amounts of traffic). If not, use profvis to see what’s making it slow. Then optimize: move work out of shiny (very often). Make code faster (very often), using caching (sometimes), use async (occasionally). Repeat.
@@ -280,7 +277,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Non-goals: Become a general purpose IDE. Lose focus on R.
 * Demo-ed the following languages within one R notebook.
     + SQL: Connections tab -> new connection -> ODBC. Write SQL in RStudio (as a code chunk in R notebook, or in a SQL file).
-    + Python: reticulate package 
+    + Python: [reticulate](https://cran.r-project.org/web/packages/reticulate/index.html) package 
     + D3: r2d4 function
 * Background scripts: “source as local job” button to run job in the background. Can do other things in RStudio while it’s running. Multiple jobs can be run at once. Useful for long running computations.
 * Make powerpoint presentation with RMarkdown: New file -> presentation -> PowerPoint
@@ -293,9 +290,9 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 * Started the R for Data Science (R4DS) slack group.
 * Rules: You will be kicked out of the group for being not-nice. 
-* www.Rfordatasci.com
+* [www.Rfordatasci.com](https://www.rfordatasci.com/)
 * @R4DScommunity
-* TidyTuesday
+* [TidyTuesday](https://thomasmock.netlify.com/post/tidytuesday-a-weekly-social-data-project-in-r/)
 
 **Keynote: Explicit Direct Instruction in Programming Education**,
 *Felienne (Associate Prof, Leiden University)* @felienne
@@ -309,7 +306,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 **The next million R users**
 *Carl Howe (Director of Education, RStudio)*
   
-* Survey: See rstd.io/learning-r-survey. 3300 responses. (warning: sampling bias may be present)
+* Survey: See [rstd.io/learning-r-survey](https://github.com/rstudio/learning-r-survey). 3300 responses. (warning: sampling bias may be present)
 * Who uses R? 110 countries responded.
 * Most have advanced degrees. 
 * ⅔ of R users use tidyverse today.
@@ -319,13 +316,13 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
     + Free academic licensing for RStudio pro tools. Just send course syllabus from a certified academic institution. Research (instead of teaching) gets a 50% discount.
     + Data Science in a box: https://datasciencebox.org
     + Lots of free online books: R for Data Science, Advanced R, Blogdown, Hands on programming with R, Geocomputation in R.
-  * rstudio.cloud (free) primers for self learning.
+  * [rstudio.cloud](https://rstudio.cloud/) (free) primers for self learning.
 
 **Introductory Statistics with R: Easing the transition to software for beginning students**,
 *Kelly Nicole Bodwin (Faculty, Cal Poly)* @kellybodwin
 
 * They use pre-lab exercises built in Shiny to let the students practice the statistics before having to code in R. Demo of a pre-lab exercise shown in talk.
-* Learnr package was used to build shiny apps.
+* [learnr](https://cran.r-project.org/web/packages/learnr/index.html) package was used to build shiny apps.
 * Github repo with exercises: github.com/kbodwin/Introductory-Statistics-Labs
 * Demos:
     + https://kbodwin.shinyapps.io/Lab_Exercise_CatVars2
@@ -338,7 +335,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 * Puzzle name: Tidies of March
 * R package: tidiesofmarch
-* Slides and code available at: bit.ly/ds-puzzles
+* Slides and code available at: [bit.ly/ds-puzzles](https://github.com/isteves/ds-puzzles)
 
 
 
@@ -348,7 +345,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Shiny apps for teaching stats:
     + https://statistics.calpoly.edu/shiny
     + https://shinyapps.science.psu.edu 
-* Github: github.com/mrshrbrmstr/RStudioConf2019 (includes lesson plans)
+* Github: [github.com/mrshrbrmstr/RStudioConf2019](https://github.com/mrshrbrmstr/RStudioConf2019) (includes lesson plans)
 
 
 
@@ -393,11 +390,11 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
     + Not a great way to document knowledge for long term. Blog better for that.
     + From:username to search within one person’s tweets.
 * Contribute to open source:
-    + See Ten Steps to Becoming a Tidyverse Contributor by Nic Crane
+    + See [Ten Steps to Becoming a Tidyverse Contributor by Nic Crane](https://thisisnic.github.io/2018/11/28/ten-steps-to-becoming-a-tidyverse-contributor/)
     + Contribute to a beginner-friendly issue
-    + Write R packages (See R Packages book)
+    + Write R packages (See [R Packages](http://r-pkgs.had.co.nz/) book)
 * Give talks:
-    + See “How to give a data science talk” blog by Emily Robinson
+    + See [Giving your first data science talk](https://hookedondata.org/giving-your-first-data-science-talk/) by Emily Robinson
     + Introvert tip: It makes networking at conferences easier.
     + Be sure to publish your slides.
 * Record screencasts:
@@ -405,14 +402,13 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
     + Rachel Tatman does live coding on  Twitch.
 * Write a book:
     + You need a good amount to say and some practice saying it.
-    + R bookdown package. 
-*Slides: bit.ly/drob-rstudio-2019
+    + R [bookdown](https://cran.r-project.org/web/packages/bookdown/index.html) package. * Slides: [bit.ly/drob-rstudio-2019](https://www.dropbox.com/s/jk7216yr30ztpdp/DavidRobinson-RStudio-2019-old.pdf?dl=0)
 
 
 **Panel Discussion: Growth and Data Science: Individuals, leaders, organizations and responsibilities**,
 *Speakers: Hilary Parker (Data Scientist, Stitch Fix), Karthik Ram (Data Science Fellow, UC Berkeley), Angela Bassa  (Director of Data Science, iRobot), Tracy Teal (Exec Dir, Carpentries), Eduardo (Data Science Leader, Instagram)*
 
-* See Hilary’s “Not so standard data science” podcast
+* See Hilary’s [Not so standard data science](http://nssdeviations.com/) podcast
 * What is the most important thing for success as a data scientist:
     + Flexibility in tooling (no space for a tooling purist)... but know at least one language fluently. Softer skills (e.g. empathy, understanding user/reader)
     + If an organization is giving you a hard time about your lack of knowledge as a junior data scientist, consider a different company. Don’t shy away from saying “I don’t know.” Her interview guide has impossible questions to answer… she’s looking for humility to say “I don’t know.”
@@ -444,7 +440,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 ## My after-conference TODO list:
 
 * Idea: An internal R slack channel (done)
-* Check out tidymodels library.
+* Check out [tidymodels](https://cran.r-project.org/web/packages/tidymodels/index.html) library.
 * See drob’s blog post about the intuition of beta distribution.
 * Books to check out:
     + O’Reily book on Tidy text
