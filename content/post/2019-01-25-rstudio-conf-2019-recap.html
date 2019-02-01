@@ -49,8 +49,22 @@ tags: ["Conference"]
 <li>Lots of different modeling packages and ways to deploy them.</li>
 </ul></li>
 </ul>
-<p><strong>Solving the model representation problem with broom</strong>, <em>Alex Hayes (Tidyverse Intern, RStudio)</em> * Model representation problem: Need a standard way to represent models. * <a href="https://cran.r-project.org/web/packages/broom/index.html">broom</a> tools: + tidy(): summarize info about fit components. Broom cleans up fit for us. + glance(): report goodness of fit measures + augment(): add info about observations to a dataset – not currently defined yet. * Print really pretty table of fit desc: tidy(fit) %&gt;% kable2()<br />
-* Compare different models using purrr. (See code on slides) * Real power: working with multiple models at once. * Resource: <a href="https://broom.tidyverse.org">broom.tidyverse.org</a> * See slides!!! <a href="https://buff.ly/2FGKFkj" class="uri">https://buff.ly/2FGKFkj</a></p>
+<p><strong>Solving the model representation problem with broom</strong>, <em>Alex Hayes (Tidyverse Intern, RStudio)</em></p>
+<ul>
+<li>Model representation problem: Need a standard way to represent models.</li>
+<li><a href="https://cran.r-project.org/web/packages/broom/index.html">broom</a> tools:
+<ul>
+<li>tidy(): summarize info about fit components. Broom cleans up fit for us.</li>
+<li>glance(): report goodness of fit measures</li>
+<li>augment(): add info about observations to a dataset – not currently defined yet.</li>
+</ul></li>
+<li>Print really pretty table of fit desc: tidy(fit) %&gt;% kable2()<br />
+</li>
+<li>Compare different models using purrr. (See code on slides)</li>
+<li>Real power: working with multiple models at once.</li>
+<li>Resource: <a href="https://broom.tidyverse.org">broom.tidyverse.org</a></li>
+<li>See slides!!! <a href="https://buff.ly/2FGKFkj" class="uri">https://buff.ly/2FGKFkj</a></li>
+</ul>
 <p><strong>Parsnip - a tidy model interface (building models)</strong>, <em>Max Kuhn (Engineer, RStudio)</em></p>
 <ul>
 <li>Why parsnip name? White carrot (related to caret) *Motivation for <a href="https://cran.r-project.org/web/packages/parsnip/index.html">parsnip</a>:

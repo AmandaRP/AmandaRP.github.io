@@ -52,6 +52,7 @@ Next year: San Francisco Jan 27-30
 
 **Solving the model representation problem with broom**,
 *Alex Hayes (Tidyverse Intern, RStudio)*
+
 * Model representation problem: Need a standard way to represent models.
 * [broom](https://cran.r-project.org/web/packages/broom/index.html) tools:
     + tidy(): summarize info about fit components. Broom cleans up fit for us.
