@@ -68,7 +68,7 @@ Next year: San Francisco Jan 27-30
 *Max Kuhn (Engineer, RStudio)*
 
 * Why parsnip name? White carrot (related to caret)
-*Motivation for [parsnip](https://cran.r-project.org/web/packages/parsnip/index.html): 
+* Motivation for [parsnip](https://cran.r-project.org/web/packages/parsnip/index.html): 
     + Different packages have different modeling interfaces. 
     + Functions run na.omit silently.  Delete data.
 * Parsnip has a tidy interface
@@ -324,7 +324,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 * They use pre-lab exercises built in Shiny to let the students practice the statistics before having to code in R. Demo of a pre-lab exercise shown in talk.
 * [learnr](https://cran.r-project.org/web/packages/learnr/index.html) package was used to build shiny apps.
-* Github repo with exercises: github.com/kbodwin/Introductory-Statistics-Labs
+* Github repo with exercises: [github.com/kbodwin/Introductory-Statistics-Labs](https://github.com/kbodwin/Introductory-Statistics-Labs)
 * Demos:
     + https://kbodwin.shinyapps.io/Lab_Exercise_CatVars2
     + https://kbodwin.shinyapps.io/Lab_Exercise_tDist
@@ -354,6 +354,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 **Using Data Effectively: Beyond Art and Science**,
 *Hilary Parker (Data Scientist, Stitch Fix)*
+
 * Stitch Fix has very little data on both the person and the clothing item… traditional matrix factorization (collaborative filtering) does not work well. Soln: They added the “style shuffle” where customer flips through a bunch of clothes and says yes/no to whether they would wear it. This enabled traditional matrix factorization.
 * R magik package for image processing.
 
@@ -403,7 +404,8 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
     + Rachel Tatman does live coding on  Twitch.
 * Write a book:
     + You need a good amount to say and some practice saying it.
-    + R [bookdown](https://cran.r-project.org/web/packages/bookdown/index.html) package. * Slides: [bit.ly/drob-rstudio-2019](https://www.dropbox.com/s/jk7216yr30ztpdp/DavidRobinson-RStudio-2019-old.pdf?dl=0)
+    + R [bookdown](https://cran.r-project.org/web/packages/bookdown/index.html) package. 
+* Slides: [bit.ly/drob-rstudio-2019](https://www.dropbox.com/s/jk7216yr30ztpdp/DavidRobinson-RStudio-2019-old.pdf?dl=0)
 
 
 **Panel Discussion: Growth and Data Science: Individuals, leaders, organizations and responsibilities**,
@@ -428,7 +430,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
     + Data are artifacts...not ground truth.
     + Own your mistakes.
     + Make work reproducible.
-    + See datasciencemanifesto.org
+    + See [datasciencemanifesto.org](http://www.datasciencemanifesto.org/)
 * What is the most effective way that program management and DS works together:
     + Product has a road map. Make sure that DS also has a road map and that they are correlated.
 * What are common ways that data scientists fail?
