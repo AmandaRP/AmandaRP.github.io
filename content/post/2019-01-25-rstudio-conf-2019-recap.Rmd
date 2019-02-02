@@ -8,11 +8,16 @@ categories: ["R"]
 tags: ["Conference"]
 ---
 
-This year I attended the 2019 rstudio::conf in Austin, TX. 
-1700+ attendees
-Next year: San Francisco Jan 27-30
+I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a two-day conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my summary below is only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30. 
 
-## Visualization
+rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I've ever received at a conference: a binder full fo R package cheat sheets! ... in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of [R at T-mobile]{#tmobile} interesting. I also found the [education]{#education} talks useful as I am an adjunct professor of statistics where I teach R. 
+
+Recorded videos of all talks are posted [here](https://resources.rstudio.com/rstudio-conf-2019). Additionally, links to slides can be found at [here](https://github.com/kbroman/RStudioConf2019Slides). And, check out the Twitter hashtag, #rstudioconf.
+
+Below are my notes from the talks that I attended. The post is a bit long, so I've divided it into the following sections: [visualization]{#viz}, [modeling]{#modeling}, [other R packages]{#other}, [documentation]{#doc}, [general programming]{#programming}, [interoperability with other languages]{#interop}, [R in production]{#production}, [RStudio updates]{rstudio}, [education]{education}, [and data science]{ds}. 
+
+
+## Visualization {#viz}
 
 **3D mapping, plotting, and printing with rayshader**,
 *Tyler Morgan-Wall (Institute for Defense Analysis)*
@@ -38,7 +43,7 @@ Next year: San Francisco Jan 27-30
 * Can also update labels automatically throughout animation.
 
 
-## Modeling
+## Modeling {#modeling}
 
 **Introducing MLflow**,
 *Kevin Kuo (Software Engineer, RStudio)*
@@ -85,7 +90,7 @@ Next year: San Francisco Jan 27-30
 * Typically a static graph is generated. New way: eager execution 
 * See blog articles: https://blogs.rstudio.com/tensorflow/ 
 
-## Other R Packages
+## Other R Packages {#other}
 
 **Melt the clock: tidy time series analysis**,
 *Earo Wang (PhD student, Monash University)*
@@ -115,7 +120,7 @@ Next year: San Francisco Jan 27-30
 * funneljoin - R package for common A/B testing analyses. Available at  [github.com/datacamp/funneljoin](https://github.com/datacamp/funneljoin). 
 
 
-## Documentation 
+## Documentation {#doc}
 
 **R Markdown: The Bigger Picture**,
 *Garrett Grolemund (Data scientist and Educator, RStudio)*
@@ -147,7 +152,7 @@ Next year: San Francisco Jan 27-30
 * See slides for an example of sending an email (with a table) from RStudio.
 * Slides: https://github.com/rich-iannone/presentations
 
-## General Programming 
+## General Programming {#programming}
 
 **Democratizing R with Plumber APIs**,
 *James Blair (Solutions Engineers, RStudio)*
@@ -187,7 +192,7 @@ Next year: San Francisco Jan 27-30
     + Use “debug” function. (Let’s you step through function.)
 * How do you know when you are done? Don’t let perfect be the enemy of good.
 
-## Interoperability with other languages
+## Interoperability with other languages {#interop}
 
 **Scaling R with Spark**,
 *Javier Luraschi (Software Engineer, RStudio)*
@@ -217,10 +222,10 @@ Next year: San Francisco Jan 27-30
 * Arrow for R: Building bindings for R. 
 * Plans to improve the [feather](https://cran.r-project.org/web/packages/feather/index.html) package. The feather file format is readable by both R and Python.
 
-## R in Production
+## R in Production {#production}
 
-**API Development with R and Tensorflow at T-Mobile**,
-*Heather Nolis & Jacqueline Nolis (Machine Learning Engineer & Data Scientist, nolisllc)*
+**API Development with R and Tensorflow at T-Mobile**, 
+*Heather Nolis & Jacqueline Nolis (Machine Learning Engineer & Data Scientist, nolisllc)* {#tmobile}
 
 * T-mobile has 70 million customers (+ additional from merger with Sprint)
 * NLP models to classify incoming customer message (including account info) to give live agent a heads up about the likely topic. (They used a CNN via the keras R package.)
@@ -269,7 +274,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 
 
-## RStudio Updates
+## RStudio Updates {#rstudio}
 
 **New Language Features in RStudio 1.2**,
 *Jonathan McPherson (Engineer, RStudio)*
@@ -284,7 +289,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Make powerpoint presentation with RMarkdown: New file -> presentation -> PowerPoint
 * Stable release of 1.2 this spring.
 
-## Education 
+## Education {#education}
 
 **R4DS online learning community**,
 *Jesse Mostipak (Data Scientist, Teaching Trust)*
@@ -350,7 +355,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 
 
 
-## Data Science 
+## Data Science {#ds}
 
 **Using Data Effectively: Beyond Art and Science**,
 *Hilary Parker (Data Scientist, Stitch Fix)*

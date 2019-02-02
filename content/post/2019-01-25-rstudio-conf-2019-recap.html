@@ -10,8 +10,11 @@ tags: ["Conference"]
 
 
 
-<p>This year I attended the 2019 rstudio::conf in Austin, TX. 1700+ attendees Next year: San Francisco Jan 27-30</p>
-<div id="visualization" class="section level2">
+<p>I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a two-day conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my summary below is only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</p>
+<p>rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I’ve ever received at a conference: a binder full fo R package cheat sheets! … in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of <span id="tmobile">R at T-mobile</span> interesting. I also found the <span id="education">education</span> talks useful as I am an adjunct professor of statistics where I teach R.</p>
+<p>Recorded videos of all talks are posted <a href="https://resources.rstudio.com/rstudio-conf-2019">here</a>. Additionally, links to slides can be found at <a href="https://github.com/kbroman/RStudioConf2019Slides">here</a>. And, check out the Twitter hashtag, #rstudioconf.</p>
+<p>Below are my notes from the talks that I attended. The post is a bit long, so I’ve divided it into the following sections: <span id="viz">visualization</span>, <span id="modeling">modeling</span>, <span id="other">other R packages</span>, <span id="doc">documentation</span>, <span id="programming">general programming</span>, <span id="interop">interoperability with other languages</span>, <span id="production">R in production</span>, <a href="#rstudio">RStudio updates</a>{rstudio}, <a href="#education">education</a>{education}, [and data science]{ds}.</p>
+<div id="viz" class="section level2">
 <h2>Visualization</h2>
 <p><strong>3D mapping, plotting, and printing with rayshader</strong>, <em>Tyler Morgan-Wall (Institute for Defense Analysis)</em></p>
 <ul>
@@ -89,7 +92,7 @@ tags: ["Conference"]
 <li>See blog articles: <a href="https://blogs.rstudio.com/tensorflow/" class="uri">https://blogs.rstudio.com/tensorflow/</a></li>
 </ul>
 </div>
-<div id="other-r-packages" class="section level2">
+<div id="other" class="section level2">
 <h2>Other R Packages</h2>
 <p><strong>Melt the clock: tidy time series analysis</strong>, <em>Earo Wang (PhD student, Monash University)</em></p>
 <ul>
@@ -118,7 +121,7 @@ tags: ["Conference"]
 <li>funneljoin - R package for common A/B testing analyses. Available at <a href="https://github.com/datacamp/funneljoin">github.com/datacamp/funneljoin</a>.</li>
 </ul>
 </div>
-<div id="documentation" class="section level2">
+<div id="doc" class="section level2">
 <h2>Documentation</h2>
 <p><strong>R Markdown: The Bigger Picture</strong>, <em>Garrett Grolemund (Data scientist and Educator, RStudio)</em></p>
 <ul>
@@ -150,7 +153,7 @@ tags: ["Conference"]
 <li>Slides: <a href="https://github.com/rich-iannone/presentations" class="uri">https://github.com/rich-iannone/presentations</a></li>
 </ul>
 </div>
-<div id="general-programming" class="section level2">
+<div id="programming" class="section level2">
 <h2>General Programming</h2>
 <p><strong>Democratizing R with Plumber APIs</strong>, <em>James Blair (Solutions Engineers, RStudio)</em></p>
 <ul>
@@ -191,7 +194,7 @@ tags: ["Conference"]
 <li>How do you know when you are done? Don’t let perfect be the enemy of good.</li>
 </ul>
 </div>
-<div id="interoperability-with-other-languages" class="section level2">
+<div id="interop" class="section level2">
 <h2>Interoperability with other languages</h2>
 <p><strong>Scaling R with Spark</strong>, <em>Javier Luraschi (Software Engineer, RStudio)</em></p>
 <ul>
@@ -226,9 +229,9 @@ tags: ["Conference"]
 <li>Plans to improve the <a href="https://cran.r-project.org/web/packages/feather/index.html">feather</a> package. The feather file format is readable by both R and Python.</li>
 </ul>
 </div>
-<div id="r-in-production" class="section level2">
+<div id="production" class="section level2">
 <h2>R in Production</h2>
-<p><strong>API Development with R and Tensorflow at T-Mobile</strong>, <em>Heather Nolis &amp; Jacqueline Nolis (Machine Learning Engineer &amp; Data Scientist, nolisllc)</em></p>
+<p><strong>API Development with R and Tensorflow at T-Mobile</strong>, <em>Heather Nolis &amp; Jacqueline Nolis (Machine Learning Engineer &amp; Data Scientist, nolisllc)</em> {#tmobile}</p>
 <ul>
 <li>T-mobile has 70 million customers (+ additional from merger with Sprint)</li>
 <li>NLP models to classify incoming customer message (including account info) to give live agent a heads up about the likely topic. (They used a CNN via the keras R package.)</li>
@@ -279,7 +282,7 @@ tags: ["Conference"]
 <li>Biggest challenge to using R in production: cultural, not technical.</li>
 </ul>
 </div>
-<div id="rstudio-updates" class="section level2">
+<div id="rstudio" class="section level2">
 <h2>RStudio Updates</h2>
 <p><strong>New Language Features in RStudio 1.2</strong>, <em>Jonathan McPherson (Engineer, RStudio)</em></p>
 <ul>
@@ -358,7 +361,7 @@ tags: ["Conference"]
 <li>Github: <a href="https://github.com/mrshrbrmstr/RStudioConf2019">github.com/mrshrbrmstr/RStudioConf2019</a> (includes lesson plans)</li>
 </ul>
 </div>
-<div id="data-science" class="section level2">
+<div id="ds" class="section level2">
 <h2>Data Science</h2>
 <p><strong>Using Data Effectively: Beyond Art and Science</strong>, <em>Hilary Parker (Data Scientist, Stitch Fix)</em></p>
 <ul>

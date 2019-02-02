@@ -26,9 +26,7 @@
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/01/26/rstudioconf-2019-recap/</guid>
-      <description>This year I attended the 2019 rstudio::conf in Austin, TX. 1700+ attendees Next year: San Francisco Jan 27-30
-Visualization 3D mapping, plotting, and printing with rayshader, Tyler Morgan-Wall (Institute for Defense Analysis)
- Rayshader: building realistic 3D maps from elevation data Can overlay images onto map. Animations possible. 3-D printing of maps. Watch the video for lots of cool examples. Next version will contain 3D ggplots  gganimate Live Cookbook, Thomas Lin Pedersen (Software Engineer, RStudio)</description>
+      <description>I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a two-day conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my summary below is only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</description>
     </item>
     
     <item>
