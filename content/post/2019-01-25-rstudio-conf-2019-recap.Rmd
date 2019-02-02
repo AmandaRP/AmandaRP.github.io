@@ -10,7 +10,7 @@ tags: ["Conference"]
 
 I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a two-day conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my summary below is only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30. 
 
-rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I've ever received at a conference: a binder full fo R package cheat sheets! ... in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of [R at T-mobile](#production) interesting. I also found the [education](#education) talks useful as I am an adjunct professor of statistics where I teach R. 
+rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I've ever received at a conference: a binder full fo R package cheat sheets! ... in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of [R at T-mobile](#production) interesting. Additionally, the talks about [rmarkdown/pagedown](#doc) and the keynote, [The Unreasonable Effectiveness of Public Work](#DS), motivated me to create this blog site! 
 
 Recorded videos of all talks are posted [here](https://resources.rstudio.com/rstudio-conf-2019). Additionally, links to slides can be found at [here](https://github.com/kbroman/RStudioConf2019Slides). And, check out the Twitter hashtag, #rstudioconf.
 
@@ -22,7 +22,7 @@ Below are my notes from the talks that I attended. The post is a bit long, so I'
 **3D mapping, plotting, and printing with rayshader**,
 *Tyler Morgan-Wall (Institute for Defense Analysis)*
 
-* Rayshader: building realistic 3D maps from elevation data
+* [Rayshader](https://cran.r-project.org/web/packages/rayshader/index.html): building realistic 3D maps from elevation data
 * Can overlay images onto map. Animations possible. 3-D printing of maps. 
 * Watch the video for lots of cool examples.
 * Next version will contain 3D ggplots
@@ -32,14 +32,14 @@ Below are my notes from the talks that I attended. The post is a bit long, so I'
 
 * An implementation of the grammar of animated graphics, extension to ggplot2.
 * Rewritten completely in the last year. 
-* Now available on [CRAN](https://cran.r-project.org/web/packages/rayshader/index.html).
+* Now available on [CRAN](https://CRAN.R-project.org/package=gganimate).
 * How to use:
     + Transitions: you want your data to change
     + Views: you want your viewpoint to change
-* Shadows: you want the animation to have memory
+    + Shadows: you want the animation to have memory
 * Documentation: https://youtu.be/21ZWDrTukEs
 * Transition_reveal: multiple enter/exit options 
-* See slides for examples:  www.data-imaginist.com/slides/rstudioconf….
+* See [slides](https://www.data-imaginist.com/slides/rstudioconf2019/assets/player/keynotedhtmlplayer#0) for examples.
 * Can also update labels automatically throughout animation.
 
 
@@ -48,7 +48,7 @@ Below are my notes from the talks that I attended. The post is a bit long, so I'
 **Introducing MLflow**,
 *Kevin Kuo (Software Engineer, RStudio)*
 
-* MLfow: an open source platform for the machine learning lifecycle.
+* [MLfow](https://CRAN.R-project.org/package=mlflow): an open source platform for the machine learning lifecycle.
 * Motivation: 
     + Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc)
     + Reproducability
@@ -67,7 +67,7 @@ Below are my notes from the talks that I attended. The post is a bit long, so I'
 * Compare different models using purrr. (See code on slides)
 * Real power: working with multiple models at once. 
 * Resource: [broom.tidyverse.org](https://broom.tidyverse.org)
-* See slides!!!   https://buff.ly/2FGKFkj 
+* See [slides](https://buff.ly/2FGKFkj)!!!    
 
 **Parsnip - a tidy model interface (building models)**,
 *Max Kuhn (Engineer, RStudio)*
@@ -88,7 +88,7 @@ Below are my notes from the talks that I attended. The post is a bit long, so I'
 *Sigrid Keydana*
 
 * Typically a static graph is generated. New way: eager execution 
-* See blog articles: https://blogs.rstudio.com/tensorflow/ 
+* See [blog articles](https://blogs.rstudio.com/tensorflow/). 
 
 ## Other R Packages {#other}
 

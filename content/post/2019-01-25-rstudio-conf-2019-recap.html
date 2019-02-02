@@ -11,14 +11,14 @@ tags: ["Conference"]
 
 
 <p>I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a two-day conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my summary below is only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</p>
-<p>rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I’ve ever received at a conference: a binder full fo R package cheat sheets! … in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of <a href="#production">R at T-mobile</a> interesting. I also found the <a href="#education">education</a> talks useful as I am an adjunct professor of statistics where I teach R.</p>
+<p>rstudio::conf (and also the yearly UseR! conference) is a great way to stay up to date on the latest and greatest R packages (there are currently 13K+ packages on CRAN) and to meet others excited about rstats. They also gave the most useful swag that I’ve ever received at a conference: a binder full fo R package cheat sheets! … in addition to hex stickers and t-shirts. A big theme was using R in production; I found the talk about the use of <a href="#production">R at T-mobile</a> interesting. Additionally, the talks about <a href="#doc">rmarkdown/pagedown</a> and the keynote, <a href="#DS">The Unreasonable Effectiveness of Public Work</a>, motivated me to create this blog site!</p>
 <p>Recorded videos of all talks are posted <a href="https://resources.rstudio.com/rstudio-conf-2019">here</a>. Additionally, links to slides can be found at <a href="https://github.com/kbroman/RStudioConf2019Slides">here</a>. And, check out the Twitter hashtag, #rstudioconf.</p>
 <p>Below are my notes from the talks that I attended. The post is a bit long, so I’ve divided it into the following sections: <a href="#viz">visualization</a>, <a href="#modeling">modeling</a>, <a href="#other">other R packages</a>, <a href="#doc">documentation</a>, <a href="#programming">general programming</a>, <a href="#interop">interoperability with other languages</a>, <a href="#production">R in production</a>, <a href="#rstudio">RStudio updates</a>, <a href="#education">education</a>, <a href="#ds">and data science</a>.</p>
 <div id="viz" class="section level2">
 <h2>Visualization</h2>
 <p><strong>3D mapping, plotting, and printing with rayshader</strong>, <em>Tyler Morgan-Wall (Institute for Defense Analysis)</em></p>
 <ul>
-<li>Rayshader: building realistic 3D maps from elevation data</li>
+<li><a href="https://cran.r-project.org/web/packages/rayshader/index.html">Rayshader</a>: building realistic 3D maps from elevation data</li>
 <li>Can overlay images onto map. Animations possible. 3-D printing of maps.</li>
 <li>Watch the video for lots of cool examples.</li>
 <li>Next version will contain 3D ggplots</li>
@@ -27,16 +27,16 @@ tags: ["Conference"]
 <ul>
 <li>An implementation of the grammar of animated graphics, extension to ggplot2.</li>
 <li>Rewritten completely in the last year.</li>
-<li>Now available on <a href="https://cran.r-project.org/web/packages/rayshader/index.html">CRAN</a>.</li>
+<li>Now available on <a href="https://CRAN.R-project.org/package=gganimate">CRAN</a>.</li>
 <li>How to use:
 <ul>
 <li>Transitions: you want your data to change</li>
 <li>Views: you want your viewpoint to change</li>
-</ul></li>
 <li>Shadows: you want the animation to have memory</li>
+</ul></li>
 <li>Documentation: <a href="https://youtu.be/21ZWDrTukEs" class="uri">https://youtu.be/21ZWDrTukEs</a></li>
 <li>Transition_reveal: multiple enter/exit options</li>
-<li>See slides for examples: www.data-imaginist.com/slides/rstudioconf….</li>
+<li>See <a href="https://www.data-imaginist.com/slides/rstudioconf2019/assets/player/keynotedhtmlplayer#0">slides</a> for examples.</li>
 <li>Can also update labels automatically throughout animation.</li>
 </ul>
 </div>
@@ -44,7 +44,7 @@ tags: ["Conference"]
 <h2>Modeling</h2>
 <p><strong>Introducing MLflow</strong>, <em>Kevin Kuo (Software Engineer, RStudio)</em></p>
 <ul>
-<li>MLfow: an open source platform for the machine learning lifecycle.</li>
+<li><a href="https://CRAN.R-project.org/package=mlflow">MLfow</a>: an open source platform for the machine learning lifecycle.</li>
 <li>Motivation:
 <ul>
 <li>Keeping track of what you did (trying different hyper-params, going back to a previous experiment, etc)</li>
@@ -66,7 +66,7 @@ tags: ["Conference"]
 <li>Compare different models using purrr. (See code on slides)</li>
 <li>Real power: working with multiple models at once.</li>
 <li>Resource: <a href="https://broom.tidyverse.org">broom.tidyverse.org</a></li>
-<li>See slides!!! <a href="https://buff.ly/2FGKFkj" class="uri">https://buff.ly/2FGKFkj</a></li>
+<li>See <a href="https://buff.ly/2FGKFkj">slides</a>!!!</li>
 </ul>
 <p><strong>Parsnip - a tidy model interface (building models)</strong>, <em>Max Kuhn (Engineer, RStudio)</em></p>
 <ul>
@@ -89,7 +89,7 @@ tags: ["Conference"]
 <p><strong>Why Tensorflow Eager Execution matters</strong>, <em>Sigrid Keydana</em></p>
 <ul>
 <li>Typically a static graph is generated. New way: eager execution</li>
-<li>See blog articles: <a href="https://blogs.rstudio.com/tensorflow/" class="uri">https://blogs.rstudio.com/tensorflow/</a></li>
+<li>See <a href="https://blogs.rstudio.com/tensorflow/">blog articles</a>.</li>
 </ul>
 </div>
 <div id="other" class="section level2">
