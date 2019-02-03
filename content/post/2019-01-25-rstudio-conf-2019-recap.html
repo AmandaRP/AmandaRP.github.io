@@ -72,7 +72,7 @@ tags: ["Conference"]
 <li>Motivation for <code>parsnip</code>:
 <ul>
 <li>Different packages have different modeling interfaces.</li>
-<li>Functions run na.omit silently. Delete data.</li>
+<li>Functions run <code>na.omit</code> silently. Delete data.</li>
 </ul></li>
 <li><code>parsnip</code> has a tidy interface</li>
 <li>Similar to <code>broom</code>, nicely prints output.</li>
@@ -115,7 +115,7 @@ tags: ["Conference"]
 </ul>
 <p><strong>Building an A/B testing analytics system with R and Shiny</strong>, <em>Emily Robinson (Data Scientist, DataCamp)</em></p>
 <ul>
-<li><code>funneljoin</code> - R package for common A/B testing analyses. Available at <a href="https://github.com/datacamp/funneljoin">github.com/datacamp/funneljoin</a>.</li>
+<li><a href="(https://github.com/datacamp/funneljoin)">funneljoin</a> - R package for common A/B testing analyses.</li>
 </ul>
 </div>
 <div id="doc" class="section level2">
@@ -124,7 +124,7 @@ tags: ["Conference"]
 <ul>
 <li>Co-other of <a href="https://bookdown.org/yihui/rmarkdown/">R Markdown the Definitive Guide</a></li>
 <li>Replication crisis example: Estimate: 75%-90% of preclinical results cannot be reproduced, which costs $28 billion per year in the US.</li>
-<li><code>rmarkdown</code> provides a map for other scientists to reproduce your results.</li>
+<li>Rmarkdown provides a map for other scientists to reproduce your results.</li>
 </ul>
 <p><strong>Pagedown: Creating Beautiful PDFs with R Markdown</strong>, <em>Yihui Xie (Software Engineer, RStudio) – collaborator: Romain Lesur</em></p>
 <ul>
@@ -145,7 +145,7 @@ tags: ["Conference"]
 <ul>
 <li><a href="https://github.com/rstudio/gt">gt</a> lets you build pretty display tables with easy-to-use functions for HTML, LaTeX and RTF.</li>
 <li>Currently on Github (not yet on CRAN)</li>
-<li>Tibble or <code>dataframe %&gt;% gt()</code></li>
+<li><code>tibble %&gt;% gt()</code> or <code>dataframe %&gt;% gt()</code></li>
 <li>See <a href="https://github.com/rich-iannone/presentations">slides</a> for an example of sending an email (with a table) from RStudio.</li>
 </ul>
 </div>
@@ -155,7 +155,7 @@ tags: ["Conference"]
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/plumber/index.html">plumber</a>: Easily create API endpoints around R functions.</li>
 <li>Interacts with OPENAPI (Swagger)</li>
-<li>Use case: Use plumber to expose R models via an API</li>
+<li>Use case: Use <code>plumber</code> to expose R models via an API</li>
 <li>Most recent updates avail in github repo</li>
 <li>Resources:
 <ul>
@@ -168,8 +168,8 @@ tags: ["Conference"]
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/vctrs/index.html">vctrs</a>: a new package that provides tools to ensure that functions behave consistently with respect to inputs of varying length and type.</li>
 <li>Base R: When combining objects of different classes using <code>c()</code>, the following order of precidence occurs: Logical -&gt; integer -&gt; double -&gt; character (combine 2 types in an atomic vector and you get the type on the right)</li>
-<li>Vctrs is more strict than an atomic vector in base R.</li>
-<li>Will be integrated into tidyverse packages (behind the scenes) during 2019.</li>
+<li><code>vctrs</code> is more strict than an atomic vector in base R.</li>
+<li>Will be integrated into <code>tidyverse</code> packages (behind the scenes) during 2019.</li>
 </ul>
 <p><strong>Tidy eval context</strong>, <em>Jenny Bryan (Software Engineer, RStudio)</em></p>
 <ul>
@@ -231,7 +231,7 @@ tags: ["Conference"]
 <ul>
 <li>T-mobile has 70 million customers (+ additional from merger with Sprint)</li>
 <li>NLP models to classify incoming customer message (including account info) to give live agent a heads up about the likely topic. (They used a CNN via the keras R package.)</li>
-<li>Their workflow steps: First <code>rmarkdown</code> for exploratory data analysis. Second show model to business people using a shiny demo to get them interested. Success: Given millions of $ to put it into production.</li>
+<li>Their workflow steps: First Rmarkdown for exploratory data analysis. Second show model to business people using a shiny demo to get them interested. Success: Given millions of $ to put it into production.</li>
 <li>Was told: “If you want to do ML in production, you have to use Python.” Idea: Treat R like a real programming language (because it is one)! Didn’t want to re-write everything. Steps:
 <ul>
 <li>Turn R into an API using plumber</li>
@@ -268,7 +268,7 @@ tags: ["Conference"]
 <li>Reading from feather files is faster than csv.</li>
 <li>Resources:
 <ul>
-<li>Book: <a href="http://bit.ly/shiny-prod-book">Shiny in Production</a> (in progress);</li>
+<li>Book: <a href="http://bit.ly/shiny-prod-book">Shiny in Production</a> (in progress)</li>
 <li><a href="https://speakerdeck.com/jcheng5/shiny-in-production">Slide deck</a></li>
 </ul></li>
 </ul>
@@ -288,7 +288,7 @@ tags: ["Conference"]
 <ul>
 <li>SQL: Connections tab -&gt; new connection -&gt; ODBC. Write SQL in RStudio (as a code chunk in R notebook, or in a SQL file).</li>
 <li>Python: <a href="https://cran.r-project.org/web/packages/reticulate/index.html">reticulate</a> package</li>
-<li>D3: r2d4 function</li>
+<li>D3: <code>r2d4</code> function</li>
 </ul></li>
 <li>Background scripts: “source as local job” button to run job in the background. Can do other things in RStudio while it’s running. Multiple jobs can be run at once. Useful for long running computations.</li>
 <li>Make powerpoint presentation with RMarkdown: New file -&gt; presentation -&gt; PowerPoint</li>
@@ -346,7 +346,7 @@ tags: ["Conference"]
 <p><strong>Teaching data science with puzzles</strong>, <em>Irene Steves (former intern, RStudio)</em> <span class="citation">@isteves</span></p>
 <ul>
 <li>Puzzle name: Tidies of March</li>
-<li>R package: tidiesofmarch</li>
+<li>R package: <code>tidiesofmarch</code></li>
 <li>Slides and code available at: <a href="https://github.com/isteves/ds-puzzles">bit.ly/ds-puzzles</a></li>
 </ul>
 <p><strong>Catching the R wave how R and RStudio are revolutionizing statistics education in community colleges (and beyond)</strong>, <em>Mary Rudis (Math Dept Chair, Great Bay Community College)</em></p>

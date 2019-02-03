@@ -73,7 +73,7 @@ tags: ["Conference"]
 * Why [parsnip]((https://cran.r-project.org/web/packages/parsnip/index.html)) name? White carrot (a play on `caret`)
 * Motivation for `parsnip`: 
     + Different packages have different modeling interfaces. 
-    + Functions run na.omit silently.  Delete data.
+    + Functions run `na.omit` silently.  Delete data.
 * `parsnip` has a tidy interface
 * Similar to `broom`, nicely prints output.
 * Ex: `set_engine(“glmnet”)` , however, engine doesn’t necessarily have to be an R engine.
@@ -114,7 +114,7 @@ tags: ["Conference"]
 **Building an A/B testing analytics system with R and Shiny**, 
 *Emily Robinson (Data Scientist, DataCamp)*
 
-* `funneljoin` - R package for common A/B testing analyses. Available at  [github.com/datacamp/funneljoin](https://github.com/datacamp/funneljoin). 
+* [funneljoin]((https://github.com/datacamp/funneljoin)) - R package for common A/B testing analyses.  
 
 
 ## Documentation {#doc}
@@ -124,7 +124,7 @@ tags: ["Conference"]
 
 * Co-other of [R Markdown the Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
 * Replication crisis example: Estimate: 75%-90% of preclinical results cannot be reproduced, which costs $28 billion per year in the US.
-* `rmarkdown` provides a map for other scientists to reproduce your results.
+* Rmarkdown provides a map for other scientists to reproduce your results.
 
 **Pagedown: Creating Beautiful PDFs with R Markdown**,
 *Yihui Xie (Software Engineer, RStudio) -- collaborator: Romain Lesur*
@@ -145,7 +145,7 @@ tags: ["Conference"]
 
 * [gt](https://github.com/rstudio/gt) lets you build pretty display tables with easy-to-use functions for HTML, LaTeX and RTF.
 * Currently on Github (not yet on CRAN)
-* Tibble or `dataframe %>% gt() `
+* `tibble %>% gt()` or `dataframe %>% gt() `
 * See [slides](https://github.com/rich-iannone/presentations) for an example of sending an email (with a table) from RStudio.
 
 
@@ -156,7 +156,7 @@ tags: ["Conference"]
 
 * [plumber](https://cran.r-project.org/web/packages/plumber/index.html): Easily create API endpoints around R functions.
 * Interacts with OPENAPI (Swagger)
-* Use case: Use plumber to expose R models via an API
+* Use case: Use `plumber` to expose R models via an API
 * Most recent updates avail in github repo
 * Resources:
     + Plumber: [www.rplumber.io](https://www.rplumber.io/)
@@ -168,8 +168,8 @@ tags: ["Conference"]
 
 * [vctrs](https://cran.r-project.org/web/packages/vctrs/index.html): a new package that provides tools to ensure that functions behave consistently with respect to inputs of varying length and type. 
 * Base R: When combining objects of different classes using `c()`, the following order of precidence occurs: Logical -> integer -> double -> character (combine 2 types in an atomic vector and you get the type on the right)
-* Vctrs is more strict than an atomic vector in base R.
-* Will be integrated into tidyverse packages (behind the scenes) during 2019.
+* `vctrs` is more strict than an atomic vector in base R.
+* Will be integrated into `tidyverse` packages (behind the scenes) during 2019.
 
 **Tidy eval context**,
 *Jenny Bryan (Software Engineer, RStudio)*
@@ -226,7 +226,7 @@ tags: ["Conference"]
 
 * T-mobile has 70 million customers (+ additional from merger with Sprint)
 * NLP models to classify incoming customer message (including account info) to give live agent a heads up about the likely topic. (They used a CNN via the keras R package.)
-* Their workflow steps: First `rmarkdown` for exploratory data analysis. Second show model to business people using a shiny demo to get them interested. Success: Given millions of $ to put it into production.
+* Their workflow steps: First Rmarkdown for exploratory data analysis. Second show model to business people using a shiny demo to get them interested. Success: Given millions of $ to put it into production.
 * Was told: “If you want to do ML in production, you have to use Python.” Idea: Treat R like a real programming language (because it is one)! Didn’t want to re-write everything. Steps:
     + Turn R into an API using plumber
     + Use docker images (rocker)
@@ -260,7 +260,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Deploy apps to either RStudioConnect or Shiny Server.
 * Reading from feather files is faster than csv.
 * Resources:
-    + Book: [Shiny in Production](http://bit.ly/shiny-prod-book) (in progress); 
+    + Book: [Shiny in Production](http://bit.ly/shiny-prod-book) (in progress)
     + [Slide deck](https://speakerdeck.com/jcheng5/shiny-in-production) 
 
 **R in Production**
@@ -281,7 +281,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 * Demo-ed the following languages within one R notebook.
     + SQL: Connections tab -> new connection -> ODBC. Write SQL in RStudio (as a code chunk in R notebook, or in a SQL file).
     + Python: [reticulate](https://cran.r-project.org/web/packages/reticulate/index.html) package 
-    + D3: r2d4 function
+    + D3: `r2d4` function
 * Background scripts: “source as local job” button to run job in the background. Can do other things in RStudio while it’s running. Multiple jobs can be run at once. Useful for long running computations.
 * Make powerpoint presentation with RMarkdown: New file -> presentation -> PowerPoint
 * Stable release of 1.2 this spring.
@@ -337,7 +337,7 @@ Challenges: Cultural (shiny apps usually developed by R users, who aren’t nece
 *Irene Steves (former intern, RStudio)* @isteves
 
 * Puzzle name: Tidies of March
-* R package: tidiesofmarch
+* R package: `tidiesofmarch`
 * Slides and code available at: [bit.ly/ds-puzzles](https://github.com/isteves/ds-puzzles)
 
 
