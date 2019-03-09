@@ -1,0 +1,177 @@
+---
+title: Rstats Bingo
+author: "Amanda Peterson-Plunkett"
+date: '2019-03-10'
+slug: rstats-bingo
+categories: ["R", "Education"]
+tags: []
+---
+
+I just wrapped up another round of teaching stats. I co-teach two courses per year as an adjunct instructor: one class that covers intro stats and the other that hits higher level concepts. Both courses move at a high pace; they're intended to be a survey course for professionals with a STEM background. Some students have a math background, but have never taken a statistics course. Other students have had statistics a long time ago in their undergraduate studies, but want to brush up on the material. 
+
+In both classes, by the time we get to the end, the students appreciate a light hearted activity. I found bingo to be the perfect activity to reveiew material and have a little fun. Jenny Bryan has a [R Shiny app](https://daattali.com/shiny/bingo/) for creating such bingo games. The site has a handful of pre-populated game themes such as "boring meeting" and "bad data". Or you can choose to create your own by pasting a list of words. 
+
+I created my own bingo questions (that I ask during the game) and answers (that are written on the bingo cards). (Tip: Don't forget to bring the associated list of questions to class like I did!) I've pasted the questions and answers below that I used for each class. 
+
+Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decorated with statsistics are a crowd pleaser.
+
+![Stats cookies](/post/2019-03-09-rstats-bingo_files/20190309_094937.jpg)
+
+
+## Bingo Quesions for Probability & Statistics I:
+
+1. The R function used to find the area under the normal curve
+`pnorm`
+
+2. For a discrete random variable: $E(X) = \sum_i^n X_i$
+Ans: $P(X)$
+
+3. Step 5 of the hypothesis testing method is to provide a conclusion in the _____.
+Ans: context of the problem
+
+4. Square root of the variance
+Ans: standard deviation
+
+5. Mathematical function used to count number of possibilities: without replacement, order doesn't matter.
+Ans: choose
+
+6. A ___ sample results when the population is divided into at least two different subpopulations based on some characteristic, and a sample is drawn from each subpopulation.
+Ans: stratified
+
+7. The Central Limit Theorem says that the distribution of the mean of any distribution converges to this distribution as n goes to infinity (variance must be defined)
+Ans: standard normal
+
+8. The ____ distribution approximates the Binomial when $n$ is large and $p$ is small. In this case we set $\lambda=np$.
+Ans: Poisson
+
+9. $P(A \cup B) = P(A) + P(B) -$ ___ ?
+Ans: $P(A \cap B)$
+
+10. Discrete distribution that models the number of successes in $n$ trials, where $p$ is the probability of success.
+Ans: Binomial
+
+11. The test statistic in the Test of Independence and The Goodness of fit has a ___ distribution.
+Ans: Chi-Square
+
+12. This distribution has PMF $P(X=k) = p^x(1-p)^{1-x}$ 
+Ans: Bernoulli
+
+
+13. Used to control the type I error of a hypothesis test
+Ans: significance level ($\alpha$)
+
+14. In hypothesis testing, we reject the null hypothesis if the test statistic falls in the ____ region.
+Ans: critical
+
+15. Bayes Rule: $P(A | B) = ? \frac{P(A)P(A)}$   
+Ans: $P(B | A)$ 
+
+16. The area under the entire PDF curve
+Ans: 1
+
+17. The continuous distribution that looks like a bell curve (except that it has fat tails), converges to normal as the number of samples increases, and is used when modeling data with small sample size.
+Ans: t
+
+18. The maximum minus the minimum 
+Ans: range
+
+19. The most frequent observation in a data sample
+Ans: mode
+
+20. The function $F(X) = P(X <= x)$. You could describe it as a running total of the probability density function.
+Ans: CDF 
+
+21. A ___ provides a range that indicates how likely it is to contain the true value of the population parameter. We considered such ranges for the true mean mu and for proportions. 
+Ans: confidence interval
+
+22. The ___ error occurs when the null hypothesis is true, but we reject it in favor of the alternative hypothesis. 
+Ans: Type I
+
+23. The ___ of a hypothesis test is the probability that we reject the null hypothesis when it is in fact false.
+Ans: power
+
+24. $1 - P(A) =$ the probability of the ___ of $A$.
+Ans: compliment
+
+
+## Advanced Statistics
+
+1. {} for  partition the sample space. Def page 8. bayes rule: used in denominator when marginal probability is unknown, 
+Ans: Law of Total Probability
+
+2. maximization of the  log likelihood function (take derivative and set equal to 0)
+Ans: MLE
+
+3. probability density function for 2 or more variables
+Ans: Joint PDF
+
+4. function used to count number of possibilities: without replacement, order doesn't matter
+Ans: choose
+
+5. integrate f(x,y) with respect to y, over all values of y 
+Ans: marginal of x
+
+6. an alternative to frequentist statistical analysis
+Ans: Bayesian statistics
+
+7. CLT says that the distribution of the mean of any distribution converges to this distribution as n goes to infinity (variance must be defined)
+Ans: Normal
+
+8. $P(A \cap B) = P(A | B)$ * --_
+Ans: $P(B)$
+
+9. Discrete distribution that models number of trials until 1 success
+Ans: Geometric (special case of negative binomial)
+
+10. Continuous distribution use to model time until  events occur
+Ans: Gamma
+
+11. True or false: Cov(X,Y)=0 implies X and Y are independent. (TRUE if X and Y are jointly normally distributed. Independence implies cov=0 ).
+Ans: FALSE 
+
+12. $E(XY) = E(X)E(Y)$ when X and Y are independent
+Ans: TRUE
+
+13. $Var(X) = E(X^2) -$ ____
+Ans: $E(X)^2$
+
+14. $V(aX+b) =$ ___
+Ans: $a^2V(X)$
+
+15. $E(X^{tx})$ (Note: obtain $k^{th}$ moment by taking $k^{th}$ derivative and evaluating at $t$=0)
+Ans: Moment Generating Function 
+
+16. This distribution has PMF $P(X=k) =$ 
+Ans: Bernoulli
+
+17. Used in sampling from strata to ensure that the proportion of observations in the sample mimic the population proportions.
+Ans: Proportional allocation
+
+18. Used to control the type I error of a hypothesis test
+Ans: Significance level ($\alpha$)
+
+19. In Bayesian statistics, the population parameters are considered to be ____.
+Ans: Random variables
+
+20. P(A | B) = ? * P(A) / P(A)
+$P(B | A)$ 
+
+21.  $P(A \cup B) = P(A) + P(B)$ - ______
+
+
+22. The area under the entire PDF curve
+Ans: 1
+
+23. The derivative of the CDF with respect to the random variable (for a single random variable)
+Ans: PDF
+
+24. The second non-central moment
+
+
+25. If  we say  is ___.
+Ans: Unbiased
+
+
+
+
+
