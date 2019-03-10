@@ -1,8 +1,8 @@
 ---
-title: RStats Bingo
+title: Statistics Bingo
 author: Amanda Peterson-Plunkett
 date: '2019-03-10'
-slug: rstats-bingo
+slug: stats-bingo
 categories:
   - Education
 tags: []
@@ -119,7 +119,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 ## Bingo Questions for Probability & Statistics II:
 
-1. Let {$X_i$} for $i=1..n$ partition the sample space. Bayes rule says that $f(X_i|Y) = \frac{f(Y|X_i)f(X_i)}{\sum_{i=1}^{n}f(Y|X_i)f(X_i)}$. The ___ law is used in denominator when marginal probability, $f(Y)$, is unknown. 
+1. Let {$X_i$} for $i=1..n$ partition the sample space. Bayes rule says that $f(X_i|Y) = \frac{f(Y|X_i)f(X_i)}{\sum_{i=1}^{n}f(Y|X_i)f(X_i)}$. The ___ law is used in denominator when marginal, $f(Y)$, is unknown. 
 
 **Ans**: Law of Total Probability
 
