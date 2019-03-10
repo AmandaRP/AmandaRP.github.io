@@ -1,0 +1,80 @@
+---
+title: RStats Bingo
+author: Amanda Peterson-Plunkett
+date: '2019-03-10'
+slug: rstats-bingo
+categories:
+  - Education
+tags: []
+---
+
+
+
+<p>I just wrapped up another round of teaching stats. I co-teach two courses per year as an adjunct instructor: one class that covers intro stats and the other that hits higher level concepts. Both courses move at a high pace; they’re intended to be a survey course for professionals with a STEM background. Some students have a math background, but have never taken a statistics course. Other students have had statistics a long time ago in their undergraduate studies, but want to brush up on the material.</p>
+<p>In both classes, by the time we get to the end, the students appreciate a light hearted activity. I found bingo to be the perfect activity to reveiew material and have a little fun. Jenny Bryan has a <a href="https://daattali.com/shiny/bingo/">R Shiny app</a> for creating such bingo games. Her site has a handful of pre-populated game themes such as “boring meeting” and “bad data”. Or you can choose to create your own by pasting a list of words.</p>
+<p>I created my own bingo questions that I ask during the game and answers that are written on the bingo cards. (Tip: Don’t forget to bring the associated list of questions to class like I did!) I’ve pasted the questions and answers below that I used for each class.</p>
+<p>Lastly, don’t forget the sugar! M&amp;M’s make great bingo chips. And, cookies decorated with statsistics are a crowd pleaser.</p>
+<div class="figure">
+<img src="/post/2019-03-09-rstats-bingo_files/20190309_094937.jpg" alt="Stats cookies" />
+<p class="caption">Stats cookies</p>
+</div>
+<div id="bingo-quesions-for-probability-statistics-i" class="section level2">
+<h2>Bingo Quesions for Probability &amp; Statistics I:</h2>
+<ol style="list-style-type: decimal">
+<li><p>The R function used to find the area under the normal curve Ans: <code>pnorm</code></p></li>
+<li><p>For a discrete random variable: <span class="math inline">\(E(X) = \sum_i^n X_i\)</span> * ____ Ans: <span class="math inline">\(P(X)\)</span></p></li>
+<li><p>Step 5 of the hypothesis testing method is to provide a conclusion in the _____. Ans: context of the problem</p></li>
+<li><p>Square root of the variance Ans: standard deviation</p></li>
+<li><p>Mathematical function used to count number of possibilities: without replacement, order doesn’t matter. Ans: choose</p></li>
+<li><p>A ___ sample results when the population is divided into at least two different subpopulations based on some characteristic, and a sample is drawn from each subpopulation. Ans: stratified</p></li>
+<li><p>The Central Limit Theorem says that the distribution of the mean converges to this distribution as <span class="math inline">\(n\)</span> goes to infinity (variance must be defined). Ans: standard normal</p></li>
+<li><p>The ____ distribution approximates the Binomial when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small. In this case we set <span class="math inline">\(\lambda=np\)</span>. Ans: Poisson</p></li>
+<li><p><span class="math inline">\(P(A \cup B) = P(A) + P(B) -\)</span> ___ ? Ans: <span class="math inline">\(P(A \cap B)\)</span></p></li>
+<li><p>Discrete distribution that models the number of successes in <span class="math inline">\(n\)</span> Bernoulli trials, where <span class="math inline">\(p\)</span> is the probability of success. Ans: Binomial</p></li>
+<li><p>The test statistic in the Test of Independence and The Goodness of fit has a ___ distribution. Ans: Chi-Square</p></li>
+<li><p>This distribution has PMF <span class="math inline">\(P(X=k) = p^k(1-p)^{1-k}\)</span> Ans: Bernoulli</p></li>
+<li><p>Used to control the type I error of a hypothesis test Ans: significance level (<span class="math inline">\(\alpha\)</span>)</p></li>
+<li><p>In hypothesis testing, we reject the null hypothesis if the test statistic falls in the ____ region. Ans: critical</p></li>
+<li><p>Bayes Rule: <span class="math inline">\(P(A|B) =\)</span> ____ * <span class="math inline">\(\frac{P(A)}{P(B)}\)</span><br />
+Ans: <span class="math inline">\(P(B|A)\)</span></p></li>
+<li><p>The area under the entire PDF curve Ans: 1</p></li>
+<li><p>The continuous distribution that looks like a bell curve (except that it has fat tails), converges to normal as the number of samples increases, and is used when modeling data with small sample size. Ans: Student’s <span class="math inline">\(t\)</span></p></li>
+<li><p>The maximum minus the minimum Ans: range</p></li>
+<li><p>The most frequent observation in a data sample Ans: mode</p></li>
+<li><p>The function <span class="math inline">\(F(X) = P(X &lt;= x)\)</span>. You could describe it as a running total of the probability density function. Ans: CDF</p></li>
+<li><p>A ___ provides a range for which we are <span class="math inline">\(1-\alpha\)</span>% confident contains the true value of the population parameter. In class we considered such ranges for the true mean, <span class="math inline">\(\mu\)</span>, and for proportions. Ans: confidence interval</p></li>
+<li><p>The ___ error occurs when the null hypothesis is true, but we reject it in favor of the alternative hypothesis. Ans: Type I</p></li>
+<li><p>The ___ of a hypothesis test is the probability that we reject the null hypothesis when it is in fact false. Ans: power</p></li>
+<li><p><span class="math inline">\(1 - P(A) =\)</span> the probability of the ___ of <span class="math inline">\(A\)</span>. Ans: compliment</p></li>
+</ol>
+</div>
+<div id="advanced-statistics" class="section level2">
+<h2>Advanced Statistics</h2>
+<ol style="list-style-type: decimal">
+<li><p>Let <span class="math inline">\(X_i\)</span> for <span class="math inline">\(i=1..n\)</span> partition the sample space. Bayes rule says that <span class="math inline">\(f(X_i|Y) = \frac{f(Y|X_i)f(X_i)}{\sum_{i=1}^{n}{f(Y|X_i)f(X_i)}\)</span>. The ___ law is used in denominator when marginal probability, <span class="math inline">\(f(Y)\)</span>, is unknown. Ans: Law of Total Probability</p></li>
+<li><p>Maximization of the log likelihood function (take derivative and set equal to 0) Ans: MLE</p></li>
+<li><p>Probability density function for 2 or more variables Ans: Joint PDF</p></li>
+<li><p>Function used to count number of possibilities: without replacement, order doesn’t matter Ans: choose</p></li>
+<li><p>Result of integrating <span class="math inline">\(f(X,Y)\)</span> with respect to <span class="math inline">\(Y\)</span>, over all values of <span class="math inline">\(Y\)</span> Ans: marginal of <span class="math inline">\(X\)</span></p></li>
+<li><p>An alternative to frequentist statistical analysis Ans: Bayesian statistics</p></li>
+<li><p>CLT says that the distribution of the mean converges to this distribution as <span class="math inline">\(n\)</span> goes to infinity (variance must be defined) Ans: Normal</p></li>
+<li><p><span class="math inline">\(P(A \cap B) = P(A | B)\)</span> * ____ Ans: <span class="math inline">\(P(B)\)</span></p></li>
+<li><p>Discrete distribution that models number of trials until 1 success Ans: Geometric (special case of negative binomial)</p></li>
+<li><p>Continuous distribution use to model time until events occur Ans: Gamma</p></li>
+<li><p>True or false: <span class="math inline">\(Cov(X,Y)=0\)</span> implies <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent. (TRUE if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are jointly normally distributed. Independence implies <span class="math inline">\(cov=0\)</span> ). Ans: FALSE</p></li>
+<li><p><span class="math inline">\(E(XY) = E(X)E(Y)\)</span> when X and Y are independent Ans: TRUE</p></li>
+<li><p><span class="math inline">\(Var(X) = E(X^2) -\)</span> ____ Ans: <span class="math inline">\(E(X)^2\)</span></p></li>
+<li><p><span class="math inline">\(V(aX+b) =\)</span> ___ Ans: <span class="math inline">\(a^2V(X)\)</span></p></li>
+<li><p>Name of this function: <span class="math inline">\(E(X^{tx})\)</span> (Note: obtain <span class="math inline">\(k^{th}\)</span> moment by taking <span class="math inline">\(k^{th}\)</span> derivative and evaluating at <span class="math inline">\(t\)</span>=0) Ans: Moment Generating Function</p></li>
+<li><p>This distribution has PMF <span class="math inline">\(P(X=k)= p^k(1-p)^{1-k}\)</span> Ans: Bernoulli</p></li>
+<li><p>Used in sampling from strata to ensure that the proportion of observations in the sample mimic the population proportions. Ans: Proportional allocation</p></li>
+<li><p>Used to control the type I error of a hypothesis test Ans: Significance level (<span class="math inline">\(\alpha\)</span>)</p></li>
+<li><p>In Bayesian statistics, the population parameters are considered to be ____. Ans: random variables</p></li>
+<li><p><span class="math inline">\(P(A | B) =\)</span> ____ * $ <span class="math inline">\(P(B|A)\)</span></p></li>
+<li><p><span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span> - ______ Ans: <span class="math inline">\(P(A \cap B)\)</span></p></li>
+<li><p>The area under the entire PDF curve Ans: 1</p></li>
+<li><p>The derivative of the CDF with respect to the random variable (for a single random variable) Ans: PDF</p></li>
+<li><p>The second non-central moment Ans: Variance</p></li>
+<li><p>If <span class="math inline">\(E(\hat{\theta}) = \theta\)</span> we say <span class="math inline">\(\hat{\theta}\)</span> is ___. Ans: Unbiased</p></li>
+</ol>
+</div>
