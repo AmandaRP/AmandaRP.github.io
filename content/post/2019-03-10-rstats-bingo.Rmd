@@ -16,9 +16,9 @@ I created my own bingo questions that I ask during the game and answers that are
 
 Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decorated with statsistics are a crowd pleaser.
 
-![cookies](/post/2019-03-10-rstats-bingo_files/20190309_094937.jpg){width=400px height=200px}
+![](/post/2019-03-10-rstats-bingo_files/20190309_094937.jpg){width=400px height=200px}
 
-## Bingo Quesions for Probability & Statistics I:
+## Bingo Questions for Probability & Statistics I:
 
 1. The R function used to find the area under the normal curve
 
@@ -46,7 +46,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 7. The Central Limit Theorem says that the distribution of the mean converges to this distribution as $n$ goes to infinity (variance must be defined).
 
-**Ans**: standard normal
+**Ans**: normal
 
 8. The ____ distribution approximates the Binomial when $n$ is large and $p$ is small. In this case we set $\lambda=np$.
 
@@ -60,7 +60,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 **Ans**: Binomial
 
-11. The test statistic in the Test of Independence and The Goodness of fit has a ___ distribution.
+11. The test statistic in the Test of Independence and The Goodness of Fit has a ___ distribution.
 
 **Ans**: Chi-Square
 
@@ -84,7 +84,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 **Ans**: 1
 
-17. The continuous distribution that looks like a bell curve (except that it has fat tails), converges to normal as the number of samples increases, and is used when modeling data with small sample size.
+17. The continuous distribution that looks like a bell curve (except that it has fat tails), converges to normal as $n$ increases, and is used when modeling data with small sample size.
 
 **Ans**: Student's $t$
 
@@ -96,11 +96,11 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 **Ans**: mode
 
-20. The function $F(X) = P(X <= x)$. You could describe it as a running total of the probability density function.
+20. The function $F(X) = P(X \le x)$. You could describe it as a running total of the probability density function.
 
 **Ans**: CDF 
 
-21. A ___ provides a range for which we are $1-\alpha$% confident contains the true value of the population parameter. In class we considered such ranges for the true mean, $\mu$, and for proportions. 
+21. A ___ provides a range for which we are $(1-\alpha)$% confident contains the true value of the population parameter. In class we considered such ranges for the true mean, $\mu$, and for proportions. 
 
 **Ans**: confidence interval
 
@@ -117,9 +117,9 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 **Ans**: compliment
 
 
-## Advanced Statistics
+## Bingo Questions for Probability & Statistics II:
 
-1. Let $X_i$ for $i=1..n$ partition the sample space. Bayes rule says that $f(X_i|Y) = \frac{f(Y|X_i)f(X_i)}{\sum_{i=1}^{n}{f(Y|X_i)f(X_i)}$. The ___ law is used in denominator when marginal probability, $f(Y)$, is unknown. 
+1. Let {$X_i$} for $i=1..n$ partition the sample space. Bayes rule says that $f(X_i|Y) = \frac{f(Y|X_i)f(X_i)}{\sum_{i=1}^{n}f(Y|X_i)f(X_i)}$. The ___ law is used in denominator when marginal probability, $f(Y)$, is unknown. 
 
 **Ans**: Law of Total Probability
 
@@ -135,7 +135,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 **Ans**: choose
 
-5. Result of integrating $f(X,Y)$ with respect to $Y$, over all values of $Y$ 
+5. Result of integrating $f(X,Y)$ with respect to $Y$, over the support of $Y$ 
 
 **Ans**: marginal of $X$
 
@@ -195,7 +195,7 @@ Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decor
 
 **Ans**: random variables
 
-20. $P(A | B) =$ ____ * $\frac{P(A)}{P(A)}
+20. $P(A | B) =$ ____ * $\frac{P(A)}{P(B)}$
 
 **Ans**: $P(B|A)$ 
 
