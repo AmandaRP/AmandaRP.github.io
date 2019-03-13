@@ -1,9 +1,9 @@
-baseurl = "https://brave-bassi-f57481.netlify.com/"
+baseurl = "https://amanda.rbind.io/"
 languageCode = "en-us"
 title = "Amanda Plunkett"
 theme = "hugo-lithium"
-googleAnalytics = ""
-disqusShortname = ""
+googleAnalytics = "UA-136228275-1"
+disqusShortname = "amanda-data-blog.disqus.com"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
