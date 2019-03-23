@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Amanda Plunkett</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>#rstats Love</title>
+      <link>/2019/03/23/rstats-love/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/23/rstats-love/</guid>
+      <description>My MO on twitter is to “like” posts that contain information that I’d like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.
+Happy pi day! #PiDay pic.</description>
+    </item>
     
     <item>
       <title>Statistics Bingo</title>
