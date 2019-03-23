@@ -10,8 +10,9 @@ tags: []
 ---
 
 
-My MO on twitter is to "like" posts that contain information that I'd like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to summarize my Twitter likes. This was my first time using the `rtweet` package, so I'll also provide a brief intro.
+My MO on twitter is to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to summarize my Twitter likes. This was my first time using the `rtweet` package, so I'll also provide a [brief intro](). Click [here]() to jump to the summary.
 
+#rtweet Package
 
 ```{r echo=FALSE}
 blogdown::shortcode('tweet', '1106185697894023168')
@@ -25,6 +26,9 @@ To grab the tweets, there is a little setup with Twitter that is necessary. The 
 library(rtweet)
 ```
 
+During setup, I ran into a bit of an issue authenticating my Twitter app. I'm working in RStudio on an AWS instance. The issue and work-around is described by the package author [here](https://github.com/mkearney/rtweet/issues/156).
+
 TODO: Am having issues authenticating token. Install dev version of rtweet. Then follow instructions here:
 https://github.com/mkearney/rtweet/issues/156
 
+# My Twitter Likes
