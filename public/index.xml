@@ -2,49 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Amanda Plunkett</title>
-    <link>/</link>
+    <link>https://amanda.rbind.io/</link>
     <description>Recent content on Amanda Plunkett</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://amanda.rbind.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>#rstats Love</title>
-      <link>/2019/03/23/rstats-love/</link>
-      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/03/23/rstats-love/</guid>
-      <description>My MO on twitter is to “like” posts that contain information that I’d like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.
-Happy pi day! #PiDay pic.</description>
-    </item>
     
     <item>
       <title>Statistics Bingo</title>
-      <link>/2019/03/10/stats-bingo/</link>
+      <link>https://amanda.rbind.io/2019/03/10/stats-bingo/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/03/10/stats-bingo/</guid>
+      <guid>https://amanda.rbind.io/2019/03/10/stats-bingo/</guid>
       <description>I just wrapped up another round of teaching stats. I co-teach two courses per year as an adjunct instructor: one class that covers intro stats and the other that hits higher level concepts. Both courses move at a high pace; they’re intended to be a survey course for professionals with a STEM background. Some students have a math background, but have never taken a statistics course. Other students have had statistics a long time ago in their undergraduate studies, but want to brush up on the material.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://amanda.rbind.io/about/</link>
       <pubDate>Tue, 29 Jan 2019 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://amanda.rbind.io/about/</guid>
       <description>Welcome to my blog site, created with the R blogdown package! I&amp;rsquo;m a statistician based in the Washington DC metro area.</description>
     </item>
     
     <item>
       <title>rstudio::conf recap</title>
-      <link>/2019/01/26/rstudio-conf-2019-recap/</link>
+      <link>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/01/26/rstudio-conf-2019-recap/</guid>
+      <guid>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</guid>
       <description>The overview: I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my notes below cover only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</description>
     </item>
     
