@@ -1,0 +1,32 @@
+---
+title: Text Analysis of Psalms
+author: AmandaRP
+date: '2019-05-18'
+slug: text-analysis-of-psalms
+draft: true
+categories: []
+tags: []
+---
+
+```{r}
+library(wordcloud2)
+library(tidytext)
+library(tidyverse)
+source("2019-05-18-data.R")
+```
+
+Ideas: 
+* Author comparison (comparison wordcloud)
+* sentiment analysis by chapter
+* phrase cloud from my study
+
+```{r}
+god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
+```
+
+
+
+```{r}
+wordcloud2(god_is)
+```
+
