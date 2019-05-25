@@ -3,57 +3,72 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://amanda.rbind.io/2019/03/10/stats-bingo/</loc>
+    <loc>/2019/05/24/new-r-package-hddtest/</loc>
+    <lastmod>2019-05-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/05/18/text-analysis-of-psalms/</loc>
+    <lastmod>2019-05-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/03/23/rstats-love/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/03/10/stats-bingo/</loc>
     <lastmod>2019-03-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2019-01-29T21:48:51-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</loc>
+    <loc>/2019/01/26/rstudio-conf-2019-recap/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/</loc>
-    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2019-05-24T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/tags/conference/</loc>
-    <lastmod>2019-01-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://amanda.rbind.io/categories/education/</loc>
-    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://amanda.rbind.io/post/</loc>
-    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://amanda.rbind.io/categories/r/</loc>
+    <loc>/tags/conference/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://amanda.rbind.io/tags/</loc>
+    <loc>/categories/education/</loc>
+    <lastmod>2019-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-05-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2019-03-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
     <lastmod>2019-01-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
