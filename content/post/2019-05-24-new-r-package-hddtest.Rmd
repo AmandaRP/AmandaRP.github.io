@@ -1,0 +1,127 @@
+---
+title: 'Introducing the hddtest R package'
+author: AmandaRP
+date: '2019-05-24'
+slug: new-r-package-hddtest
+draft: true
+categories: []
+tags: []
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+require(magrittr)
+require(tidyr)
+require(dplyr)
+require(stringr)
+require(ggplot2)
+set.seed(1969)
+load(file="~/hddtest/data/twoNewsGroups.rda")
+```
+
+I'd like to introduce a package that I wrote recently, `hddtest`, for two sample hypothesis testing of high dimensional discrete data. The package is currently available on [GitHub](https://github.com/AmandaRP/hddtest). It contains methods for both multivariate binary data and multinomial data.  
+
+To illustrate its use, let's look at a dataset included in the package, called `twoNewsGroups`. It contains document term frequency matrices for two of the [20 newgroups](http://qwone.com/~jason/20Newsgroups/). Each matrix has dimension 594 by 16214. The $(i,j)$ entry of each matrix is the count (term frequency) of the $j^{th}$ word in the $i^{th}$ document. The first matrix in the list contains 594 sampled documents from the `rec.sport.baseball` newsgroup. The second contains 594 sampled documents from the `sci.med` newsgroup.
+
+We might like to compare two sets of documents to determine whether or not they come from the same newsgroup. We'll start by sampling two sets of 200 documents from the `sci.med` newsgroup. We'll use this to simulate the null hypothesis being TRUE, that is the two groups come from the same distribution. 
+
+```{r}
+library(hddtest)
+data(twoNewsGroups)
+
+num_docs <- 200
+row_ids <- 1:nrow(twoNewsGroups$sci.med)
+group_1 <- sample(row_ids, num_docs)
+group_2 <- sample(row_ids[-group_1], num_docs)
+```
+
+Next for each of the two groups, sum the 200 term frequency vectors together. They will be the two multinomial vectors that we test. We'll store the result in a list called, `vecs2Test`.
+
+```{r}
+vecs2Test <- list(NA, 2)
+vecs2Test[[1]] <- twoNewsGroups$sci.med[group_1, ] %>% 
+  colSums() %>% 
+  matrix(nrow = 1)
+vecs2Test[[2]] <- twoNewsGroups$sci.med[group_2, ] %>%
+  colSums() %>% 
+  matrix(nrow = 1)
+```
+
+Now test the null hypothesis that the two vectors come from the same distribution (i.e. the same newsgroup).
+
+```{r}
+vecs2Test %>% multinom.test()
+```
+
+The above test produced a significant p-value meaning that we would reject the null. However, the difference isn't very interesting. Instead, let's test that the differences are within some neighborhood, `delta`:
+
+```{r}
+vecs2Test %>% multinom.neighborhood.test(delta = 60)
+```
+
+How to choose the appropriate `delta`? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function. 
+
+```{r}
+simulation <- function(data, null_hyp, delta, reps = 10, num_docs = c(200, 200)){
+  
+   vecs2Test <- list(matrix(NA, reps, ncol(data[[1]])), matrix(NA, reps, ncol(data[[1]])))
+   
+   for(i in 1:reps){
+     if(null_hyp){
+       # Sample two sets of num_docs from the SAME set of documents     
+       row_ids <- 1:nrow(data[[2]])
+       group_1 <- sample(row_ids, num_docs[1])
+       group_2 <- sample(row_ids[-group_1], num_docs[2])
+       vecs2Test[[1]][i, ] <- data[[2]][group_1, ] %>% colSums()
+       vecs2Test[[2]][i, ] <- data[[2]][group_2, ] %>% colSums()
+       
+     }else{
+       # Sample num_docs from each of the two DIFFERENT sets of documents
+       vecs2Test[[1]][i, ] <- data[[1]][sample(1:nrow(data[[1]]), num_docs[1]), ] %>%
+                                      colSums()
+       vecs2Test[[2]][i,] <- data[[2]][sample(1:nrow(data[[2]]), num_docs[2]), ] %>%
+                                      colSums()
+     }
+   }
+   
+   #Perform the test:
+   result <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
+   
+} #end simulation function
+```
+
+Now run simulation for varying values of `delta` testing both the null and alternative hypotheses. Then plot the results:
+
+```{r}
+delta <- 1:160
+p.delta.null <- simulation(data = twoNewsGroups, null_hyp = TRUE, delta = delta)$pvalue_delta
+p.delta.alt  <- simulation(data = twoNewsGroups, null_hyp = FALSE, delta = delta)$pvalue_delta
+```
+
+```{r, fig.width=8, fig.height=3.5, echo = FALSE}
+dat <- data.frame(delta=delta, null = t(p.delta.null), alternative = t(p.delta.alt)) %>%
+  gather(-delta, key = "replication", value = pvalue) %>% 
+  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
+
+ggplot(dat, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
+  geom_line() +
+  geom_vline(xintercept = 60, linetype = "dotted") +
+  annotate("text", x = 80, y = .75, label = "delta = 60") +
+  labs(y = "p-value", title = "P-Value Curves for Simulation", color = "Hypothesis") + 
+  geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
+  theme_classic() +
+  theme(title = element_text(face = "bold", size = 14),
+        panel.grid = element_blank())
+
+```
+
+
+Notice in the plot above that for `delta` in the range of 50 to 100, the p-value is large when the null hypothesis is true (blue curves) and small when the null hypothesis is false (red curves). So, our previous choice of `delta`=60 seems reasonable.
+
+To see the full list of functions available in `hddtest`, see the [GitHub README](https://github.com/AmandaRP/hddtest). I'd like to mention that the methods for this package were developed in collaboration with my UMBC PhD thesis advisor, Dr Junyong Park, and documented [1](https://link.springer.com/article/10.1007%2Fs11749-018-0600-8) and [2](https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743). Thanks for reading! 
+
+
