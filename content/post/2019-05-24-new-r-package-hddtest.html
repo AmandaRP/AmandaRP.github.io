@@ -34,7 +34,7 @@ vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
 #&gt; 
 #&gt; $pvalue
 #&gt; [1] 0</code></pre>
-<p>The above test produced a significant p-value meaning that we would reject the null. However, the difference isn’t very interesting. Instead, let’s test that the differences are within some neighborhood, <code>delta</code>:</p>
+<p>The above test produced a significant p-value meaning that we would reject the null. However, the difference isn’t very interesting. Instead we could have tested that the differences are within some neighborhood, <code>delta</code>.</p>
 <pre class="r"><code>vecs2Test %&gt;% multinom.neighborhood.test(delta = 60)
 #&gt; $statistic
 #&gt; [1] 30.49031
