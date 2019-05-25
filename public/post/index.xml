@@ -2,30 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Amanda Plunkett</title>
-    <link>https://amanda.rbind.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Amanda Plunkett</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://amanda.rbind.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Introducing the hddtest R package</title>
+      <link>/2019/05/24/new-r-package-hddtest/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/24/new-r-package-hddtest/</guid>
+      <description>I’d like to introduce a package that I wrote recently, hddtest, for two sample hypothesis testing of high dimensional discrete data. The package is currently available on GitHub. It contains methods for both multivariate binary data and multinomial data.
+To illustrate its use, let’s look at a dataset included in the package, called twoNewsGroups. It contains document term frequency matrices for two of the 20 newgroups. Each matrix has dimension 594 by 16214.</description>
+    </item>
+    
+    <item>
+      <title>Text Analysis of Psalms</title>
+      <link>/2019/05/18/text-analysis-of-psalms/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/18/text-analysis-of-psalms/</guid>
+      <description>library(wordcloud2) library(tidytext) library(tidyverse) ## ── Attaching packages ──────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.0.0 ✔ purrr 0.2.5 ## ✔ tibble 2.1.1 ✔ dplyr 0.8.1 ## ✔ tidyr 0.8.1 ✔ stringr 1.3.1 ## ✔ readr 1.3.1 ✔ forcats 0.3.0 ## ── Conflicts ─────────────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() source(&amp;quot;2019-05-18-data.R&amp;quot;) Ideas: * Author comparison (comparison wordcloud) * sentiment analysis by chapter * phrase cloud from my study</description>
+    </item>
+    
+    <item>
+      <title>#rstats Love</title>
+      <link>/2019/03/23/rstats-love/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/23/rstats-love/</guid>
+      <description>My MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro. Click here to jump to the summary.</description>
+    </item>
+    
+    <item>
       <title>Statistics Bingo</title>
-      <link>https://amanda.rbind.io/2019/03/10/stats-bingo/</link>
+      <link>/2019/03/10/stats-bingo/</link>
       <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://amanda.rbind.io/2019/03/10/stats-bingo/</guid>
+      <guid>/2019/03/10/stats-bingo/</guid>
       <description>I just wrapped up another round of teaching stats. I co-teach two courses per year as an adjunct instructor: one class that covers intro stats and the other that hits higher level concepts. Both courses move at a high pace; they’re intended to be a survey course for professionals with a STEM background. Some students have a math background, but have never taken a statistics course. Other students have had statistics a long time ago in their undergraduate studies, but want to brush up on the material.</description>
     </item>
     
     <item>
       <title>rstudio::conf recap</title>
-      <link>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</link>
+      <link>/2019/01/26/rstudio-conf-2019-recap/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</guid>
+      <guid>/2019/01/26/rstudio-conf-2019-recap/</guid>
       <description>The overview: I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my notes below cover only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</description>
     </item>
     

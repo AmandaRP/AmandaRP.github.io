@@ -2,21 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Amanda Plunkett</title>
-    <link>https://amanda.rbind.io/categories/r/</link>
+    <link>/categories/r/</link>
     <description>Recent content in R on Amanda Plunkett</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 26 Jan 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 23 Mar 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://amanda.rbind.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>#rstats Love</title>
+      <link>/2019/03/23/rstats-love/</link>
+      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/23/rstats-love/</guid>
+      <description>My MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro. Click here to jump to the summary.</description>
+    </item>
+    
+    <item>
       <title>rstudio::conf recap</title>
-      <link>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</link>
+      <link>/2019/01/26/rstudio-conf-2019-recap/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</guid>
+      <guid>/2019/01/26/rstudio-conf-2019-recap/</guid>
       <description>The overview: I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my notes below cover only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</description>
     </item>
     
