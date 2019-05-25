@@ -3,7 +3,6 @@ title: 'Introducing the hddtest R package'
 author: AmandaRP
 date: '2019-05-24'
 slug: new-r-package-hddtest
-draft: true
 categories: []
 tags: []
 ---
