@@ -93,7 +93,7 @@ simulation <- function(data, null_hyp, delta, reps = 30, num_docs = c(200, 200))
 } #end simulation function
 ```
 
-Now run simulation for varying values of `delta` (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. Then plot the results:
+Now run simulation for varying values of `delta` (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. The resulting plot shows once curve for each the 60 simulations (which evaluate the p-value at each value of `delta`.)
 
 ```{r}
 delta <- 1:160
@@ -121,6 +121,6 @@ ggplot(dat, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)
 
 Notice in the plot above that for `delta` in the range of 50 to 100, the p-value is large when the null hypothesis is true (blue curves) and small when the null hypothesis is false (red curves). So, our previous choice of `delta`=60 seems reasonable.
 
-To see the full list of functions available in `hddtest`, see the [GitHub README](https://github.com/AmandaRP/hddtest). I'd like to mention that the methods for this package were developed in collaboration with my UMBC PhD thesis advisor, [Dr Junyong Park](http://www.math.umbc.edu/~junpark/), and documented [1](https://link.springer.com/article/10.1007%2Fs11749-018-0600-8) and [2](https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743). Thanks for reading! 
+The methods for this package were developed in collaboration with my UMBC PhD thesis advisor, [Dr Junyong Park](http://www.math.umbc.edu/~junpark/), and documented in [1](https://link.springer.com/article/10.1007%2Fs11749-018-0600-8) and [2](https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743). To see the full list of functions available in `hddtest`, see the [GitHub README](https://github.com/AmandaRP/hddtest). Thanks for reading! 
 
 
