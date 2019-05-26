@@ -43,7 +43,7 @@ vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
 #&gt;      [,1]
 #&gt; [1,]    1</code></pre>
 <p>How to choose the appropriate <code>delta</code>? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function.</p>
-<pre class="r"><code>simulation &lt;- function(data, null_hyp, delta, reps = 10, num_docs = c(200, 200)){
+<pre class="r"><code>simulation &lt;- function(data, null_hyp, delta, reps = 30, num_docs = c(200, 200)){
   
    vecs2Test &lt;- list(matrix(NA, reps, ncol(data[[1]])), matrix(NA, reps, ncol(data[[1]])))
    

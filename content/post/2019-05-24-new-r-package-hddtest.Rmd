@@ -65,7 +65,7 @@ vecs2Test %>% multinom.neighborhood.test(delta = 60)
 How to choose the appropriate `delta`? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function. 
 
 ```{r}
-simulation <- function(data, null_hyp, delta, reps = 10, num_docs = c(200, 200)){
+simulation <- function(data, null_hyp, delta, reps = 30, num_docs = c(200, 200)){
   
    vecs2Test <- list(matrix(NA, reps, ncol(data[[1]])), matrix(NA, reps, ncol(data[[1]])))
    
