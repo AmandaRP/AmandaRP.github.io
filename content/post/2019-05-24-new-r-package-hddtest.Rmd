@@ -93,7 +93,7 @@ simulation <- function(data, null_hyp, delta, reps = 10, num_docs = c(200, 200))
 } #end simulation function
 ```
 
-Now run simulation for varying values of `delta` testing both the null and alternative hypotheses. Then plot the results:
+Now run simulation for varying values of `delta` (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. Then plot the results:
 
 ```{r}
 delta <- 1:160
