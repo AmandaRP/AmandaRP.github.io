@@ -60,7 +60,7 @@ Now test the null hypothesis that the associated multinomial probability vectors
 ```{r}
 vecs2Test %>% multinom.neighborhood.test(delta = 60)
 ```
-
+  
 Here we fail to reject the null hypothesis using a `delta` of 60. How to choose the appropriate `delta`? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function. 
 
 ```{r}
@@ -120,6 +120,6 @@ ggplot(dat, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)
 
 Notice in the plot above that for `delta` in the range of about 40 to 100, the p-value is large when the null hypothesis is true (that is, the two sets of documents come from the same distribution, shown in blue) and small when the null hypothesis is false (that is, the two sets of documents come from different distributions, shown in red). So, our previous choice of `delta`=60 seems reasonable for making the correct conclusion. 
 
-The methods for this package were developed in collaboration with my UMBC PhD thesis advisor, [Dr Junyong Park](http://www.math.umbc.edu/~junpark/), and published in [1](https://link.springer.com/article/10.1007%2Fs11749-018-0600-8) and [2](https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743). To see the full list of functions available in `hddtest`, see the [GitHub README](https://github.com/AmandaRP/hddtest). Thanks for reading! 
+The methods for this package were developed in collaboration with my UMBC PhD thesis advisor, [Dr Junyong Park](http://www.math.umbc.edu/~junpark/), and published in [1](https://link.springer.com/article/10.1007%2Fs11749-018-0600-8) and [2](https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743). Full details about the statistics used are documented in these papers. To see the full list of functions available in `hddtest`, see the [GitHub README](https://github.com/AmandaRP/hddtest). Thanks for reading! 
 
 
