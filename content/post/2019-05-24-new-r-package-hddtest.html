@@ -10,8 +10,10 @@ tags: []
 
 
 <p>I’d like to introduce a package that I wrote recently, <code>hddtest</code>, for two sample hypothesis testing of high dimensional discrete data. The package is currently available on <a href="https://github.com/AmandaRP/hddtest">GitHub</a>. It contains methods for both multivariate binary data and multinomial data.</p>
-<p>To illustrate its use, let’s look at a dataset included in the package, called <code>twoNewsGroups</code>. It contains document term frequency matrices for two of the <a href="http://qwone.com/~jason/20Newsgroups/">20 newgroups</a>. Each matrix has dimension 594 by 16214. The <span class="math inline">\((i,j)\)</span> entry of each matrix is the count (term frequency) of the <span class="math inline">\(j^{th}\)</span> word in the <span class="math inline">\(i^{th}\)</span> document. The first matrix in the list contains 594 sampled documents from the <code>rec.sport.baseball</code> newsgroup. The second contains 594 sampled documents from the <code>sci.med</code> newsgroup.</p>
-<p>We might like to compare two sets of documents to determine whether or not they come from the same newsgroup. We’ll start by sampling two sets of 200 documents from the <code>sci.med</code> newsgroup. We’ll use this to simulate the null hypothesis being TRUE, that is the two groups come from the same distribution.</p>
+<p>I’ll illustrate the use of one of its functions, the multinomial neighborhood test, by using a dataset included in the package called <code>twoNewsGroups</code>. It contains document term frequency matrices for two of the <a href="http://qwone.com/~jason/20Newsgroups/">20 newgroups</a>. Each matrix has dimension 594 by 16214. The <span class="math inline">\((i,j)\)</span> entry of each matrix is the count (term frequency) of the <span class="math inline">\(j^{th}\)</span> word in the <span class="math inline">\(i^{th}\)</span> document. The first matrix in the list contains 594 sampled documents from the <code>rec.sport.baseball</code> newsgroup. The second contains 594 sampled documents from the <code>sci.med</code> newsgroup.</p>
+<p>We might like to compare two sets of documents to determine whether or not they come from the same newsgroup. To do this, we’ll perform a neighborhood test.</p>
+<p>What is a neighborhood test useful for? In testing the equality of parameters from two populations, it frequently happens that the null hypothesis is rejected even though the estimates of effect sizes are close to each other; however, these differences are so small that parameters may not be considered to be different in practice. Another issue is that although the use of p-values is a common measure to draw a conclusion about the population, one may be interested in the measure of indifference or inhomogeneity.</p>
+<p>We’ll start by sampling two sets of 200 documents from the <code>sci.med</code> newsgroup. We’ll use this to simulate the null hypothesis being TRUE.</p>
 <pre class="r"><code>library(hddtest)
 data(twoNewsGroups)
 
@@ -27,14 +29,7 @@ vecs2Test[[1]] &lt;- twoNewsGroups$sci.med[group_1, ] %&gt;%
 vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
   colSums() %&gt;% 
   matrix(nrow = 1)</code></pre>
-<p>Now test the null hypothesis that the two vectors come from the same distribution (i.e. the same newsgroup).</p>
-<pre class="r"><code>vecs2Test %&gt;% multinom.test()
-#&gt; $statistic
-#&gt; [1] 30.49031
-#&gt; 
-#&gt; $pvalue
-#&gt; [1] 0</code></pre>
-<p>The above test produced a significant p-value meaning that we would reject the null. However, the difference isn’t very interesting. Instead we could have tested that the differences are within some neighborhood, <code>delta</code>.</p>
+<p>Now test the null hypothesis that the associated multinomial probability vectors are within some neighborhood, <code>delta</code>, of each other (against the alternative that they are not). We can then use this result to infer whether the sets of documents are likely from the same newsgroup.</p>
 <pre class="r"><code>vecs2Test %&gt;% multinom.neighborhood.test(delta = 60)
 #&gt; $statistic
 #&gt; [1] 30.49031
@@ -42,7 +37,7 @@ vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
 #&gt; $pvalue_delta
 #&gt;      [,1]
 #&gt; [1,]    1</code></pre>
-<p>How to choose the appropriate <code>delta</code>? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function.</p>
+<p>Here we fail to reject the null hypothesis using a <code>delta</code> of 60. How to choose the appropriate <code>delta</code>? The answer may come from subject matter expertise about the problem domain. Or you can run a simulation to gain insight. Below we define a simulation function.</p>
 <pre class="r"><code>simulation &lt;- function(data, null_hyp, delta, reps = 30, num_docs = c(200, 200)){
   
    vecs2Test &lt;- list(matrix(NA, reps, ncol(data[[1]])), matrix(NA, reps, ncol(data[[1]])))
@@ -73,6 +68,6 @@ vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
 <pre class="r"><code>delta &lt;- 1:160
 p.delta.null &lt;- simulation(data = twoNewsGroups, null_hyp = TRUE, delta = delta)$pvalue_delta
 p.delta.alt  &lt;- simulation(data = twoNewsGroups, null_hyp = FALSE, delta = delta)$pvalue_delta</code></pre>
-<p><img src="/post/2019-05-24-new-r-package-hddtest_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+<p><img src="/post/2019-05-24-new-r-package-hddtest_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
 <p>Notice in the plot above that for <code>delta</code> in the range of about 40 to 100, the p-value is large when the null hypothesis is true (that is, the two sets of documents come from the same distribution, shown in blue) and small when the null hypothesis is false (that is, the two sets of documents come from different distributions, shown in red). So, our previous choice of <code>delta</code>=60 seems reasonable for making the correct conclusion.</p>
-<p>The methods for this package were developed in collaboration with my UMBC PhD thesis advisor, <a href="http://www.math.umbc.edu/~junpark/">Dr Junyong Park</a>, and documented in <a href="https://link.springer.com/article/10.1007%2Fs11749-018-0600-8">1</a> and <a href="https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743">2</a>. To see the full list of functions available in <code>hddtest</code>, see the <a href="https://github.com/AmandaRP/hddtest">GitHub README</a>. Thanks for reading!</p>
+<p>The methods for this package were developed in collaboration with my UMBC PhD thesis advisor, <a href="http://www.math.umbc.edu/~junpark/">Dr Junyong Park</a>, and published in <a href="https://link.springer.com/article/10.1007%2Fs11749-018-0600-8">1</a> and <a href="https://www.tandfonline.com/doi/abs/10.1080/03610926.2016.1260743">2</a>. To see the full list of functions available in <code>hddtest</code>, see the <a href="https://github.com/AmandaRP/hddtest">GitHub README</a>. Thanks for reading!</p>
