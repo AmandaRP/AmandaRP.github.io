@@ -18,7 +18,7 @@
       
       <guid>/2019/05/24/new-r-package-hddtest/</guid>
       <description>I’d like to introduce a package that I wrote recently, hddtest, for two sample hypothesis testing of high dimensional discrete data. The package is currently available on GitHub. It contains methods for both multivariate binary data and multinomial data.
-To illustrate its use, let’s look at a dataset included in the package, called twoNewsGroups. It contains document term frequency matrices for two of the 20 newgroups. Each matrix has dimension 594 by 16214.</description>
+I’ll illustrate the use of one of its functions, the multinomial neighborhood test, by using a dataset included in the package called twoNewsGroups. It contains document term frequency matrices for two of the 20 newgroups.</description>
     </item>
     
     <item>
