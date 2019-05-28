@@ -64,7 +64,7 @@ vecs2Test[[2]] &lt;- twoNewsGroups$sci.med[group_2, ] %&gt;%
    result &lt;- vecs2Test %&gt;% multinom.neighborhood.test(delta = delta)
    
 } #end simulation function</code></pre>
-<p>Now run the simulation for varying values of <code>delta</code> (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. For the null hypothesis simulation, we sample documents from the same newsgroup. For the simulation of the alternative hypotheis, we sample documents from the two different newsgroups. The resulting plot shows once curve for each the 60 simulations (which evaluate the p-value at each value of <code>delta</code>.)</p>
+<p>Now run the simulation for varying values of <code>delta</code> (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. For the null hypothesis simulation, we sample documents from the same newsgroup. For the simulation of the alternative hypotheis, we sample documents from the two different newsgroups. The resulting plot shows one curve for each the 60 simulations (which evaluate the p-value at each value of <code>delta</code>.)</p>
 <pre class="r"><code>delta &lt;- 1:160
 p.delta.null &lt;- simulation(data = twoNewsGroups, null_hyp = TRUE, delta = delta)$pvalue_delta
 p.delta.alt  &lt;- simulation(data = twoNewsGroups, null_hyp = FALSE, delta = delta)$pvalue_delta</code></pre>
