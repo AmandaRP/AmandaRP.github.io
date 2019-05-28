@@ -92,7 +92,7 @@ simulation <- function(data, null_hyp, delta, reps = 30, num_docs = c(200, 200))
 } #end simulation function
 ```
 
-Now run simulation for varying values of `delta` (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. For the null hypothesis simulation, we sample documents from the same newsgroup. For the simulation of the alternative hypotheis, we sample documents from the two different newsgroups. The resulting plot shows once curve for each the 60 simulations (which evaluate the p-value at each value of `delta`.)
+Now run the simulation for varying values of `delta` (in the range 1 to 160) testing both the null and alternative hypotheses for 30 replications each. For the null hypothesis simulation, we sample documents from the same newsgroup. For the simulation of the alternative hypotheis, we sample documents from the two different newsgroups. The resulting plot shows once curve for each the 60 simulations (which evaluate the p-value at each value of `delta`.)
 
 ```{r}
 delta <- 1:160
