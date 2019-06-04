@@ -12,18 +12,151 @@ tags: []
 library(wordcloud2)
 library(tidytext)
 library(tidyverse)
-source("2019-05-18-data.R")
+library(rvest)
+library(sentimentr)
 ```
+
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT), which is a book in both the Christian and Jewish texts. 
 
 Ideas: 
 * Author comparison (comparison wordcloud)
-* sentiment analysis by chapter
-* phrase cloud from my study
+* sentiment analysis by chapter (both tidytext and more advanced)
+* comparison cloud of pos/neg words
+* text project
+* phrase cloud from my study -- done (just need to add last few phrases)
+* word pair chart (see liked Tidy Tuesday examples)
+
+Read data:
 
 ```{r}
-god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
+#Pull text and do a bit of cleaning:
+get_chapter <- function(chapter){
+  url <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", chapter, "&version=GNT")
+  html <- read_html(url)
+  #nodes <- html_nodes(html, ".passage-wrap")
+  text <- html %>% 
+    html_node(".passage-wrap") %>% 
+    html_text() %>%
+    str_extract("\\(GNT.{1,}") %>%
+    str_replace("\\(GNT\\)","") %>%
+    str_extract("\\d.{1,}") %>%
+    str_replace_all("\\d{1,}", "") %>%
+    str_replace_all("\\[\\w{1}\\]","")
+}
+
+
+chapters <- map_chr(1:150, get_chapter) %>% 
+  tibble::enframe(name = "ch_num", value = "text") 
+
 ```
 
+
+# sentiment analysis by chapter
+
+```{r}
+#Clean and tokenize:
+tidy_chapters <- chapters %>% 
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) 
+
+#Look at top words:
+tidy_chapters %>% count(word, sort = TRUE)
+
+```
+
+Join with sentiment words
+
+```{r}
+tidy_chapters %>% 
+  filter(ch_num == 2) %>%
+  count(word, sort = TRUE) %>%
+  inner_join(get_sentiments("bing")) 
+
+psalms_sentiment_bing <- tidy_chapters %>%
+  inner_join(get_sentiments("bing")) %>%
+  count(ch_num, sentiment) %>%
+  spread(sentiment, n, fill = 0) %>%
+  mutate(sentiment = (positive - negative)/(positive + negative))  #TODO: Divide by number of total words? Currently not taking into account neutral words. Some chapters have close to 200 verses while others only have ~10.
+
+ggplot(psalms_sentiment_bing, aes(ch_num, sentiment, fill = sentiment>0)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = "Chapter Number", 
+       y = "Sentiment",
+       title = "Sentiment of Psalms (bing)") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        plot.background = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
+        panel.grid.minor.x = element_blank(),
+        plot.title = element_text(size = 18)) 
+
+
+```
+
+Now do the same thing with lexicon::hash_sentiment_jockers_rinker sentiment table
+
+```{r}
+tidy_chapters %>% 
+  filter(ch_num == 2) %>%
+  count(word, sort = TRUE) %>%
+  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x")) 
+
+psalms_sentiment_jockers_rinker <- tidy_chapters %>%
+  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x"), drop = FALSE) %>%
+  group_by(ch_num) %>%
+  summarize(avg_sentiment = mean(y))
+
+ggplot(psalms_sentiment_jockers_rinker, aes(ch_num, avg_sentiment, fill = avg_sentiment>0)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = "Chapter Number", 
+       y = "Sentiment",
+       title = "Sentiment of Psalms (Jockers Rinker)") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        plot.background = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
+        panel.grid.minor.x = element_blank(),
+        plot.title = element_text(size = 18)) 
+
+
+```
+
+
+Now try the sentimentr package
+
+```{r}
+psalms_sentiment_w_valence <- chapters %>%
+    get_sentences() %$%
+    sentiment_by(text, by = ch_num)
+
+
+ggplot(psalms_sentiment_w_valence, aes(ch_num, ave_sentiment, fill = ave_sentiment>0)) +
+  geom_col(show.legend = FALSE) +
+  labs(x = "Chapter Number", 
+       y = "Sentiment",
+       title = "Sentiment of Psalms (valence)") +
+  theme_minimal() +
+  theme(axis.text.y = element_blank(),
+        plot.background = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
+        panel.grid.minor.x = element_blank(),
+        plot.title = element_text(size = 18)) 
+```
+
+
+
+# Phrase cloud from my study
+
+```{r}
+source("2019-05-18-data.R")
+god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
+```
 
 
 ```{r}
