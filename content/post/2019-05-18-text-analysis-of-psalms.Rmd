@@ -1,5 +1,5 @@
 ---
-title: Text Analysis of Psalms
+title: Sentiment Analysis of Psalms
 author: AmandaRP
 date: '2019-05-18'
 slug: text-analysis-of-psalms
@@ -8,32 +8,41 @@ categories: []
 tags: []
 ---
 
-```{r}
-library(wordcloud2)
+```{r setup, include = FALSE}
+#library(wordcloud2)
+library(wordcloud)
 library(tidytext)
 library(tidyverse)
+library(magrittr)
 library(rvest)
 library(sentimentr)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT), which is a book in both the Christian and Jewish texts. 
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian and Jewish texts. I was interested in looking at a sentiment analysis on the book as it is full of ups and downs. In Chapter __ __. In Chapter __ __. The book is written by more than one author. Many chapters of the book are written by a man named David, while the authors of other chapters are unknown. I think a authorship analysis would also be interesting, but today I'm just focusing on sentiment.   
+
+I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext]() and [sentimentr]() R packages to do the analysis.
 
 Ideas: 
-* Author comparison (comparison wordcloud)
-* sentiment analysis by chapter (both tidytext and more advanced)
+* NO - Author comparison (comparison wordcloud)
+* DONE - sentiment analysis by chapter (both tidytext and more advanced)
 * comparison cloud of pos/neg words
-* text project
-* phrase cloud from my study -- done (just need to add last few phrases)
+* CAN"T FIND - text project
+* DONE - phrase cloud from my study -- done (just need to add last few phrases)
 * word pair chart (see liked Tidy Tuesday examples)
 
-Read data:
+Let's start by reading data from <biblegateway.com> (using [rvest]()) and doing a bit of cleaning:
 
-```{r}
+```{r, cache=TRUE}
+
 #Pull text and do a bit of cleaning:
 get_chapter <- function(chapter){
-  url <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", chapter, "&version=GNT")
+  
+  url <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", 
+               chapter, 
+               "&version=GNT")
+  
   html <- read_html(url)
-  #nodes <- html_nodes(html, ".passage-wrap")
+  
   text <- html %>% 
     html_node(".passage-wrap") %>% 
     html_text() %>%
@@ -44,71 +53,84 @@ get_chapter <- function(chapter){
     str_replace_all("\\[\\w{1}\\]","")
 }
 
-
+#Use the function defined above to read all 150 chapters.
 chapters <- map_chr(1:150, get_chapter) %>% 
   tibble::enframe(name = "ch_num", value = "text") 
+```
+
+Next, tokenize the text, remove common English words such (e.g. "and" and "the"), and visualize using a wordcloud.
+
+```{r}
+#Tokenize and remove stopwords:
+tidy_chapters <- chapters %>% 
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) 
+
+#wordcloud:
+tidy_chapters %>% 
+  select(word) %>%
+  group_by(word) %>%
+  count() %>% 
+  wordcloud2()
 
 ```
 
 
 # sentiment analysis by chapter
 
-```{r}
-#Clean and tokenize:
-tidy_chapters <- chapters %>% 
-  unnest_tokens(word, text) %>%
-  anti_join(stop_words) 
+Next, we'll use the tidytext package to join our data with a dictionary of sentiment words. tidytext comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon]() package to better compare with a follow-on analysis using the sentimentr package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
 
-#Look at top words:
-tidy_chapters %>% count(word, sort = TRUE)
+There are a couple of ways to calculate the sentiment: either sum the sentiment scores for the words in each chapter (in which case chapter sentiment will be dependent on the length of the chapter), or take the average sentiment score over the words in each chapter (in which case chapter length will not affect the sentiment score). I think the choice depends on what makes the most sense for each application. You might be able to make the case that summing makes sense; a long and happy chapter may be considered more positive than a short and happy chapter. In anycase, I'm going to take the average to not bias the results by chapter length.  
+
+```{r}
+# tidy_chapters %>% 
+#   filter(ch_num == 2) %>%
+#   count(word, sort = TRUE) %>%
+#   inner_join(get_sentiments("bing")) 
+# 
+# psalms_sentiment_bing <- tidy_chapters %>%
+#   inner_join(get_sentiments("bing")) %>%
+#   count(ch_num, sentiment) %>%
+#   spread(sentiment, n, fill = 0) %>%
+#   mutate(sentiment = (positive - negative)/(positive + negative))  #TODO: Divide by number of total words? Currently not taking into account neutral words. Some chapters have close to 200 verses while others only have ~10.
+# 
+# ggplot(psalms_sentiment_bing, aes(ch_num, sentiment, fill = sentiment>0)) +
+#   geom_col(show.legend = FALSE) +
+#   labs(x = "Chapter Number", 
+#        y = "Sentiment",
+#        title = "Sentiment of Psalms (bing)") +
+#   theme_minimal() +
+#   theme(axis.text.y = element_blank(),
+#         plot.background = element_blank(),
+#         panel.grid.minor.y = element_blank(),
+#         panel.grid.major.y = element_blank(),
+#         panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
+#         panel.grid.minor.x = element_blank(),
+#         plot.title = element_text(size = 18)) 
+# 
 
 ```
 
-Join with sentiment words
+
 
 ```{r}
-tidy_chapters %>% 
-  filter(ch_num == 2) %>%
-  count(word, sort = TRUE) %>%
-  inner_join(get_sentiments("bing")) 
-
-psalms_sentiment_bing <- tidy_chapters %>%
-  inner_join(get_sentiments("bing")) %>%
-  count(ch_num, sentiment) %>%
-  spread(sentiment, n, fill = 0) %>%
-  mutate(sentiment = (positive - negative)/(positive + negative))  #TODO: Divide by number of total words? Currently not taking into account neutral words. Some chapters have close to 200 verses while others only have ~10.
-
-ggplot(psalms_sentiment_bing, aes(ch_num, sentiment, fill = sentiment>0)) +
-  geom_col(show.legend = FALSE) +
-  labs(x = "Chapter Number", 
-       y = "Sentiment",
-       title = "Sentiment of Psalms (bing)") +
-  theme_minimal() +
-  theme(axis.text.y = element_blank(),
-        plot.background = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.grid.major.y = element_blank(),
-        panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
-        panel.grid.minor.x = element_blank(),
-        plot.title = element_text(size = 18)) 
-
-
-```
-
-Now do the same thing with lexicon::hash_sentiment_jockers_rinker sentiment table
-
-```{r}
-tidy_chapters %>% 
-  filter(ch_num == 2) %>%
-  count(word, sort = TRUE) %>%
-  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x")) 
+#tidy_chapters %>% 
+#  filter(ch_num == 2) %>%
+#  count(word, sort = TRUE) %>%
+#  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x")) 
 
 psalms_sentiment_jockers_rinker <- tidy_chapters %>%
-  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x"), drop = FALSE) %>%
+  inner_join(lexicon::hash_sentiment_jockers_rinker, 
+             by = c("word" = "x"), 
+             drop = FALSE) %>%
   group_by(ch_num) %>%
   summarize(avg_sentiment = mean(y))
 
-ggplot(psalms_sentiment_jockers_rinker, aes(ch_num, avg_sentiment, fill = avg_sentiment>0)) +
+#TODO: FInd min and max sentiment chapters. Add annotation to graph.
+
+ggplot(psalms_sentiment_jockers_rinker, 
+       aes(ch_num, avg_sentiment, 
+           fill = avg_sentiment>0)) +
   geom_col(show.legend = FALSE) +
   labs(x = "Chapter Number", 
        y = "Sentiment",
@@ -154,12 +176,13 @@ ggplot(psalms_sentiment_w_valence, aes(ch_num, ave_sentiment, fill = ave_sentime
 # Phrase cloud from my study
 
 ```{r}
-source("2019-05-18-data.R")
-god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
+#source("2019-05-18-data.R")
+#god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
 ```
 
 
 ```{r}
-wordcloud2(god_is)
+#wordcloud2(god_is)
 ```
 
+Have comments or feedback? Message me on Twitter: @AmandaRP
