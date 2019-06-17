@@ -9,7 +9,7 @@ tags: []
 ---
 
 ```{r setup, include = FALSE}
-#library(wordcloud2)
+library(wordcloud2)
 library(wordcloud)
 library(tidytext)
 library(tidyverse)
@@ -18,19 +18,19 @@ library(rvest)
 library(sentimentr)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian and Jewish texts. I was interested in looking at a sentiment analysis on the book as it is full of ups and downs. In Chapter __ __. In Chapter __ __. The book is written by more than one author. Many chapters of the book are written by a man named David, while the authors of other chapters are unknown. I think a authorship analysis would also be interesting, but today I'm just focusing on sentiment.   
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish ____. I was interested in looking at a sentiment analysis of the book as it is full of ups and downs. In Chapter __ __. In Chapter __ __. The book is written by more than one author. Many chapters of the book are written by a man named David, while the authors of other chapters are unknown. I think an authorship analysis would also be interesting, but today I'm just focusing on sentiment.   
 
 I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext]() and [sentimentr]() R packages to do the analysis.
 
-Ideas: 
-* NO - Author comparison (comparison wordcloud)
-* DONE - sentiment analysis by chapter (both tidytext and more advanced)
-* comparison cloud of pos/neg words
-* CAN"T FIND - text project
-* DONE - phrase cloud from my study -- done (just need to add last few phrases)
-* word pair chart (see liked Tidy Tuesday examples)
+TODO:
 
-Let's start by reading data from <biblegateway.com> (using [rvest]()) and doing a bit of cleaning:
+* Add links to packages.
+* Fix dynamic links near end. 
+* Spell check
+* Comparison cloud of positive and negative words
+
+
+Let's start by reading data from [biblegateway.com](biblegateway.com) (using [rvest]()) and doing a bit of cleaning:
 
 ```{r, cache=TRUE}
 
@@ -58,7 +58,7 @@ chapters <- map_chr(1:150, get_chapter) %>%
   tibble::enframe(name = "ch_num", value = "text") 
 ```
 
-Next, tokenize the text, remove common English words such (e.g. "and" and "the"), and visualize using a wordcloud.
+Next, tokenize the text (each word will be a token), remove common English words such (e.g. "and" and "the"), and visualize using a wordcloud.
 
 ```{r}
 #Tokenize and remove stopwords:
@@ -74,51 +74,17 @@ tidy_chapters %>%
   wordcloud2()
 
 ```
+Note that I've changed all words capitalization to lowercase for the purposes of this analysis, which is the only reason that words such as "Lord" and "God" are not capitalized.
 
 
-# sentiment analysis by chapter
+# Sentiment Analysis by Chapter
 
 Next, we'll use the tidytext package to join our data with a dictionary of sentiment words. tidytext comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon]() package to better compare with a follow-on analysis using the sentimentr package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
 
 There are a couple of ways to calculate the sentiment: either sum the sentiment scores for the words in each chapter (in which case chapter sentiment will be dependent on the length of the chapter), or take the average sentiment score over the words in each chapter (in which case chapter length will not affect the sentiment score). I think the choice depends on what makes the most sense for each application. You might be able to make the case that summing makes sense; a long and happy chapter may be considered more positive than a short and happy chapter. In anycase, I'm going to take the average to not bias the results by chapter length.  
 
-```{r}
-# tidy_chapters %>% 
-#   filter(ch_num == 2) %>%
-#   count(word, sort = TRUE) %>%
-#   inner_join(get_sentiments("bing")) 
-# 
-# psalms_sentiment_bing <- tidy_chapters %>%
-#   inner_join(get_sentiments("bing")) %>%
-#   count(ch_num, sentiment) %>%
-#   spread(sentiment, n, fill = 0) %>%
-#   mutate(sentiment = (positive - negative)/(positive + negative))  #TODO: Divide by number of total words? Currently not taking into account neutral words. Some chapters have close to 200 verses while others only have ~10.
-# 
-# ggplot(psalms_sentiment_bing, aes(ch_num, sentiment, fill = sentiment>0)) +
-#   geom_col(show.legend = FALSE) +
-#   labs(x = "Chapter Number", 
-#        y = "Sentiment",
-#        title = "Sentiment of Psalms (bing)") +
-#   theme_minimal() +
-#   theme(axis.text.y = element_blank(),
-#         plot.background = element_blank(),
-#         panel.grid.minor.y = element_blank(),
-#         panel.grid.major.y = element_blank(),
-#         panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
-#         panel.grid.minor.x = element_blank(),
-#         plot.title = element_text(size = 18)) 
-# 
-
-```
-
-
 
 ```{r}
-#tidy_chapters %>% 
-#  filter(ch_num == 2) %>%
-#  count(word, sort = TRUE) %>%
-#  inner_join(lexicon::hash_sentiment_jockers_rinker, by = c("word" = "x")) 
-
 psalms_sentiment_jockers_rinker <- tidy_chapters %>%
   inner_join(lexicon::hash_sentiment_jockers_rinker, 
              by = c("word" = "x"), 
@@ -126,15 +92,21 @@ psalms_sentiment_jockers_rinker <- tidy_chapters %>%
   group_by(ch_num) %>%
   summarize(avg_sentiment = mean(y))
 
-#TODO: FInd min and max sentiment chapters. Add annotation to graph.
+#Find min and max sentiment chapters. Add annotation to graph.
+max_sentiment <- psalms_sentiment_jockers_rinker %>% 
+  top_n(1, avg_sentiment) 
 
+min_sentiment <- psalms_sentiment_jockers_rinker %>% 
+  top_n(-1, avg_sentiment) 
+
+#Plot:
 ggplot(psalms_sentiment_jockers_rinker, 
        aes(ch_num, avg_sentiment, 
            fill = avg_sentiment>0)) +
   geom_col(show.legend = FALSE) +
   labs(x = "Chapter Number", 
        y = "Sentiment",
-       title = "Sentiment of Psalms (Jockers Rinker)") +
+       title = "Sentiment of Psalms") +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.background = element_blank(),
@@ -142,25 +114,63 @@ ggplot(psalms_sentiment_jockers_rinker,
         panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
         panel.grid.minor.x = element_blank(),
-        plot.title = element_text(size = 18)) 
+        plot.title = element_text(size = 18)) +
+  annotate("text", 
+           x = min_sentiment$ch_num + 20, 
+           y = min_sentiment$avg_sentiment, 
+           label = sprintf("Chapter %d", min_sentiment$ch_num)) +
+  geom_curve(aes(x = min_sentiment$ch_num + 11, 
+                 y = min_sentiment$avg_sentiment, 
+                 xend = min_sentiment$ch_num, 
+                 yend = min_sentiment$avg_sentiment), 
+             curvature = 0, 
+             arrow = arrow(length=unit(2,"mm")), 
+             color = "darkgrey") +
+  annotate("text", 
+           x = max_sentiment$ch_num - 20, 
+           y = max_sentiment$avg_sentiment, 
+           label = sprintf("Chapter %d", max_sentiment$ch_num)) +
+  geom_curve(aes(x = max_sentiment$ch_num - 11, 
+                 y = max_sentiment$avg_sentiment, 
+                 xend = max_sentiment$ch_num, 
+                 yend = max_sentiment$avg_sentiment), 
+             curvature = 0, 
+             arrow = arrow(length=unit(2,"mm")), 
+             color = "darkgrey") 
+  
+```
+```{r, echo = FALSE}
+url_max <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")
 
-
+url_min <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT") 
 ```
 
+TODO: How to make these urls work?
 
-Now try the sentimentr package
+We see that [Chapter `r max_sentiment$ch_num`](url_max) is the most positive and [Chapter `r min_sentiment$ch_num`](url_min) is the most negative. 
+
+Next let's take another look at the sentiment using the sentimentr package. It has some nice features such as valence shifters, which are described on the [package GitHub page](https://github.com/trinker/sentimentr) as follows:
+
+> A negator flips the sign of a polarized word (e.g., "I do not like it."). An amplifier (intensifier) increases the impact of a polarized word (e.g., "I really like it."). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., "I hardly like it."). An adversative conjunction overrules the previous clause containing a polarized word (e.g., "I like it but it's not worth it."). 
 
 ```{r}
 psalms_sentiment_w_valence <- chapters %>%
     get_sentences() %$%
     sentiment_by(text, by = ch_num)
 
+#Find min and max sentiment chapters. Add annotation to graph.
+max_sentiment <- psalms_sentiment_w_valence %>% 
+  top_n(1, ave_sentiment) 
 
+min_sentiment <- psalms_sentiment_w_valence %>% 
+  top_n(-1, ave_sentiment) 
+
+#Plot:
 ggplot(psalms_sentiment_w_valence, aes(ch_num, ave_sentiment, fill = ave_sentiment>0)) +
   geom_col(show.legend = FALSE) +
   labs(x = "Chapter Number", 
        y = "Sentiment",
-       title = "Sentiment of Psalms (valence)") +
+       title = "Sentiment of Psalms (with valence shifters)") +
   theme_minimal() +
   theme(axis.text.y = element_blank(),
         plot.background = element_blank(),
@@ -168,21 +178,45 @@ ggplot(psalms_sentiment_w_valence, aes(ch_num, ave_sentiment, fill = ave_sentime
         panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_line(linetype = "dashed", color = "darkgrey"),
         panel.grid.minor.x = element_blank(),
-        plot.title = element_text(size = 18)) 
+        plot.title = element_text(size = 18)) +
+  annotate("text", 
+           x = min_sentiment$ch_num + 20, 
+           y = min_sentiment$ave_sentiment, 
+           label = sprintf("Chapter %d", min_sentiment$ch_num)) +
+  geom_curve(aes(x = min_sentiment$ch_num + 11, 
+                 y = min_sentiment$ave_sentiment, 
+                 xend = min_sentiment$ch_num, 
+                 yend = min_sentiment$ave_sentiment), 
+             curvature = 0, 
+             arrow = arrow(length=unit(2,"mm")), 
+             color = "darkgrey") +
+  annotate("text", 
+           x = max_sentiment$ch_num - 20, 
+           y = max_sentiment$ave_sentiment, 
+           label = sprintf("Chapter %d", max_sentiment$ch_num)) +
+  geom_curve(aes(x = max_sentiment$ch_num - 11, 
+                 y = max_sentiment$ave_sentiment, 
+                 xend = max_sentiment$ch_num, 
+                 yend = max_sentiment$ave_sentiment), 
+             curvature = 0, 
+             arrow = arrow(length=unit(2,"mm")), 
+             color = "darkgrey") 
+```
+
+```{r, echo = FALSE}
+url_max <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")
+
+url_min <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT") 
+
+flip_ch <- inner_join(psalms_sentiment_jockers_rinker, psalms_sentiment_w_valence) %>%
+  filter(sign(avg_sentiment * ave_sentiment) < 0) %>%
+  mutate(diff = abs(avg_sentiment - ave_sentiment)) %>%
+  top_n(1, diff) %>%
+  select(ch_num)
+
 ```
 
 
+Now, after taking valence shifters into account, [Chapter `r max_sentiment$ch_num`](url_max) is the most positive and [Chapter `r min_sentiment$ch_num`](url_min) is the most negative. Additionally, between the two analyses, [Chapter `r flip_ch`]() switched from a slightly negative sentiment to a somewhat positive sentiment. 
 
-# Phrase cloud from my study
-
-```{r}
-#source("2019-05-18-data.R")
-#god_is <- god_is %>% group_by(phrase) %>% summarize(cnt=n())
-```
-
-
-```{r}
-#wordcloud2(god_is)
-```
-
-Have comments or feedback? Message me on Twitter: @AmandaRP
+Have comments or feedback? Message me on Twitter: [@AmandaRP](https://twitter.com/AmandaRPlunkett)
