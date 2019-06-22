@@ -78,7 +78,7 @@ psalms_sentiment_jockers_rinker %>%
 
 # Sentiment Analysis by Chapter
 
-There is some flexibility in the method that we choose to compute the sentiment. We could *sum* the sentiment scores for the words in each chapter, which introduces a relationship between sentiment score and chapter length. Or we could compute the *average* sentiment over the words in the chapter, either choosing to ignore or include neutral words (i.e. words with score of 0). The inclusion of neutral words in the calculation of the average would dampen the overall sentiment score of the chapter. I think the choice depends on what makes the most sense for each application. 
+There is some flexibility in the method that we may choose to compute the sentiment. We could *sum* the sentiment scores for the words in each chapter, which introduces a relationship between sentiment score and chapter length. Or we could compute the *average* sentiment over the words in the chapter, either choosing to ignore or include neutral words (i.e. words with score of 0). The inclusion of neutral words in the calculation of the average would dampen the overall sentiment score of the chapter. I think the choice depends on what makes the most sense for each application. 
 
 In the interest of better comparing this first calculation to a second calculation using the `sentimentr` package, I'm going use the mean chapter sentiment (including neutral words). That is, the sentiment for the $j^{th}$ chapter is
 
@@ -153,7 +153,7 @@ We see here that [Chapter `r max_sentiment$ch_num`](`r str_c("https://www.bibleg
 His eyes watch in secret for his victims;
      like a lion in cover he lies in wait."
      
-Chapter 150, is a short one of praise to God. Here's a sample:
+Chapter 150 is a short one of praise to God. Here's a sample:
 
 > "Praise him with trumpets.
     Praise him with harps and lyres.
@@ -166,7 +166,7 @@ Chapter 150, is a short one of praise to God. Here's a sample:
 
 Next let's take another look at the sentiment using the [sentimentr](https://CRAN.R-project.org/package=sentimentr) package. It has some nice features such as valence shifters, which are described on the [package GitHub page](https://github.com/trinker/sentimentr) as follows:
 
-> "So what are these valence shifters? A negator flips the sign of a polarized word (e.g., "I do not like it."). An amplifier (intensifier) increases the impact of a polarized word (e.g., "I really like it."). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., "I hardly like it."). An adversative conjunction overrules the previous clause containing a polarized word (e.g., "I like it but it's not worth it.")."
+> "So what are these valence shifters? A negator flips the sign of a polarized word (e.g., 'I do not like it.'). An amplifier (intensifier) increases the impact of a polarized word (e.g., "I really like it."). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., "I hardly like it."). An adversative conjunction overrules the previous clause containing a polarized word (e.g., "I like it but it's not worth it.").""
 
 The equations describing the sentiment calculation can also be found on the [sentimentr GitHub page](https://github.com/trinker/sentimentr). With a bit of work we could do similar things with the `tidytext` package, but it's nice that it's automated in `sentimentr`.
 

@@ -62,7 +62,7 @@ psalms_sentiment_jockers_rinker %&gt;%
 </div>
 <div id="sentiment-analysis-by-chapter" class="section level1">
 <h1>Sentiment Analysis by Chapter</h1>
-<p>There is some flexibility in the method that we choose to compute the sentiment. We could <em>sum</em> the sentiment scores for the words in each chapter, which introduces a relationship between sentiment score and chapter length. Or we could compute the <em>average</em> sentiment over the words in the chapter, either choosing to ignore or include neutral words (i.e. words with score of 0). The inclusion of neutral words in the calculation of the average would dampen the overall sentiment score of the chapter. I think the choice depends on what makes the most sense for each application.</p>
+<p>There is some flexibility in the method that we may choose to compute the sentiment. We could <em>sum</em> the sentiment scores for the words in each chapter, which introduces a relationship between sentiment score and chapter length. Or we could compute the <em>average</em> sentiment over the words in the chapter, either choosing to ignore or include neutral words (i.e. words with score of 0). The inclusion of neutral words in the calculation of the average would dampen the overall sentiment score of the chapter. I think the choice depends on what makes the most sense for each application.</p>
 <p>In the interest of better comparing this first calculation to a second calculation using the <code>sentimentr</code> package, I’m going use the mean chapter sentiment (including neutral words). That is, the sentiment for the <span class="math inline">\(j^{th}\)</span> chapter is</p>
 <p><span class="math display">\[S_j =  \frac{1}{n_j} \sum_{i=1}^{n_j} s_{ij}\]</span></p>
 <p>where <span class="math inline">\(n_j\)</span> is the word count for chapter <span class="math inline">\(j\)</span> and <span class="math inline">\(s_{ij}\)</span> is the sentiment score for the <span class="math inline">\(i^{th}\)</span> word in the <span class="math inline">\(j^{th}\)</span> chapter.</p>
@@ -75,13 +75,13 @@ psalms_sentiment_jockers_rinker %&lt;&gt;%
 <blockquote>
 <p>“His mouth is full of lies and threats; trouble and evil are under his tongue. He lies in wait near the villages; from ambush he murders the innocent. His eyes watch in secret for his victims; like a lion in cover he lies in wait.”</p>
 </blockquote>
-<p>Chapter 150, is a short one of praise to God. Here’s a sample:</p>
+<p>Chapter 150 is a short one of praise to God. Here’s a sample:</p>
 <blockquote>
 <p>“Praise him with trumpets. Praise him with harps and lyres. Praise him with drums and dancing. Praise him with harps and flutes. Praise him with cymbals. Praise him with loud cymbals. Praise the Lord, all living creatures!”</p>
 </blockquote>
 <p>Next let’s take another look at the sentiment using the <a href="https://CRAN.R-project.org/package=sentimentr">sentimentr</a> package. It has some nice features such as valence shifters, which are described on the <a href="https://github.com/trinker/sentimentr">package GitHub page</a> as follows:</p>
 <blockquote>
-<p>“So what are these valence shifters? A negator flips the sign of a polarized word (e.g.,”I do not like it.“). An amplifier (intensifier) increases the impact of a polarized word (e.g.,”I really like it.“). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g.,”I hardly like it.“). An adversative conjunction overrules the previous clause containing a polarized word (e.g.,”I like it but it’s not worth it.“).”</p>
+<p>“So what are these valence shifters? A negator flips the sign of a polarized word (e.g., ‘I do not like it.’). An amplifier (intensifier) increases the impact of a polarized word (e.g.,”I really like it.“). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g.,”I hardly like it.“). An adversative conjunction overrules the previous clause containing a polarized word (e.g.,”I like it but it’s not worth it.“).”&quot;</p>
 </blockquote>
 <p>The equations describing the sentiment calculation can also be found on the <a href="https://github.com/trinker/sentimentr">sentimentr GitHub page</a>. With a bit of work we could do similar things with the <code>tidytext</code> package, but it’s nice that it’s automated in <code>sentimentr</code>.</p>
 <pre class="r"><code>psalms_sentiment_w_valence &lt;- chapters %&gt;%
