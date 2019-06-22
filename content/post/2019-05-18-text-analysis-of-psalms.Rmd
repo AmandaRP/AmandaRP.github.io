@@ -9,28 +9,25 @@ tags: []
 ---
 
 ```{r setup, include = FALSE}
-library(wordcloud2)
 library(wordcloud)
 library(tidytext)
+library(sentimentr)
 library(tidyverse)
 library(magrittr)
 library(rvest)
-library(sentimentr)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I was interested in looking at a sentiment analysis of the book as it is full of ups and downs. In Chapter __ __. In Chapter __ __. The book is written by more than one author. Many chapters of the book are written by a man named David, while the authors of other chapters are unknown. I think an authorship analysis would also be interesting, but today I'm just focusing on sentiment.   
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book.    
 
-I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext]() and [sentimentr]() R packages to do the analysis.
+I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis.
 
 TODO:
 
-* Add links to packages.
-* Fix dynamic links near end. 
 * Spell check
 * Comparison cloud of positive and negative words
 * Add reference and link to tidytext book
 
-Let's start by reading data from [biblegateway.com](biblegateway.com) (using [rvest]()) and doing a bit of cleaning:
+Let's start by reading data from [biblegateway.com](biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
 
 ```{r, cache=TRUE}
 
@@ -58,39 +55,30 @@ chapters <- map_chr(1:150, get_chapter) %>%
   tibble::enframe(name = "ch_num", value = "text") 
 ```
 
-Next, tokenize the text (each word will be a token), remove common English words such (e.g. "and" and "the"), and visualize using a wordcloud.
-
-```{r}
-#Tokenize and remove stopwords:
-tidy_chapters <- chapters %>% 
-  unnest_tokens(word, text) %>%
-  anti_join(stop_words) 
-
-#wordcloud:
-tidy_chapters %>% 
-  select(word) %>%
-  group_by(word) %>%
-  count() %>% 
-  wordcloud2()
-
-```
-Note that I've changed all words capitalization to lowercase for the purposes of this analysis, which is the only reason that words such as "Lord" and "God" are not capitalized.
-
 
 # Sentiment Analysis by Chapter
 
-Next, we'll use the tidytext package to join our data with a dictionary of sentiment words. tidytext comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon]() package to better compare with a follow-on analysis using the sentimentr package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
+Next, we'll use the `tidytext` package to join our data with a dictionary of sentiment words. For more information about using text analysis using `tidytext`, see [Text Mining with R: A Tidy Approach](www.tidytextmining.com/) by Julia Silge and David Robinson. `tidytext` comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon](https://CRAN.R-project.org/package=lexicon) package to better compare with a follow-on analysis using the `sentimentr` package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
 
-There are a couple of ways to calculate the sentiment: either sum the sentiment scores for the words in each chapter (in which case chapter sentiment will be dependent on the length of the chapter), or take the average sentiment score over the words in each chapter (in which case chapter length will not affect the sentiment score). I think the choice depends on what makes the most sense for each application. You might be able to make the case that summing makes sense; a long and happy chapter may be considered more positive than a short and happy chapter. In anycase, I'm going to take the average to not bias the results by chapter length.  
+There is some flexibility in the method that we choose to compute the sentiment. We could *sum* the sentiment scores for the words in each chapter, which introduces a relationship between sentiment score and chapter length. Or we could compute the *average* sentiment over the words in the chapter, either chooseing to ignore or include neutral words (i.e. words with score of 0). The inclusion of neutral words in the calculation of the average would dampen the overall sentiment score of the chapter. I think the choice depends on what makes the most sense for each application. 
+
+In the interest of better comparing this first calculation to a second calculation using the sentimentr pakcage, I'm going to divide the sum of the word sentiment scores by the square root of the number of words in the chapter (including neutral words). That is, the sentiment for chapter $j$ will be
+
+$$S_j =  \frac{\sum_{i=1}^{n_j} s_{ij}}{\sqrt{n_j}} $$
+
+where $n_j$ is the words count for chapter $j$ and $s_{ij}$ is the sentiment score for the i^{th} word in chapter $j$.  
 
 
 ```{r}
-psalms_sentiment_jockers_rinker <- tidy_chapters %>%
-  inner_join(lexicon::hash_sentiment_jockers_rinker, 
+psalms_sentiment_jockers_rinker <- chapters %>% 
+  unnest_tokens(word, text) %>%  #tokenize by words
+  #anti_join(stop_words) %>%
+  left_join(lexicon::hash_sentiment_jockers_rinker, 
              by = c("word" = "x"), 
              drop = FALSE) %>%
+  mutate(y = replace_na(y, 0)) %>%
   group_by(ch_num) %>%
-  summarize(avg_sentiment = mean(y))
+  summarize(avg_sentiment = sum(y)/sqrt(n()))
 
 #Find min and max sentiment chapters. Add annotation to graph.
 max_sentiment <- psalms_sentiment_jockers_rinker %>% 
@@ -139,15 +127,10 @@ ggplot(psalms_sentiment_jockers_rinker,
              color = "darkgrey") 
   
 ```
-```{r, echo = FALSE}
-url_max <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")
 
-url_min <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT") 
-```
 
-TODO: How to make these urls work?
-
-We see that [Chapter `r max_sentiment$ch_num`](url_max) is the most positive and [Chapter `r min_sentiment$ch_num`](url_min) is the most negative. 
+We see that [Chapter `r max_sentiment$ch_num`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT")
+`) is the most positive and [Chapter `r min_sentiment$ch_num`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")`) is the most negative. 
 
 Next let's take another look at the sentiment using the sentimentr package. It has some nice features such as valence shifters, which are described on the [package GitHub page](https://github.com/trinker/sentimentr) as follows:
 
@@ -204,10 +187,6 @@ ggplot(psalms_sentiment_w_valence, aes(ch_num, ave_sentiment, fill = ave_sentime
 ```
 
 ```{r, echo = FALSE}
-url_max <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")
-
-url_min <- str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT") 
-
 flip_ch <- inner_join(psalms_sentiment_jockers_rinker, psalms_sentiment_w_valence) %>%
   filter(sign(avg_sentiment * ave_sentiment) < 0) %>%
   mutate(diff = abs(avg_sentiment - ave_sentiment)) %>%
@@ -217,6 +196,6 @@ flip_ch <- inner_join(psalms_sentiment_jockers_rinker, psalms_sentiment_w_valenc
 ```
 
 
-Now, after taking valence shifters into account, [Chapter `r max_sentiment$ch_num`](url_max) is the most positive and [Chapter `r min_sentiment$ch_num`](url_min) is the most negative. Additionally, between the two analyses, [Chapter `r flip_ch`]() switched from a slightly negative sentiment to a somewhat positive sentiment. 
+Now, after taking valence shifters into account, [Chapter `r max_sentiment$ch_num`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", max_sentiment$ch_num, "&version=GNT")`) is the most positive and [Chapter `r min_sentiment$ch_num`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", min_sentiment$ch_num, "&version=GNT")`) is the most negative. Additionally, between the two analyses, [Chapter `r flip_ch`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", flip_ch, "&version=GNT")`) switched from a slightly negative sentiment to a somewhat positive sentiment. 
 
-Have comments or feedback? Message me on Twitter: [@AmandaRPlunkett](twitter.com/AmandaRPlunkett)
+Have comments or feedback? Message me on Twitter: [AmandaRPlunkett](twitter.com/AmandaRPlunkett)
