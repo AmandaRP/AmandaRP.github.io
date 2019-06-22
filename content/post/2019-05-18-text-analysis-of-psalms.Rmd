@@ -16,7 +16,7 @@ library(magrittr)
 library(rvest)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [biblegateway.com](biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [www.biblegateway.com](biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
 
 
 ```{r, cache=TRUE}
@@ -166,7 +166,7 @@ Chapter 150, is a short one of praise to God. Here's a sample:
 
 Next let's take another look at the sentiment using the [sentimentr](https://CRAN.R-project.org/package=sentimentr) package. It has some nice features such as valence shifters, which are described on the [package GitHub page](https://github.com/trinker/sentimentr) as follows:
 
-> "So what are these valence shifters? A negator flips the sign of a polarized word (e.g., "I do not like it."). An amplifier (intensifier) increases the impact of a polarized word (e.g., "I really like it."). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., "I hardly like it."). An adversative conjunction overrules the previous clause containing a polarized word (e.g., "I like it but it's not worth it.")."" 
+> "So what are these valence shifters? A negator flips the sign of a polarized word (e.g., "I do not like it."). An amplifier (intensifier) increases the impact of a polarized word (e.g., "I really like it."). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., "I hardly like it."). An adversative conjunction overrules the previous clause containing a polarized word (e.g., "I like it but it's not worth it.")."
 
 The equations describing the sentiment calculation can also be found on the [sentimentr GitHub page](https://github.com/trinker/sentimentr). With a bit of work we could do similar things with the `tidytext` package, but it's nice that it's automated in `sentimentr`.
 
@@ -242,8 +242,8 @@ Now, after taking valence shifters into account, [Chapter `r max_sentiment$ch_nu
     for you rule the peoples with equity
     and guide the nations of the earth."
 
-Chapter 67 seems to have a similar sentiment as [Chapter 150](https://www.biblegateway.com/passage/?search=Psalm+119&version=KJV), which we identified in the previous analysis. However, I think that Chapter 67 has a greater variety of positive words. 
+Chapter 67 seems to have a similar sentiment as [Chapter 150](https://www.biblegateway.com/passage/?search=Psalm+119&version=KJV), which we identified in the previous analysis. 
 
-Additionally, between the two analyses, [Chapter `r flip_ch`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", flip_ch, "&version=GNT")`) switched from a very slight negative sentiment (`r flip_score1`) to a somewhat positive sentiment (`r flip_score2`). This chapter had the largest score change between the two analyses. 
+Additionally, between the two analyses, [Chapter `r flip_ch`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", flip_ch, "&version=GNT")`) switched from a very slight negative sentiment (`r round(flip_score1, 4)`) to a somewhat positive sentiment (`r round(flip_score2, 4)`). This chapter had the largest score change between the two analyses. 
 
 Have comments or feedback? Message me on Twitter: [AmandaRPlunkett](twitter.com/AmandaRPlunkett)
