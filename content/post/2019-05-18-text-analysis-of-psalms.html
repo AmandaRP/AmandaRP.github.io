@@ -81,9 +81,10 @@ psalms_sentiment_jockers_rinker %&lt;&gt;%
 </blockquote>
 <p>Next let’s take another look at the sentiment using the <a href="https://CRAN.R-project.org/package=sentimentr">sentimentr</a> package. It has some nice features such as valence shifters, which are described on the <a href="https://github.com/trinker/sentimentr">package GitHub page</a> as follows:</p>
 <blockquote>
-<p>“So what are these valence shifters? A negator flips the sign of a polarized word (e.g., ‘I do not like it.’). An amplifier (intensifier) increases the impact of a polarized word (e.g.,”I really like it.“). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g.,”I hardly like it.“). An adversative conjunction overrules the previous clause containing a polarized word (e.g.,”I like it but it’s not worth it.“).”&quot;</p>
+<p>“So what are these valence shifters? A negator flips the sign of a polarized word (e.g., ‘I do not like it.’). An amplifier (intensifier) increases the impact of a polarized word (e.g., ‘I really like it.’). A de-amplifier (downtoner) reduces the impact of a polarized word (e.g., ‘I hardly like it.’). An adversative conjunction overrules the previous clause containing a polarized word (e.g., ‘I like it but it’s not worth it.’).”</p>
 </blockquote>
-<p>The equations describing the sentiment calculation can also be found on the <a href="https://github.com/trinker/sentimentr">sentimentr GitHub page</a>. With a bit of work we could do similar things with the <code>tidytext</code> package, but it’s nice that it’s automated in <code>sentimentr</code>.</p>
+<p>The <a href="https://github.com/trinker/sentimentr">sentimentr GitHub page</a> also discusses the equations used to calculate sentiment. With a bit of work we could apply similar valence shifters with the <code>tidytext</code> package, but it’s nice that it’s automated in <code>sentimentr</code>.</p>
+<p>Note that by default this package uses the Jockers &amp; Rinker sentiment dictionary, although it can be swapped out with an alternate.</p>
 <pre class="r"><code>psalms_sentiment_w_valence &lt;- chapters %&gt;%
     get_sentences() %$%
     sentiment_by(text, by = ch_num)</code></pre>
