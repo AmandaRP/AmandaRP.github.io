@@ -248,4 +248,4 @@ Chapter 67 seems to have a similar sentiment as [Chapter 150](https://www.bibleg
 
 Additionally, between the two analyses, [Chapter `r flip_ch`](`r str_c("https://www.biblegateway.com/passage/?search=Psalms+", flip_ch, "&version=GNT")`) switched from a very slight negative sentiment (`r round(flip_score1, 4)`) to a somewhat positive sentiment (`r round(flip_score2, 4)`). This chapter had the largest score change between the two analyses. 
 
-Have comments or feedback? Message me on Twitter: [AmandaRPlunkett](twitter.com/AmandaRPlunkett)
+Have comments or feedback? Message me on Twitter: [AmandaRPlunkett](https://twitter.com/AmandaRPlunkett)
