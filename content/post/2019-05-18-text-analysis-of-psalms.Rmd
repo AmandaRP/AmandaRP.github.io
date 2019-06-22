@@ -16,7 +16,7 @@ library(magrittr)
 library(rvest)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [www.biblegateway.com](biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [biblegateway.com](www.biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
 
 
 ```{r, cache=TRUE}
