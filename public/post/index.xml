@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Amanda Plunkett</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 22 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sentiment Analysis of Psalms</title>
+      <link>/2019/06/22/text-analysis-of-psalms/</link>
+      <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/06/22/text-analysis-of-psalms/</guid>
+      <description>Psalms is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the “Good New Translation” of the bible as it does not have copyright issues like some of the other translations (per the American Bible Society). We’ll use the tidytext and sentimentr R packages to do the analysis.</description>
+    </item>
     
     <item>
       <title>Introducing the hddtest R package</title>
@@ -22,21 +31,13 @@ I’ll illustrate the use of one of its functions, the multinomial neighborhood 
     </item>
     
     <item>
-      <title>Text Analysis of Psalms</title>
-      <link>/2019/05/18/text-analysis-of-psalms/</link>
-      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/05/18/text-analysis-of-psalms/</guid>
-      <description>library(wordcloud2) library(tidytext) library(tidyverse) ## ── Attaching packages ─────────────────────────────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.1.1 ✔ purrr 0.2.5 ## ✔ tibble 2.1.1 ✔ dplyr 0.8.1 ## ✔ tidyr 0.8.1 ✔ stringr 1.3.1 ## ✔ readr 1.3.1 ✔ forcats 0.3.0 ## ── Conflicts ────────────────────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() source(&amp;quot;2019-05-18-data.R&amp;quot;) Ideas: * Author comparison (comparison wordcloud) * sentiment analysis by chapter * phrase cloud from my study – done (just need to add last few phrases)</description>
-    </item>
-    
-    <item>
       <title>#rstats Love</title>
       <link>/2019/03/23/rstats-love/</link>
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/03/23/rstats-love/</guid>
-      <description>My MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro. Click here to jump to the summary.</description>
+      <description>My MO on twitter is to “like” posts that contain information that I’d like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.
+Happy pi day! #PiDay pic.</description>
     </item>
     
     <item>
