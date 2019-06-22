@@ -16,7 +16,7 @@ library(magrittr)
 library(rvest)
 ```
 
-[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [biblegateway.com](www.biblegateway.com) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
+[Psalms](https://www.biblegateway.com/quicksearch/?quicksearch=psalms&qs_version=GNT) is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the "Good New Translation" of the bible as it does not have copyright issues like some of the other translations (per the [American Bible Society](https://scripture.api.bible/)). We'll use the [tidytext](https://CRAN.R-project.org/package=tidytext) and [sentimentr](https://CRAN.R-project.org/package=sentimentr) R packages to do the analysis. Let's start by reading data from [biblegateway.com](https://www.biblegateway.com/) (using [rvest](https://CRAN.R-project.org/package=rvest)) and doing a bit of cleaning:
 
 
 ```{r, cache=TRUE}
@@ -47,7 +47,7 @@ chapters <- map_chr(1:150, get_chapter) %>%
 
 # Positive and Negative Word Lexicon 
 
-Next, we'll use the `tidytext` package to tokenize (i.e. split the text by words) and join our data with a dictionary of sentiment words. For more information about text analysis using `tidytext`, see [Text Mining with R: A Tidy Approach](www.tidytextmining.com/) by Julia Silge and David Robinson. `tidytext` comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon](https://CRAN.R-project.org/package=lexicon) package to better compare with a follow-on analysis using the `sentimentr` package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
+Next, we'll use the `tidytext` package to tokenize (i.e. split the text by words) and join our data with a dictionary of sentiment words. For more information about text analysis using `tidytext`, see [Text Mining with R: A Tidy Approach](https://www.tidytextmining.com/) by Julia Silge and David Robinson. `tidytext` comes with sentiment dictionaries, but I'm going to use the Jockers & Rinker sentiment dictionary from the [lexicon](https://CRAN.R-project.org/package=lexicon) package to better compare with a follow-on analysis using the `sentimentr` package. This dictionary contains positive and negative words and an associated sentiment score in the range [-1, 1]. A value of 1 is the most positive, 0 is neutral, and negative 1 is most negative. 
 
 Let's first look at a comparison word cloud to compare the frequency of the positive and negative words in the book.
 
