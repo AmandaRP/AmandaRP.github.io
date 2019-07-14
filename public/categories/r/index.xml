@@ -17,8 +17,7 @@
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/03/23/rstats-love/</guid>
-      <description>My MO on twitter is to “like” posts that contain information that I’d like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.
-Happy pi day! #PiDay pic.</description>
+      <description>My MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro. Click here to jump to the summary.</description>
     </item>
     
     <item>

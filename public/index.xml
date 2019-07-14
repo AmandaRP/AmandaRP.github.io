@@ -17,7 +17,7 @@
       <pubDate>Sat, 22 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/06/22/text-analysis-of-psalms/</guid>
-      <description>Psalms is a book in both the Christian Bible and the Jewish Torah. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the “Good New Translation” of the bible as it does not have copyright issues like some of the other translations (per the American Bible Society). We’ll use the tidytext and sentimentr R packages to do the analysis.</description>
+      <description>Psalms is a book in both the Christian Bible and the Jewish Tanakh. I thought it would be interesting to look at a sentiment analysis of the book. I chose to work with the “Good News Translation” of the bible as it does not have copyright issues like some of the other translations (per the American Bible Society). We’ll use the tidytext and sentimentr R packages to do the analysis.</description>
     </item>
     
     <item>
@@ -36,8 +36,7 @@ I’ll illustrate the use of one of its functions, the multinomial neighborhood 
       <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/03/23/rstats-love/</guid>
-      <description>My MO on twitter is to “like” posts that contain information that I’d like remember. The majority of these posts are related to #rstats. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.
-Happy pi day! #PiDay pic.</description>
+      <description>My MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro. Click here to jump to the summary.</description>
     </item>
     
     <item>
