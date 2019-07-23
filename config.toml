@@ -1,6 +1,6 @@
 baseurl = "https://amanda.rbind.io/"
 languageCode = "en-us"
-title = "Amanda Plunkett"
+title = "Amanda Peterson-Plunkett"
 theme = "hugo-lithium"
 googleAnalytics = "UA-136228275-1"
 #disqusShortname = "amanda-data-blog.disqus.com"
@@ -17,7 +17,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     url = "https://github.com/AmandaRP"
 [[menu.main]]
     name = "Twitter"
-    url = "https://twitter.com/AmandaRPlunkett"
+    url = "https://twitter.com/DrAmandaRP"
 #[[menu.main]]
 #    name = "LinkedIn"
 #    url = "https://www.linkedin.com/in/amanda-plunkett-29138399/"
