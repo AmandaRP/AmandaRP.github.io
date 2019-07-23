@@ -1,6 +1,6 @@
 baseurl = "https://amanda.rbind.io/"
 languageCode = "en-us"
-title = "Amanda Peterson-Plunkett"
+title = "Amanda's Data Blog"
 theme = "hugo-lithium"
 googleAnalytics = "UA-136228275-1"
 #disqusShortname = "amanda-data-blog.disqus.com"

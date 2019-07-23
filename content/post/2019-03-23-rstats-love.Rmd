@@ -10,7 +10,7 @@ tags: []
 ---
 
 
-My MO on Twitter is to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 450 likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to summarize my Twitter likes. This was my first time using the `rtweet` package, so I'll also provide a [brief intro](). Click [here]() to jump to the summary.
+I love that Twitter came out with bookmarks! My pevious MO on Twitter is to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to summarize my Twitter likes. This was my first time using the `rtweet` package, so I'll also provide a [brief intro](). Click [here]() to jump to the summary.
 
 #rtweet Package
 
@@ -36,3 +36,4 @@ https://rtweet-workshop.mikewk.com/#1
 
 
 # My Twitter Likes
+
