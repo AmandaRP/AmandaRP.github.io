@@ -1,7 +1,7 @@
 ---
-title: '#rstats Love'
+title: 'Twitter Favorites Shiny App'
 author: Amanda Peterson-Plunkett
-date: '2019-03-23'
+date: '2019-07-28'
 slug: rstats-love
 draft: true
 categories:
@@ -11,7 +11,7 @@ tags: []
 
 
 
-<p>I love that Twitter came out with bookmarks! My pevious MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the <a href="https://rtweet.info/index.html">rtweet</a> package to summarize my Twitter likes. This was my first time using the <code>rtweet</code> package, so I’ll also provide a <a href="">brief intro</a>. Click <a href="">here</a> to jump to the summary.</p>
+<p>I love that Twitter came out with bookmarks! My pevious MO on Twitter was to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the <a href="https://rtweet.info/index.html">rtweet</a> package to build a shiny app for browsing my favorites. You can use it to browse yours, too! This was my first time using the <code>rtweet</code> package, so I’ll also provide a <a href="">brief intro</a>. Click <a href="">here</a> to jump to the summary.</p>
 <div id="rtweet-package" class="section level1">
 <h1>rtweet Package</h1>
 {{% tweet "1106185697894023168" %}}
@@ -22,4 +22,9 @@ tags: []
 </div>
 <div id="my-twitter-likes" class="section level1">
 <h1>My Twitter Likes</h1>
+<pre class="r"><code>#get_favorites(user, n = 200, since_id = NULL, max_id = NULL, parse = TRUE, token = NULL)
+token &lt;- readRDS(&quot;~/twitter_token.rds&quot;)
+favorites &lt;- get_favorites(&quot;DrAmandaRP&quot;, n = 5, token = token)</code></pre>
+<pre class="r"><code>blogdown::shortcode(&#39;tweet&#39;, favorites[[1,&quot;status_id&quot;]])</code></pre>
+{{% tweet "1155215530997035014" %}}
 </div>

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Amanda&#39;s Data Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 22 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Twitter Favorites Shiny App</title>
+      <link>/2019/07/28/rstats-love/</link>
+      <pubDate>Sun, 28 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/07/28/rstats-love/</guid>
+      <description>I love that Twitter came out with bookmarks! My pevious MO on Twitter was to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the rtweet package to build a shiny app for browsing my favorites. You can use it to browse yours, too!</description>
+    </item>
     
     <item>
       <title>Sentiment Analysis of Psalms</title>
@@ -28,15 +37,6 @@
       <guid>/2019/05/24/new-r-package-hddtest/</guid>
       <description>I’d like to introduce a package that I wrote recently, hddtest, for two sample hypothesis testing of high dimensional discrete data. The package is currently available on GitHub. It contains methods for both multivariate binary data and multinomial data.
 I’ll illustrate the use of one of its functions, the multinomial neighborhood test, by using a dataset included in hddtest called twoNewsGroups. It contains document term frequency matrices for two of the 20 newgroups.</description>
-    </item>
-    
-    <item>
-      <title>#rstats Love</title>
-      <link>/2019/03/23/rstats-love/</link>
-      <pubDate>Sat, 23 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/03/23/rstats-love/</guid>
-      <description>I love that Twitter came out with bookmarks! My pevious MO on Twitter is to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the rtweet package to summarize my Twitter likes. This was my first time using the rtweet package, so I’ll also provide a brief intro.</description>
     </item>
     
     <item>

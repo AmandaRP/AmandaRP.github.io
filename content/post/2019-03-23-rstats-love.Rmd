@@ -1,7 +1,7 @@
 ---
-title: '#rstats Love'
+title: 'Browsing Twitter Favorites'
 author: Amanda Peterson-Plunkett
-date: '2019-03-23'
+date: '2019-07-28'
 slug: rstats-love
 draft: true
 categories:
@@ -10,7 +10,7 @@ tags: []
 ---
 
 
-I love that Twitter came out with bookmarks! My pevious MO on Twitter is to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to summarize my Twitter likes. This was my first time using the `rtweet` package, so I'll also provide a [brief intro](). Click [here]() to jump to the summary.
+I love that Twitter came out with bookmarks! My pevious MO on Twitter was to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have TODO likes, which is time consuming to browse through. In this post, I use the [rtweet](https://rtweet.info/index.html) package to build a shiny app for browsing my favorites. You can use it to browse yours, too! This was my first time using the `rtweet` package, so I'll also provide a [brief intro](). Click [here]() to jump to the summary.
 
 #rtweet Package
 
@@ -36,4 +36,14 @@ https://rtweet-workshop.mikewk.com/#1
 
 
 # My Twitter Likes
+
+```{r}
+#get_favorites(user, n = 200, since_id = NULL, max_id = NULL, parse = TRUE, token = NULL)
+token <- readRDS("~/twitter_token.rds")
+favorites <- get_favorites("DrAmandaRP", n = 5, token = token)
+```
+
+```{r}
+blogdown::shortcode('tweet', favorites[[1,"status_id"]])
+```
 
