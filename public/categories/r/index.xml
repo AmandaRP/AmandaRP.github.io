@@ -12,12 +12,12 @@
     
     
     <item>
-      <title>Shiny App: Twitter Likes Browser</title>
+      <title>Shiny App: Twitter Likes</title>
       <link>/2019/08/02/rstats-love/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/08/02/rstats-love/</guid>
-      <description>I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to “like” posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn’t find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the rtweet and shiny R packages.</description>
+      <description>I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to ❤️ posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn’t find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the rtweet and shiny R packages.</description>
     </item>
     
     <item>

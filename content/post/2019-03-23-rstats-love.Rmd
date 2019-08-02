@@ -1,5 +1,5 @@
 ---
-title: 'Shiny App: Twitter Likes Browser'
+title: 'Shiny App: Twitter Likes'
 author: Amanda Peterson-Plunkett
 date: '2019-08-02'
 slug: rstats-love
@@ -11,7 +11,7 @@ tags: []
 
 
 
-I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to "like" posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn't find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the [`rtweet`](https://rtweet.info/index.html) and [`shiny`](https://shiny.rstudio.com/) R packages. You can use it to browse yours, too! 
+I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to `r emo::ji("heart")` posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn't find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the [`rtweet`](https://rtweet.info/index.html) and [`shiny`](https://shiny.rstudio.com/) R packages. You can use it to browse yours, too! 
 
 <center>
 ```{r echo=FALSE}
