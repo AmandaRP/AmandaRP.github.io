@@ -11,7 +11,10 @@ tags: []
 
 
 
-I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to `r emo::ji("heart")` posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn't find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the [`rtweet`](https://rtweet.info/index.html) and [`shiny`](https://shiny.rstudio.com/) R packages. You can use it to browse yours, too! 
+I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to `r emo::ji("heart")` posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn't find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the [`rtweet`](https://rtweet.info/index.html) and [`shiny`](https://shiny.rstudio.com/) R packages. 
+
+
+# `rtweet` Package
 
 <center>
 ```{r echo=FALSE}
@@ -19,8 +22,6 @@ blogdown::shortcode('tweet', '1109764129005420544')
 ```
 </center>
 
-
-# `rtweet` Package
 
 To grab the tweets, there is a little setup with Twitter that is necessary. The setup is described on the [`rtweet` website](https://rtweet.info/index.html).
 
