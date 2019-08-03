@@ -43,7 +43,7 @@ To get a Twitter user's favorites (aka likes), use the `get_favorites` function.
 favorites <- get_favorites("DrAmandaRP", n = 5, token = token)
 ```
 
-The resulting [tibble](https://tibble.tidyverse.org/) is has 91 columns! 
+The resulting [tibble](https://tibble.tidyverse.org/) has 91 columns! 
 
 
 For fun, here is a wordcloud composed of all of my Twitter likes (created using the [`tidytext`](https://cran.r-project.org/web/packages/tidytext/index.html) and [`wordcloud2`](https://cran.r-project.org/web/packages/wordcloud2/index.html) packages):
