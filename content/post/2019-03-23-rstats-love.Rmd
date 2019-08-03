@@ -65,8 +65,8 @@ favorites %>%
 
 # shiny app for searching 
 
-I zeroed in on the following fields: `status_id`, `created_at`, `text`, `hashtags`, `name`, `screen_name`. I put them in a table in a shiny app for easy browsing. Check it out [here](https://amandarp.shinyapps.io/TwitterLikes/)! You can replace my twitter handle with yours (or any Twitter user). It's nothing fancy, but I think it's going to come in handy. You can find my code for the shiny app [on GitHub](https://github.com/AmandaRP/TwitterBrowser/blob/master/TwitterBrowser/app.R).
+I zeroed in on the following fields: `status_id`, `created_at`, `text`, `hashtags`, `name`, `screen_name`. I put them in a table in a shiny app for easy browsing. Check it out [here](https://amandarp.shinyapps.io/TwitterLikes/)! It's nothing fancy, but I think it's going to come in handy. I wanted to make the option available to search any user's favorites, but was concerned about being blacklisted for hitting the Twitter API [rate limit](https://developer.twitter.com/en/docs/basics/rate-limits.html) if other people started using it. HOWEVER, you can make your own app; my code is available  [on GitHub](https://github.com/AmandaRP/TwitterBrowser/blob/master/TwitterBrowser/app.R).
 
-It would be nice to add functionality to search Twitter bookmarks, but apparently at the time of this post, reading bookmarks isn't yet available in the Twitter API. I'm keeping an eye on [this `rtweet` issue](https://github.com/mkearney/rtweet/issues/344) for updates. 
+Lastly, it would be nice to add functionality to search Twitter bookmarks, but apparently at the time of this post, reading bookmarks isn't yet available in the Twitter API. I'm keeping an eye on [this `rtweet` issue](https://github.com/mkearney/rtweet/issues/344) for updates. 
 
 Have comments? Message me on Twitter: @DrAmandaRP
