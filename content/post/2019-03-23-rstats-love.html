@@ -28,7 +28,7 @@ tags: []
 <h1>My Twitter Likes</h1>
 <p>To get a Twitter user’s favorites (aka likes), use the <code>get_favorites</code> function. Below I’m going to grab my most recent five favorites:</p>
 <pre class="r"><code>favorites &lt;- get_favorites(&quot;DrAmandaRP&quot;, n = 5, token = token)</code></pre>
-<p>The resulting tibble is has 91 columns!</p>
+<p>The resulting <a href="https://tibble.tidyverse.org/">tibble</a> is has 91 columns!</p>
 <p>For fun, here is a wordcloud composed of all of my Twitter likes (created using the <a href="https://cran.r-project.org/web/packages/tidytext/index.html"><code>tidytext</code></a> and <a href="https://cran.r-project.org/web/packages/wordcloud2/index.html"><code>wordcloud2</code></a> packages):</p>
 <pre class="r"><code>library(wordcloud2)
 library(tidytext)
