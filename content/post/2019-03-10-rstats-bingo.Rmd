@@ -16,7 +16,11 @@ I created my own bingo questions that I ask during the game and answers that are
 
 Lastly, don't forget the sugar! M&M's make great bingo chips. And, cookies decorated with statsistics are a crowd pleaser.
 
+<center>
+
 ![](/post/2019-03-10-rstats-bingo_files/20190309_094937 (1).jpg){width=400px height=200px}
+
+</center>
 
 ## Bingo Questions for Probability & Statistics I:
 
