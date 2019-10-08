@@ -1,0 +1,37 @@
+---
+title: classification
+author: Amanda
+date: '2019-10-07'
+slug: classification
+draft: true
+categories: []
+tags: []
+---
+
+```{r echo=FALSE}
+library(tidyverse)
+library(rtweet)
+library(here)
+token <- readRDS(here("/twitter_token.rds"))
+```
+
+```{r cache=TRUE}
+tmls <- get_timeline(user = "realDonaldTrump", n=3200, token = token)
+opponent <- get_timeline(user = "JoeBiden", n=3200, token = token)
+
+data <- bind_rows(trump, opponent) %>% 
+  filter(is_retweet == FALSE) %>% 
+  select(screen_name, created_at, text, is_quote, favorite_count, hashtags) 
+
+my_stop_words <- c("donald", "trump", "trump's", "joe", "biden", "bidens", "president", "become", "left", "right", "democrats", "republicans")
+```
+
+Time series of both candidates
+
+```{r}
+
+```
+
+
+
+
