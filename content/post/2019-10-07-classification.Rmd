@@ -10,28 +10,56 @@ tags: []
 
 ```{r echo=FALSE}
 library(tidyverse)
+library(magrittr)
+library(tidytext)
 library(rtweet)
 library(here)
-token <- readRDS(here("/twitter_token.rds"))
+token <- readRDS(here("twitter_token.rds"))
 ```
 
 ```{r cache=TRUE}
-tmls <- get_timeline(user = "realDonaldTrump", n=3200, token = token)
-opponent <- get_timeline(user = "JoeBiden", n=3200, token = token)
+trump <- get_timeline(user = "realDonaldTrump", n=3200, token = token)
+biden <- get_timeline(user = "JoeBiden", n=3200, token = token)
+warren <- get_timeline(user = "SenWarren", n=3200, token = token)
+sanders <- get_timeline(user = "SenSanders", n=3200, token = token) 
 
-data <- bind_rows(trump, opponent) %>% 
+data <- bind_rows(trump, biden, warren, sanders) %>% 
   filter(is_retweet == FALSE) %>% 
   select(screen_name, created_at, text, is_quote, favorite_count, hashtags) 
 
-my_stop_words <- c("donald", "trump", "trump's", "joe", "biden", "bidens", "president", "become", "left", "right", "democrats", "republicans")
+my_stop_words <- c("donald", "trump", "trump's", "joe", "biden", "bidens", "president", "become", "left", "right", "democrats", "republicans", "&amp")
 ```
 
 Time series of both candidates
 
 ```{r}
+data %<>% mutate(tweet_day = date(created_at)) 
 
+#
+cutoff_date <- data %>%
+  group_by(screen_name) %>%
+  summarise(first = min(tweet_day)) %>% 
+  summarise(cutoff = max(first)) 
+
+
+tweet_cnts <- data %>% 
+  filter(tweet_day >= cutoff_date[[1]]) %>%
+  group_by(screen_name, tweet_day) %>%
+  summarize(cnt = n()) %>% arrange(desc(tweet_day)) 
+
+tweet_cnts %>%
+  ggplot(aes(tweet_day, cnt, color = screen_name)) + geom_line()
 ```
+President Trump tweets the most (no surprise), followed by Joe Biden. Biden has the largest variance. Each of his peaks fall on the day after his democratic debtate, summarizing the points that he made in the debate. 
 
 
+
+Process the text
+
+```{r}
+data %>% 
+  unnest_tokens(token, text) %>%
+  select(-is_quote)
+```
 
 
