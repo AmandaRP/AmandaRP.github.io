@@ -30,7 +30,7 @@ data <- bind_rows(trump, biden, warren, sanders) %>%
 my_stop_words <- c("donald", "trump", "trump's", "joe", "biden", "bidens", "president", "become", "left", "right", "democrats", "republicans", "&amp")
 ```
 
-Time series of both candidates
+EDA 1: Time series of candidates
 
 ```{r}
 data %<>% mutate(tweet_day = date(created_at)) 
@@ -54,12 +54,37 @@ President Trump tweets the most (no surprise), followed by Joe Biden. Biden has 
 
 
 
-Process the text
+EDA 2: Process the text. Make word comparison cloud
 
 ```{r}
+library(wordcloud)
 data %>% 
   unnest_tokens(token, text) %>%
-  select(-is_quote)
+  select(screen_name, token) %>%
+  anti_join(stop_words, by = c("token"="word")) %>%
+  group_by(screen_name) %>%
+  count(token, sort = TRUE) %>%
+  filter(!token %in% c("t.co", "https", "http", "amp")) %>%
+  filter(screen_name=="JoeBiden" | screen_name=="realDonaldTrump") %>%
+  pivot_wider(
+    names_from = screen_name, 
+    values_from = n,
+    values_fill = list(n = 0)
+  ) %>%
+  as.data.frame() %>%
+  column_to_rownames("token") %>%
+  comparison.cloud(title.colors = "black")
+
 ```
 
+Do some classification
+
+1. xgboost
+2. DL:
+  - fully connected NN
+  - wide and deep
+  - 1d convnet
+  - M's published method
+  
+  
 
