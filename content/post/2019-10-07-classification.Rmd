@@ -81,7 +81,7 @@ Do some classification
 
 Model prep: rsample, recipes
 
-1. xgboost (need to do topic modeling first?)
+1. xgboost (need to do topic modeling first? try using features from RBERT)
 2. DL:
   - fully connected NN
   - wide and deep
