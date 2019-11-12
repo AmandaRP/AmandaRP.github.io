@@ -1,0 +1,218 @@
+---
+title: DC R Conference Recap
+author: Amanda
+date: '2019-11-12'
+slug: dcr
+draft: true
+categories: []
+tags:
+  - Conference
+---
+
+**The overview**: 
+
+Videos on website in a few weeks.
+Slides will also be posted.
+`#rstatsdc` hashtag on twitter
+
+
+**Read more**: Below are my notes from selected talks that I attended. I've divided it into the following sections: [visualization](#viz), [modeling](#modeling), [other R packages](#other), [documentation](#doc), [general programming](#programming), [interoperability with other languages](#interop), [R in production](#production), [RStudio updates](#rstudio), [education](#education), [and data science](#ds). 
+
+
+
+## Random Bits
+
+- Check out the {memeR} package by `@sctyner`
+- R Markdown tips from `@datadanya`: Include `session_info()` at the end of all markdown docs. See https://bootswatch.com/3/ for a list of R Markdown themes
+- Use `gmailr` to send email from R
+- googleanalyticr
+- See {learnr} documents (Use `gradethis` in conjunction with `learnr` for grading the input.)
+- For conversations about R administration, see `#radmins` on Twitter and solutions.rstudio.com or the radmins channel on communnity.rstudio.com. Management and IT folks should watch Kelly O’Briant's talk: Reflections on a Year Spent Talking to Data Scientists About DevOps
+
+
+## Communication (Dashboards, Websites, and Data Viz)
+
+Coursedown: Managing Course Materials Using R Techniques
+@webbedfeet
+- https://github.com/webbedfeet/coursedown
+- `drake` to tie it all together
+- While I didn't take alot of notes on this talk, I'm really excited to try it for the class that I teach!
+
+
+Dashboarding Like a Boss
+Malorie Hughes, Onica (consulting for Amazon)
+
+- Don’t email your results. Creat a dashboard!
+- See her GitHub repo for templates
+- She demo'd Flex dashboard (just requires a different output in YAML)
+https://rmarkdown.rstudio.com/flexdashboard/
+- To make your output look pretty on the dashboard:
+    - Use {printr} to make printing R output look better. Less effort than knitr::kable. 
+    - Use summarytools (not great YET for R Markdown), but keep tabs on it.
+    - For model output, use {stargazer}
+    - `DT::datatable` for interactive table (see advanced options in this function for fancier options for the table)
+    - For interactive plots: {highcharter}. Assign colors with {colorize}.
+- She included an export/download data button on her dashboard. See her code to learn how to do that. 
+
+
+Using NetworkD3 and R to Visualize and Explore Relationships in Data
+@DrGates309
+- This talk focuses on NetworkD3 — nice for interactive networks
+- Other options: igraph, ggnet2, visNetwork, …. 
+- Arules package for association mining in R - she used it to find associated words (Looks at both how often words appear together and also how often they appear in same dataset, or in her example a tweet) 
+- arulesViz - for visulaization of association rules
+- She used `igraph` to massage data before giving it to D3
+
+
+Better DataViz in ggplot2: Tips, Tricks, and Examples
+`@AlexCEngler`
+1. `Ggplot2` + `sf` (for bivariate plots). `Geom_sf` See “Drawing beautiful maps with ggplot2 and sf” tutorial
+2. `ggtext` - to add text to plots (with markdown onto plots.. Including Text formatting). Highlight parts of title to match highlighted part of graph.
+3. `gghighlight` - to highlight parts of graph with color (and grey out rest)
+4. `annotation_custom` - to add a plot on top of another (kind of like cowplot) Creat a “grobe” and drop it somewhere. Use to zoom in to a map with a bounding box
+5. facet_geo - to create a plot per state, positioned in the location of the states on the map.
+6. `ggplot` extensions: www.ggplot2-exts.org/gallery & rayshader 
+
+
+
+## Modeling
+
+RBERT: Cutting Edge NLP in R
+Jon Harmon, @JonTheGeek
+Slides: bit.ly/jonvsemily
+BERT: transfer learning.
+Older embeddings have one embedding per word. Can’t help this situation: I saw the branch oon the bank vs I saw the branch of the bank 
+BERT: Bidirectional Encoder Representations from Transformers. 
+YOu can use BERT for transfer learning. 
+RBERT on GitHub (Have imported)
+RBERTviz: Vis attention, and PCA. Let’s you see how BERT is thinking. Showed an interactive demo— go watch the video!
+BERT has 12 layers. It’s usable now, but they’re making it better. 
+Used to pull out features for xgboost. 
+On CRAN by end of 2019
+Works with tensorflow 2.0 (in testing)
+Working on making it more friendly.
+
+
+
+Optimizing Topic Models for Classification Tasks
+@thos_jones, IQ-Tel, PhD research on making topic models better
+Evaluation
+-Coherence - for evaluating models
+-task-specific accuracy (e.g. doc classification)
+Cousin: Text embeddings (considered state of the art). “LDA stopped being cared about anymore after deep learning came along. He thinks the LDA work was never completed to determine a good LDA model. He thinks LDA might be competitive with DNN if tuned appropriately.”
+EX: classifiy 20newsgroups
+Tech stack: textmineR, randomForest (simple so he could focus more on LDA), SigOptR, cloudml, magrittr, stringr, parallel
+SigOpt: ensemble of baysian optimizers for picking hyperparmeters (more efficient than grid . search).. SigOptR is an R API for SigOpt
+Used unigrams, removed stopwords, and wods that were seen in less than 5 docs
+Using Google Cloud ML 
+-Optimized for accuracy and coherence. LDA was way more accurate than LSA. Showed a accuracy vs topic coherence. 
+He maintains textmineR
+
+Topic Modeling Consumer Complaints at the Federal Reserve
+BJ Bloom, @bj_bloom
+Goal: Use consumer complaints to inform risk analysis for Federal Reserve Board
+Used LDA
+R packges: textminR
+“Don’t use tm. It had its place back in the day." He’s a fan of tidytext.
+Textrank for pagerank
+Main lda packags: lda (old, fine), topicmodels (special snowflake, have to reindex to 0, tricky to use), stm (recommend, structural topic modeling, can use to incorporate metadata into topic model), textmineR (recommend, in his opinion included diagnostic measures that make sense)
+
+
+## Spatial Analysis
+
+R is Not Just Basic Stats: Think Spatially!
+Tatyana Tsvetovat `@t_tsvet`
+- Packages she uses: `rgdal`, `rgeos`, `sp` (not `sf`?), `spatstat`, `kernlab`, `zoo`
+
+
+The Care and Feeding of Spatial Data
+Angela Li `@CivicAngela`
+- She described the steps before the fancy plots and regression, focusing on the data.
+- Two types of spatial data:
+    - Vector data - points lines polygons (she focused more on this)
+    - Raster data - grids, pixels, cells 
+- Geocoding: `tmaptools::geocode_OSM(“Georgetown University”)` gives coordinates (to translate human spatial data to computer understandable spatial data). Note that OSM = open street map. Talk to your GIS librarian (or if you have ARCGis) to get coords.
+- In her words: “Spatial file formats are confusing”
+- Spatial data formats: .shp (shapefile made up of 4 files), .geojson (lots of web-based mapping), .gpkg (new and good, but not common yet), .csv, .tiff (for raster data)
+- Library she uses: sf package. st_read(), or read_sf (to create a tidy sf dataframe)
+- Her tech stack: geoDa, QGIS, ArcGIS, PostGIS, CART, R
+- R packages she uses the most (packages in parens are the "comparable" non-spatial versions): sf (readr, tidyr, dplyr), tmap (ggplot2), spdep (glmnet), sp (data.table)
+- `rayshader` for 3D 
+- Use `mapview` for GIS like experience
+- Think beyond dots on a map. Are there clusters? Does TODO influnece TODO in areas around it? Look at spatial autocorrelation. Spatially constrained clustering
+- Pre release of rgeoda on GitHub
+See `#rspatial` on Twitter
+- Most important slide she’s ever made in her life: How to google search for spatial data:” TODO boundaries”, shapepefile, polygons, geometries, GIS file
+
+
+## General R Programming
+
+Raising baby with R
+Jared lander
+- Jared and his wife recently had a baby. He described his use of R to choose the baby's name and analyze its eating, sleeping, and poo patterns.
+- `See the `babynames` package for data about popularity of baby names
+- `Tsibble`, `fable`, `feast`  use model function in this package to fit ts models. Use autoplot to plot ts data.index_by is the ts equiv of group_by.
+- `fable.prophet` package to use prophet in a fable framework. Used this to perform changepoint detection.
+
+
+R and Python coexisting in the same Development environment
+Dan Chen, @chendaniely, Author of “pandas” for everyone
+Python does better: environments, web development, and hardware
+What he likes about R: communication (shiny, rmarkdown, ggplot2)
+Conda_envs <- reticulate::cond_list())
+conda_envs$name[[1]] (have to restart R if you want to change env again)
+Modeling stack: rsample, recipes , parsnip, yardstick  -> new model pipeline
+Python joblib for “pickling” a model in python. Read it into R.
+Use R shiny to display 
+Blogdown supports jupyter notebooks
+Knitpy: knitr implementation in python
+Installing python: 
+https://swcarpentry.github.io/python-novice-inflammation/setup/index.html
+Most DS’s use anaconda.
+Don’t mix anaconda R package installation with install.packages()
+Use apache arrow to pass datasets between R and python 
+https://rstats.wtf
+
+Managing Your Cloud: Working with APIs
+Marck Vaisman, Microsoft (Azure team), @wahululu
+How to use R to interact with APIs (mostly for the consumption of data)
+Plumber (for building and serving up APIs)
+3 package to be aware of: httr (tidyverse. More abstract/easier than curl package), curl (new package), jsonlite 
+
+
+
+
+
+
+
+
+## Tidyverse
+
+Ten Tremendous Tricks in the Tidyverse
+@drob
+#tidytuesday - catch his screencasts on YouTube
+1. `count(column, sort, wt, name)`: Create a new variable within count. For example: `count(decade = 10 * (year %/% 10)` to produce counts for each decade.
+2. `add_count()` adds a count column (really useful to combine with filter to get `x` with a minimum count)
+3. Use `summarize()` to create a list column. Looks like `data %>% groupby() %>% summarize`. Example: `summarize(test = list(t.test(avg_score)))` Then use broom to visualize. See chapter 25 of the R for Data Science book.
+3. Use the combination of: `count()`, `fct_reorder()` (to turn column into ordered factor), `geom_col` (use instead of `geom_bar(stat = ‘idendtity’))`, `coord_flip()`,  
+`fct_lump()` (to combine least/most common levels together)
+4. `scale_x`  or `y_log10()` to use log scale. In his words: “I suspect much more data is log-normal than normal.”
+5. `crossing()` from `tidyr` to find all combinations of multiple vectors. Example: `crossing(a = 1:3, b = A:Z, c = 10:20)` Can use for simulations in place of for-loops.
+5. `separate()` to split a column into multiple columns based on a regex
+6. `extract()` to extract information from a column based on a regex
+
+
+
+
+
+
+Idea for a blog post: draw my TODO community (I’d have to pull all of their friends) using D3 — could I post it on my blog?
+
+
+Geom_tile — heatmap
+Sys.setenv(RSTUDIO_R_Version = “”)
+
+TODO
+- Import RBERT
+- Import coursedown
+- Sys.setenv(RSTUDIO_R_Version = “”)
