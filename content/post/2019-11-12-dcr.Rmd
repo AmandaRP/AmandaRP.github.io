@@ -11,11 +11,11 @@ tags:
 
 **The overview**: 
 
-Videos on website in a few weeks.
-Slides will also be posted.
-`#rstatsdc` hashtag on twitter
+Find the videos on [DC R website](https://dc.rstats.ai/) (available soon). 
 
-Highlights for me included Malorie Hughes' presentation of [`flexdashboard`](#flexdashboard). Somehow in the hype of R [`shiny`](https://shiny.rstudio.com/), I had missed this dashboarding tool. I was also excited to learn about TODO's [`coursedown`](#coursedown) package, which I'm looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google's BERT model in R by TODO.   
+`#rstatsdc` hashtag on twitter. Also, see [Jared Lander's blog post](https://www.jaredlander.com/2019/11/the-r-conference-returns-to-dc-for-a-second-year/).
+
+Highlights for me personally included Malorie Hughes' presentation of [`flexdashboard`](#flexdashboard). Somehow in the hype of R [`shiny`](https://shiny.rstudio.com/), I had missed this dashboard tool. I was also excited to learn about Dr Dasgupta's [`coursedown`](#coursedown) package, which I'm looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google's BERT model in R by TODO.   
 
 **Read more**: Below are my notes from selected talks. I've divided it into the following sections: [Communication](#comms), [modeling](#modeling), [other R packages](#other), [documentation](#doc), [general programming](#programming),. 
 
@@ -23,30 +23,34 @@ Highlights for me included Malorie Hughes' presentation of [`flexdashboard`](#fl
 ## Communication (Dashboards, Websites, and Data Viz) {#comms}
 
 **Coursedown: Managing Course Materials Using R Techniques**
-*@webbedfeet*
+Dr Abhijit Dasgupta, [@webbedfeet](https://twitter.com/webbedfeet)
 
 - Package available [on GitHub](https://github.com/webbedfeet/coursedown).
 - Use [`drake`](https://github.com/ropensci/drake) to tie it all together
 
 
 **Dashboarding Like a Boss**
-*Malorie Hughes, Onica (consulting for Amazon)*
+Malorie Hughes, [@data_all_day](https://twitter.com/data_all_day)
 
 - Don’t email your results. Creat a dashboard!
-- She demoed [`flexdashboard`](https://rmarkdown.rstudio.com/flexdashboard/) 
+- Talk featured a [demo of `flexdashboard`](https://maloriejhughes.github.io/Dashboarding-Tutorial/). See more info about `flexdashboard` on [RStudio's website](https://rmarkdown.rstudio.com/flexdashboard/).  
 - Create using R Markdown. Just requires a different output type in the YAML header.
-- See her GitHub repo for templates
-- To make your output look pretty on the dashboard:
+- See her [GitHub repo](https://github.com/maloriejhughes?tab=repositories) for templates
+- Tips for making your output look pretty on the dashboard:
     - Use [`printr`](https://cran.r-project.org/web/packages/printr/index.html) to make printing R output look better. Less effort than `knitr::kable()`. 
     - Use [`summarytools`](https://cran.r-project.org/web/packages/summarytools/index.html). It's not great YET for R Markdown, but keep tabs on it.
     - For model output, use [`stargazer`](https://cran.r-project.org/web/packages/stargazer/index.html)
     - `DT::datatable()` for interactive table (see advanced options in this function for fancier options for the table)
     - For interactive plots: [`highcharter`](https://cran.r-project.org/web/packages/highcharter/index.html). Assign colors with `colorize()`.
-- She included an export/download data button on her dashboard. See her code to learn how to do that. 
+- She included an export/download data button on her dashboard. See her code to learn how to do that.
+- See Valeri's official DC R dashboard:
+
+TODO: Twitter link https://twitter.com/rstatsdc/status/1192878268850081792
 
 
 **Using networkD3 and R to Visualize and Explore Relationships in Data**
-*@DrGates309*
+Dr Ami Gates, [@DrGates309](https://twitter.com/DrGates309)
+
 - Talk focused on [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html): Nice for interactive networks.
 - Other options for visualizing networks: [`igraph`](https://cran.r-project.org › package=igraph), `ggnet2()` (part of [GGally](https://cran.r-project.org/web/packages/GGally/)), and [`visNetwork`](https://cran.r-project.org › package=visNetwork) 
 - [`arules`](https://cran.r-project.org › package=arules) package for association mining in R. She used it to find associated words considering both how often words appear together and also how often they appear in same dataset (in her example, how often in the same tweet) 
@@ -55,12 +59,12 @@ Highlights for me included Malorie Hughes' presentation of [`flexdashboard`](#fl
 
 
 **Better DataViz in ggplot2: Tips, Tricks, and Examples**
-*`@AlexCEngler`*
+Alex Engler, [`@AlexCEngler`](https://twitter.com/AlexCEngler)
 
 1. `ggplot2` + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial
 2. [`ggtext`](https://github.com/clauswilke/ggtext) to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.
 3. [`gghighlight`](https://cran.r-project.org/web/packages/gghighlight/) to highlight parts of graph with color (and grey out rest)
-4. `ggplot2::annotation_custom()` to add a plot on top of another (My comment: seems similar to [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)). Creat a "grobe"" and drop it somewhere. Use to zoom in to a map with a bounding box
+4. `ggplot2::annotation_custom()` to add a plot on top of another (My comment: seems similar to [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)). Creat a "grobe" and drop it somewhere. Use to zoom in to a map with a bounding box
 5. `geofacet::facet_geo()` to create a plot per state, positioned in the location of the states on the map.
 6. `ggplot2` extensions: See www.ggplot2-exts.org/gallery and the [`rayshader`](https://cran.r-project.org/web/packages/rayshader/index.html) package.
 
