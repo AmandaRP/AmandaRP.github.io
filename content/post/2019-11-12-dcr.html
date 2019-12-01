@@ -51,7 +51,7 @@ tags:
 </ul>
 <p><strong>Better DataViz in ggplot2: Tips, Tricks, and Examples</strong>, Alex Engler, <a href="https://twitter.com/AlexCEngler"><em><span class="citation">@AlexCEngler</span></em></a></p>
 <ol style="list-style-type: decimal">
-<li><code>ggplot2</code> + <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> for bivariate plots: <code>ggplot2::geom_sf()</code>. See the <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html">Drawing beautiful maps with R, sf, and ggplot2 sf</a> tutorial</li>
+<li><a href="https://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot2</code></a> + <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> for bivariate plots: <code>ggplot2::geom_sf()</code>. See the <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html">Drawing beautiful maps with R, sf, and ggplot2 sf</a> tutorial</li>
 <li><a href="https://github.com/clauswilke/ggtext"><code>ggtext</code></a> to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.</li>
 <li><a href="https://cran.r-project.org/web/packages/gghighlight/"><code>gghighlight</code></a> to highlight parts of graph with color (and grey out rest)</li>
 <li><code>ggplot2::annotation_custom()</code> to add a plot on top of another. Create a “grobe” and drop it somewhere. Use to zoom in to a map with a bounding box. (My comment: seems similar to <a href="https://cran.r-project.org/web/packages/cowplot/index.html"><code>cowplot</code></a>).</li>
@@ -121,9 +121,7 @@ tags:
 <li>See <code>#rspatial</code> on Twitter</li>
 <li>Most important slide she’s ever made in her life:</li>
 </ul>
-<center>
-<img src="/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg" />
-</center>
+<p><img src="/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg" width="1024" /></p>
 <p><strong>R is Not Just Basic Stats: Think Spatially!</strong>, Tatyana Tsvetovat, <a href="https://twitter.com/t_tsvet"><em><span class="citation">@t_tsvet</span></em></a></p>
 <ul>
 <li>Divided household: She’s an R enthusiast and her husband is a Python fan 😱</li>
@@ -133,10 +131,7 @@ tags:
 <div id="general-r-programming" class="section level2">
 <h2>General R Programming</h2>
 <p><strong>Ten Tremendous Tricks in the Tidyverse</strong>, David Robinson, <a href="https://twitter.com/drob"><em><span class="citation">@drob</span></em></a></p>
-<ul>
-<li>Be sue to catch his <code>#tidytuesday</code> screen casts <a href="https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC">on YouTube</a>.</li>
-<li>10 tricks that people have liked from his screen casts:</li>
-</ul>
+<p>Be sue to catch his <code>#tidytuesday</code> screen casts <a href="https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC">on YouTube</a>. Ten tricks that people have liked from his screen casts:</p>
 <ol style="list-style-type: decimal">
 <li><code>count()</code>: One of the most used EDA functions</li>
 <li><code>count(column, sort, wt, name)</code>: Create a new variable within count. For example: <code>count(decade = 10 * (year %/% 10)</code> to produce counts for each decade.</li>
@@ -197,4 +192,7 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)</code><
 <li>See <a href="https://cran.r-project.org/web/packages/learnr/index.html"><code>learnr</code></a> for creating teaching materials. (Use in conjunction with <a href="https://rstudio-education.github.io/gradethis/."><code>gradethis</code></a></li>
 <li>For conversations about R administration, see <code>#radmins</code> on Twitter, <a href="https://solutions.rstudio.com/">solutions.rstudio.com</a>, or the radmins channel on <a href="https://community.rstudio.com/">community.rstudio.com</a>. Management and IT folks should watch Kelly O’Briant’s talk, <a href="https://speakerdeck.com/kellobri/a-year-of-talking-about-devops">Reflections on a Year Spent Talking to Data Scientists About DevOps</a>.</li>
 </ul>
+<center>
+{{% tweet "1192889086639513600" %}}
+</center>
 </div>

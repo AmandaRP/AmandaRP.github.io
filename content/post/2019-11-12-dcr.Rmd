@@ -62,7 +62,7 @@ Dr Ami Gates, [*@DrGates309*](https://twitter.com/DrGates309)
 **Better DataViz in ggplot2: Tips, Tricks, and Examples**,
 Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 
-1. `ggplot2` + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial
+1. [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial
 2. [`ggtext`](https://github.com/clauswilke/ggtext) to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.
 3. [`gghighlight`](https://cran.r-project.org/web/packages/gghighlight/) to highlight parts of graph with color (and grey out rest)
 4. `ggplot2::annotation_custom()` to add a plot on top of another.  Create a "grobe" and drop it somewhere. Use to zoom in to a map with a bounding box. (My comment: seems similar to [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)).
@@ -136,11 +136,11 @@ Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
 - See `#rspatial` on Twitter
 - Most important slide she’s ever made in her life: 
 
-<center>
-![](/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg)
-</center>
 
-
+```{r echo=FALSE}
+# All defaults
+knitr::include_graphics("/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg")
+```
 
 **R is Not Just Basic Stats: Think Spatially!**,
 Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
@@ -154,8 +154,7 @@ Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
 **Ten Tremendous Tricks in the Tidyverse**,
 David Robinson, [*@drob*](https://twitter.com/drob)
 
-- Be sue to catch his `#tidytuesday` screen casts [on YouTube](https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC). 
-- 10 tricks that people have liked from his screen casts:
+Be sue to catch his `#tidytuesday` screen casts [on YouTube](https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC). Ten tricks that people have liked from his screen casts:
 
 1. `count()`: One of the most used EDA functions
 2. `count(column, sort, wt, name)`: Create a new variable within count. For example: `count(decade = 10 * (year %/% 10)` to produce counts for each decade.
@@ -230,6 +229,10 @@ Marck Vaisman, [*@wahululu*](https://twitter.com/wahululu)
 - For conversations about R administration, see `#radmins` on Twitter, [solutions.rstudio.com](https://solutions.rstudio.com/), or the radmins channel on [community.rstudio.com](https://community.rstudio.com/). Management and IT folks should watch Kelly O’Briant's talk, [Reflections on a Year Spent Talking to Data Scientists About DevOps](https://speakerdeck.com/kellobri/a-year-of-talking-about-devops).
 
 
-
+<center>
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '1192889086639513600')
+```
+</center>
 
 
