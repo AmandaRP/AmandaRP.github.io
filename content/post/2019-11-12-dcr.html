@@ -23,7 +23,7 @@ tags:
 <p><strong>Dashboarding Like a Boss</strong>, Malorie Hughes, <a href="https://twitter.com/data_all_day"><em><span class="citation">@data_all_day</span></em></a></p>
 <ul>
 <li>Don’t email your results. Create a dashboard!</li>
-<li>Talk featured a <a href="https://maloriejhughes.github.io/Dashboarding-Tutorial/">demo of <code>flexdashboard</code></a>. See more info about <code>flexdashboard</code> on <a href="https://rmarkdown.rstudio.com/flexdashboard/">RStudio’s website</a>.<br />
+<li>Talk featured a <a href="https://maloriejhughes.github.io/Dashboarding-Tutorial/">demo of <code>flexdashboard</code></a>. See more info about <a href="https://cran.r-project.org/web/packages/flexdashboard/index.html"><code>flexdashboard</code></a> on <a href="https://rmarkdown.rstudio.com/flexdashboard/">RStudio’s website</a>.<br />
 </li>
 <li>Create using R Markdown. Just requires a different output type in the YAML header.</li>
 <li>See her <a href="https://github.com/maloriejhughes?tab=repositories">GitHub repo</a> for templates</li>
@@ -43,15 +43,15 @@ tags:
 </center>
 <p><strong>Using networkD3 and R to Visualize and Explore Relationships in Data</strong>, Dr Ami Gates, <a href="https://twitter.com/DrGates309"><em><span class="citation">@DrGates309</span></em></a></p>
 <ul>
-<li>Talk focused on <a href="https://cran.r-project.org/web/packages/networkD3/index.html"><code>networkD3</code></a>: Nice for interactive networks.</li>
-<li>Other options for visualizing networks: <a href="https://cran.r-project.org%20›%20package=igraph"><code>igraph</code></a>, <code>ggnet2()</code> (part of <a href="https://cran.r-project.org/web/packages/GGally/">GGally</a>), and <a href="https://cran.r-project.org%20›%20package=visNetwork"><code>visNetwork</code></a></li>
-<li><a href="https://cran.r-project.org%20›%20package=arules"><code>arules</code></a> package for association mining in R. She used it to find associated words considering both how often words appear together and also how often they appear in same dataset (in her example, how often in the same tweet)</li>
-<li><a href="https://cran.r-project.org%20›%20package=arulesViz"><code>arulesViz</code></a> - for visualization of association rules</li>
-<li>She used the [<code>igraph</code>] package to massage the data before giving it to <code>networkD3</code></li>
+<li>Talk focused on <a href="https://cran.r-project.org/web/packages/networkD3/index.html"><code>networkD3</code></a>, which is nice for interactive networks.</li>
+<li>Other options for visualizing networks: <a href="https://cran.r-project.org/web/packages/igraph/index.html"><code>igraph</code></a>, <code>ggnet2()</code> (part of <a href="https://cran.r-project.org/web/packages/GGally/">GGally</a>), and <a href="https://cran.r-project.org/web/packages/visNetwork/index.html"><code>visNetwork</code></a></li>
+<li><a href="https://cran.r-project.org/web/packages/arules/index.html"><code>arules</code></a> package for association mining in R. She used it to find associated words considering both how often words appear together and also how often they appear in same dataset (in her example, how often in the same tweet)</li>
+<li><a href="https://cran.r-project.org/web/packages/arulesViz/index.html"><code>arulesViz</code></a> - for visualization of association rules</li>
+<li>She used the <code>igraph</code> package to massage the data before giving it to <code>networkD3</code></li>
 </ul>
 <p><strong>Better DataViz in ggplot2: Tips, Tricks, and Examples</strong>, Alex Engler, <a href="https://twitter.com/AlexCEngler"><em><span class="citation">@AlexCEngler</span></em></a></p>
 <ol style="list-style-type: decimal">
-<li><a href="https://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot2</code></a> + <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> for bivariate plots: <code>ggplot2::geom_sf()</code>. See the <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html">Drawing beautiful maps with R, sf, and ggplot2 sf</a> tutorial</li>
+<li><a href="https://cran.r-project.org/web/packages/ggplot2/index.html"><code>ggplot2</code></a> + <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> for bivariate plots: <code>ggplot2::geom_sf()</code>. See the <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html">Drawing beautiful maps with R, sf, and ggplot2 sf</a> tutorial on r-spatial.org.</li>
 <li><a href="https://github.com/clauswilke/ggtext"><code>ggtext</code></a> to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.</li>
 <li><a href="https://cran.r-project.org/web/packages/gghighlight/"><code>gghighlight</code></a> to highlight parts of graph with color (and grey out rest)</li>
 <li><code>ggplot2::annotation_custom()</code> to add a plot on top of another. Create a “grobe” and drop it somewhere. Use to zoom in to a map with a bounding box. (My comment: seems similar to <a href="https://cran.r-project.org/web/packages/cowplot/index.html"><code>cowplot</code></a>).</li>
@@ -64,11 +64,10 @@ tags:
 <p><strong>RBERT: Cutting Edge NLP in R</strong>, Jon Harmon, <a href="https://twitter.com/JonTheGeek"><em><span class="citation">@JonTheGeek</span></em></a></p>
 <ul>
 <li>BERT: <strong>B</strong>idirectional <strong>E</strong>ncoder <strong>R</strong>epresentations from <strong>T</strong>ransformers. Transfer learning for natural language processing. Created by Google. <a href="https://github.com/jonathanbratt/RBERT">RBERT</a> is the R implementation.</li>
-<li>Older embeddings have one embedding per word. Can’t help this situation: “I saw the branch on the bank.” vs “I saw the branch of the bank.”<br />
-</li>
+<li>Older embeddings have one embedding per word. Can’t help this situation: “I saw the branch on the bank.” vs “I saw the branch of the bank.” BERT addresses this issue.</li>
 <li><a href="https://github.com/jonathanbratt/RBERTviz"><code>RBERTviz</code></a>: Visualize attention and PCA. Let’s you see how BERT is thinking. Showed an interactive demo— go watch the video!</li>
 <li>BERT has 12 layers.</li>
-<li>RBERT usable now (available on GitHub), but the Jon and __ are making it more user-friendly. Goal: On CRAN by end of 2019</li>
+<li>RBERT usable now (available on GitHub), but the Jon and Jonathan are making it more user-friendly. Goal: On CRAN by end of 2019</li>
 <li>Works with tensorflow 2.0 (in testing)</li>
 <li>Example shown: Used RBERT to pull out features for <a href="https://cran.r-project.org/web/packages/xgboost/index.html">xgboost</a> model.</li>
 <li>Slides available <a href="https://raw.githack.com/jonthegeek/dcrbert/master/dcrbert.html#1">here</a></li>
@@ -104,7 +103,7 @@ tags:
 <li>Geo-coding: <code>tmaptools::geocode_OSM(“Georgetown University”)</code> gives coordinates (to translate human spatial data to computer understandable spatial data). Note that OSM = “open street map.” Talk to your GIS librarian (or if you have ARCGis) to get coords.</li>
 <li>In her words: “Spatial file formats are confusing.”</li>
 <li>Spatial data formats: <code>.shp</code> (shapefile made up of 4 files), <code>.geojson</code> (lots of web-based mapping), <code>.gpkg</code> (new and good, but not common yet), <code>.csv</code>, <code>.tiff</code> (for raster data)</li>
-<li>Library she uses: <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> package. <code>st_read()</code> or <code>read_sf()</code> to create a tidy <code>sf</code> dataframe.</li>
+<li>Library she uses: <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> package. <code>st_read()</code> or <code>read_sf()</code> to create a tidy <code>sf</code> data frame.</li>
 <li>Her tech stack: geoDa, QGIS, ArcGIS, PostGIS, CART, R</li>
 <li>R packages she uses the most (packages in parens are the “comparable” non-spatial versions):
 <ul>
@@ -171,14 +170,14 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)</code><
 <li>Don’t mix anaconda R package installation with <code>install.packages()</code></li>
 <li>New model pipeline in R: <a href="https://cran.r-project.org/web/packages/rsample/index.html"><code>rsample</code></a>, <a href="https://cran.r-project.org/web/packages/recipes/index.html"><code>recipes</code></a>, <a href="https://cran.r-project.org/web/packages/parsnip/index.html"><code>parsnip</code></a>, <a href="https://cran.r-project.org/web/packages/yardstick/index.html"><code>yardstick</code></a><br />
 </li>
-<li>Described workflow: Python <code>joblib</code> for “pickling” a model in python. Read it into R. Then use R shiny to display</li>
+<li>Described workflow: Python <code>joblib</code> for “pickling” a model in python. Read it into R. Then use R <code>shiny</code> to display</li>
 <li>[<code>blogdown</code>] supports jupyter notebooks</li>
 <li><code>knitpy</code>: <code>knitr</code> implementation in python</li>
 <li>Use Apache arrow to pass datasets between R and python</li>
-<li>Information on installing python: <a href="https://swcarpentry.github.io/python-novice-inflammation/setup/index.html" class="uri">https://swcarpentry.github.io/python-novice-inflammation/setup/index.html</a></li>
-<li>Slides available <a href="https://github.com/chendaniely/rstatsdc_2019-python-r">here</a></li>
+<li>Information on installing python <a href="https://swcarpentry.github.io/python-novice-inflammation/setup/index.html">here</a></li>
+<li>Slides available <a href="https://speakerdeck.com/chendaniely/using-python-with-r">here</a></li>
 </ul>
-<p><strong>Managing Your Cloud: Working with APIs</strong>, Marck Vaisman, <a href="https://twitter.com/wahululu"><em><span class="citation">@wahululu</span></em></a></p>
+<p><strong>Managing Your Cloud: Working with APIs</strong>, Marck Vaisman, <a href="https://twitter.com/wahalulu"><em><span class="citation">@wahalulu</span></em></a></p>
 <ul>
 <li>Discussed how to use R to interact with APIs (mostly for the consumption of data)</li>
 <li><a href="https://cran.r-project.org/web/packages/plumber/index.html"><code>plumber</code></a> for building and serving up APIs</li>
@@ -188,8 +187,8 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)</code><
 <div id="random" class="section level2">
 <h2>A Few Remaining Random Bits</h2>
 <ul>
-<li>Check out the <a href="https://github.com/sctyner/memer"><code>memeR</code></a> package by <code>@sctyner</code></li>
-<li>R Markdown tips from <code>@datadanya</code>: Include <code>session_info()</code> at the end of all markdown docs. See <a href="https://bootswatch.com/3/" class="uri">https://bootswatch.com/3/</a> for a list of R Markdown themes</li>
+<li>Check out the <a href="https://github.com/sctyner/memer"><code>memeR</code></a> package by <a href="https://twitter.com/sctyner"><em><span class="citation">@sctyner</span></em></a></li>
+<li>R Markdown tips from <a href="https://twitter.com/datadanya"><em><span class="citation">@datadanya</span></em></a>: Include <code>session_info()</code> at the end of all markdown docs. See <a href="https://bootswatch.com/3/" class="uri">https://bootswatch.com/3/</a> for a list of R Markdown themes</li>
 <li>Use <a href="https://cran.r-project.org/web/packages/gmailr/index.html"><code>gmailr</code></a> to send email from R</li>
 <li>See <a href="https://cran.r-project.org/web/packages/learnr/index.html"><code>learnr</code></a> for creating teaching materials. (Use in conjunction with <a href="https://rstudio-education.github.io/gradethis/."><code>gradethis</code></a></li>
 <li>For conversations about R administration, see <code>#radmins</code> on Twitter, <a href="https://solutions.rstudio.com/">solutions.rstudio.com</a>, or the radmins channel on <a href="https://community.rstudio.com/">community.rstudio.com</a>. Management and IT folks should watch Kelly O’Briant’s talk, <a href="https://speakerdeck.com/kellobri/a-year-of-talking-about-devops">Reflections on a Year Spent Talking to Data Scientists About DevOps</a>.</li>

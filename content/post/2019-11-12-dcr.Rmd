@@ -28,7 +28,7 @@ Dr Abhijit Dasgupta, [*@webbedfeet*](https://twitter.com/webbedfeet)
 Malorie Hughes, [*@data_all_day*](https://twitter.com/data_all_day)
 
 - Don’t email your results. Create a dashboard!
-- Talk featured a [demo of `flexdashboard`](https://maloriejhughes.github.io/Dashboarding-Tutorial/). See more info about `flexdashboard` on [RStudio's website](https://rmarkdown.rstudio.com/flexdashboard/).  
+- Talk featured a [demo of `flexdashboard`](https://maloriejhughes.github.io/Dashboarding-Tutorial/). See more info about [`flexdashboard`](https://cran.r-project.org/web/packages/flexdashboard/index.html) on [RStudio's website](https://rmarkdown.rstudio.com/flexdashboard/).  
 - Create using R Markdown. Just requires a different output type in the YAML header.
 - See her [GitHub repo](https://github.com/maloriejhughes?tab=repositories) for templates
 - Tips for making your output look pretty on the dashboard:
@@ -51,18 +51,18 @@ blogdown::shortcode('tweet', '1192878268850081792')
 **Using networkD3 and R to Visualize and Explore Relationships in Data**,
 Dr Ami Gates, [*@DrGates309*](https://twitter.com/DrGates309)
 
-- Talk focused on [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html): Nice for interactive networks.
-- Other options for visualizing networks: [`igraph`](https://cran.r-project.org › package=igraph), `ggnet2()` (part of [GGally](https://cran.r-project.org/web/packages/GGally/)), and [`visNetwork`](https://cran.r-project.org › package=visNetwork) 
-- [`arules`](https://cran.r-project.org › package=arules) package for association mining in R. She used it to find associated words considering both how often words appear together and also how often they appear in same dataset (in her example, how often in the same tweet) 
-- [`arulesViz`](https://cran.r-project.org › package=arulesViz) - for visualization of association rules
-- She used the [`igraph`] package to massage the data before giving it to `networkD3`
+- Talk focused on [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html), which is nice for interactive networks.
+- Other options for visualizing networks: [`igraph`](https://cran.r-project.org/web/packages/igraph/index.html), `ggnet2()` (part of [GGally](https://cran.r-project.org/web/packages/GGally/)), and [`visNetwork`](https://cran.r-project.org/web/packages/visNetwork/index.html) 
+- [`arules`](https://cran.r-project.org/web/packages/arules/index.html) package for association mining in R. She used it to find associated words considering both how often words appear together and also how often they appear in same dataset (in her example, how often in the same tweet) 
+- [`arulesViz`](https://cran.r-project.org/web/packages/arulesViz/index.html) - for visualization of association rules
+- She used the `igraph` package to massage the data before giving it to `networkD3`
 
 
 
 **Better DataViz in ggplot2: Tips, Tricks, and Examples**,
 Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 
-1. [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial
+1. [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/index.html) + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial on r-spatial.org.
 2. [`ggtext`](https://github.com/clauswilke/ggtext) to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.
 3. [`gghighlight`](https://cran.r-project.org/web/packages/gghighlight/) to highlight parts of graph with color (and grey out rest)
 4. `ggplot2::annotation_custom()` to add a plot on top of another.  Create a "grobe" and drop it somewhere. Use to zoom in to a map with a bounding box. (My comment: seems similar to [`cowplot`](https://cran.r-project.org/web/packages/cowplot/index.html)).
@@ -77,10 +77,10 @@ Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 Jon Harmon, [*@JonTheGeek*](https://twitter.com/JonTheGeek)
 
 - BERT: **B**idirectional **E**ncoder **R**epresentations from **T**ransformers. Transfer learning for natural language processing. Created by Google. [RBERT](https://github.com/jonathanbratt/RBERT) is the R implementation.
-- Older embeddings have one embedding per word. Can’t help this situation: "I saw the branch on the bank." vs "I saw the branch of the bank."  
+- Older embeddings have one embedding per word. Can’t help this situation: "I saw the branch on the bank." vs "I saw the branch of the bank." BERT addresses this issue.
 - [`RBERTviz`](https://github.com/jonathanbratt/RBERTviz): Visualize attention and PCA. Let’s you see how BERT is thinking. Showed an interactive demo— go watch the video!
 - BERT has 12 layers. 
-- RBERT usable now (available on GitHub), but the Jon and __ are making it more user-friendly. Goal: On CRAN by end of 2019
+- RBERT usable now (available on GitHub), but the Jon and Jonathan are making it more user-friendly. Goal: On CRAN by end of 2019
 - Works with tensorflow 2.0 (in testing)
 - Example shown: Used RBERT to pull out features for [xgboost](https://cran.r-project.org/web/packages/xgboost/index.html) model.
 - Slides available [here](https://raw.githack.com/jonthegeek/dcrbert/master/dcrbert.html#1)
@@ -122,7 +122,7 @@ Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
 - Geo-coding: `tmaptools::geocode_OSM(“Georgetown University”)` gives coordinates (to translate human spatial data to computer understandable spatial data). Note that OSM = "open street map." Talk to your GIS librarian (or if you have ARCGis) to get coords.
 - In her words: “Spatial file formats are confusing.”
 - Spatial data formats: `.shp` (shapefile made up of 4 files), `.geojson` (lots of web-based mapping), `.gpkg` (new and good, but not common yet), `.csv`, `.tiff` (for raster data)
-- Library she uses: [`sf`](https://cran.r-project.org/web/packages/sf/index.html) package. `st_read()` or `read_sf()` to create a tidy `sf` dataframe.
+- Library she uses: [`sf`](https://cran.r-project.org/web/packages/sf/index.html) package. `st_read()` or `read_sf()` to create a tidy `sf` data frame.
 - Her tech stack: geoDa, QGIS, ArcGIS, PostGIS, CART, R
 - R packages she uses the most (packages in parens are the "comparable" non-spatial versions):
     - [`sf`](https://cran.r-project.org/web/packages/sf/index.html) (readr, tidyr, dplyr)
@@ -202,18 +202,17 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)
 - Most data scientists using Python use anaconda.
 - Don’t mix anaconda R package installation with `install.packages()`
 - New model pipeline in R: [`rsample`](https://cran.r-project.org/web/packages/rsample/index.html), [`recipes`](https://cran.r-project.org/web/packages/recipes/index.html), [`parsnip`](https://cran.r-project.org/web/packages/parsnip/index.html), [`yardstick`](https://cran.r-project.org/web/packages/yardstick/index.html)   
-- Described workflow: Python `joblib` for "pickling" a model in python. Read it into R. Then use R shiny to display 
+- Described workflow: Python `joblib` for "pickling" a model in python. Read it into R. Then use R `shiny` to display 
 - [`blogdown`] supports jupyter notebooks
 - `knitpy`: `knitr` implementation in python
 - Use Apache arrow to pass datasets between R and python
-- Information on installing python: 
-https://swcarpentry.github.io/python-novice-inflammation/setup/index.html
-- Slides available [here](https://github.com/chendaniely/rstatsdc_2019-python-r)
+- Information on installing python [here](https://swcarpentry.github.io/python-novice-inflammation/setup/index.html) 
+- Slides available [here](https://speakerdeck.com/chendaniely/using-python-with-r)
  
 
 
 **Managing Your Cloud: Working with APIs**,
-Marck Vaisman, [*@wahululu*](https://twitter.com/wahululu)
+Marck Vaisman, [*@wahalulu*](https://twitter.com/wahalulu)
 
 - Discussed how to use R to interact with APIs (mostly for the consumption of data)
 - [`plumber`](https://cran.r-project.org/web/packages/plumber/index.html) for building and serving up APIs
@@ -223,8 +222,8 @@ Marck Vaisman, [*@wahululu*](https://twitter.com/wahululu)
 
 ## A Few Remaining Random Bits {#random}
 
-- Check out the [`memeR`](https://github.com/sctyner/memer) package by `@sctyner`
-- R Markdown tips from `@datadanya`: Include `session_info()` at the end of all markdown docs. See https://bootswatch.com/3/ for a list of R Markdown themes
+- Check out the [`memeR`](https://github.com/sctyner/memer) package by [*@sctyner*](https://twitter.com/sctyner)
+- R Markdown tips from [*@datadanya*](https://twitter.com/datadanya): Include `session_info()` at the end of all markdown docs. See https://bootswatch.com/3/ for a list of R Markdown themes
 - Use [`gmailr`](https://cran.r-project.org/web/packages/gmailr/index.html) to send email from R
 - See [`learnr`](https://cran.r-project.org/web/packages/learnr/index.html) for creating teaching materials. (Use in conjunction with [`gradethis`](https://rstudio-education.github.io/gradethis/.) 
 - For conversations about R administration, see `#radmins` on Twitter, [solutions.rstudio.com](https://solutions.rstudio.com/), or the radmins channel on [community.rstudio.com](https://community.rstudio.com/). Management and IT folks should watch Kelly O’Briant's talk, [Reflections on a Year Spent Talking to Data Scientists About DevOps](https://speakerdeck.com/kellobri/a-year-of-talking-about-devops).
