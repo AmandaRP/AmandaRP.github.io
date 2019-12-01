@@ -115,6 +115,7 @@ BJ Bloom, [*@bj_bloom*](https://twitter.com/bj_bloom)
 **The Care and Feeding of Spatial Data**,
 Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
  
+- Slides available [here](https://docs.google.com/presentation/d/1BHlrSZWmw9tRWfYFVsRLNhAoX6KzhOhsnezTqL-R0sU/edit#slide=id.g6aeb55b281_0_971) 
 - She described the steps *before* the fancy plots and regression, focusing on the data.
 - Two types of spatial data:
     - Vector data - points lines polygons (she focused more on this)
