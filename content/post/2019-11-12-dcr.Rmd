@@ -17,17 +17,15 @@ Highlights for me personally included Malorie Hughes' presentation of [`flexdash
 
 ## Communication (Dashboards, Websites, and Data Viz) {#comms}
 
-**Coursedown: Managing Course Materials Using R Techniques**
-
+**Coursedown: Managing Course Materials Using R Techniques**,
 Dr Abhijit Dasgupta, [*@webbedfeet*](https://twitter.com/webbedfeet)
 
 - Package available [on GitHub](https://github.com/webbedfeet/coursedown).
 - Use [`drake`](https://github.com/ropensci/drake) to tie it all together
 
-<br>
 
-**Dashboarding Like a Boss**
 
+**Dashboarding Like a Boss**,
 Malorie Hughes, [*@data_all_day*](https://twitter.com/data_all_day)
 
 - Don’t email your results. Create a dashboard!
@@ -49,10 +47,9 @@ blogdown::shortcode('tweet', '1192878268850081792')
 ```
 </center>
 
-<br>
 
-**Using networkD3 and R to Visualize and Explore Relationships in Data**
 
+**Using networkD3 and R to Visualize and Explore Relationships in Data**,
 Dr Ami Gates, [*@DrGates309*](https://twitter.com/DrGates309)
 
 - Talk focused on [`networkD3`](https://cran.r-project.org/web/packages/networkD3/index.html): Nice for interactive networks.
@@ -62,9 +59,8 @@ Dr Ami Gates, [*@DrGates309*](https://twitter.com/DrGates309)
 - She used the [`igraph`] package to massage the data before giving it to `networkD3`
 
 
-<br>
 
-**Better DataViz in ggplot2: Tips, Tricks, and Examples**
+**Better DataViz in ggplot2: Tips, Tricks, and Examples**,
 Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 
 1. `ggplot2` + [`sf`](https://cran.r-project.org/web/packages/sf/index.html) for bivariate plots: `ggplot2::geom_sf()`. See the [Drawing beautiful maps with R, sf, and ggplot2 sf](https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html)  tutorial
@@ -74,10 +70,9 @@ Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 5. `geofacet::facet_geo()` to create a plot per state, positioned in the location of the states on the map.
 6. `ggplot2` extensions: See www.ggplot2-exts.org/gallery and the [`rayshader`](https://cran.r-project.org/web/packages/rayshader/index.html) package.
 
-<br>
+
 
 ## Modeling {#modeling}
-
 **RBERT: Cutting Edge NLP in R**
 
 Jon Harmon, [*@JonTheGeek*](https://twitter.com/JonTheGeek)
@@ -91,10 +86,9 @@ Jon Harmon, [*@JonTheGeek*](https://twitter.com/JonTheGeek)
 - Example shown: Used RBERT to pull out features for [xgboost](https://cran.r-project.org/web/packages/xgboost/index.html) model.
 - Slides available [here](https://raw.githack.com/jonthegeek/dcrbert/master/dcrbert.html#1)
 
-<br>
 
-**Optimizing Topic Models for Classification Tasks**
 
+**Optimizing Topic Models for Classification Tasks**,
 Tommy Jones, [*@thos_jones*](https://twitter.com/thos_jones) 
 
 - Performing PhD research to optimize LDA topic models
@@ -105,10 +99,8 @@ Tommy Jones, [*@thos_jones*](https://twitter.com/thos_jones)
 -Used unigrams, removed stopwords, and words that were seen in less than 5 docs
 - Optimized for accuracy and coherence. LDA was way more accurate than LSA. Showed a accuracy vs topic coherence. 
 
-<br>
 
-**Topic Modeling Consumer Complaints at the Federal Reserve**
-
+**Topic Modeling Consumer Complaints at the Federal Reserve**,
 BJ Bloom, [*@bj_bloom*](https://twitter.com/bj_bloom)
 
 - Goal: Use consumer complaints to inform risk analysis for Federal Reserve Board
@@ -117,12 +109,11 @@ BJ Bloom, [*@bj_bloom*](https://twitter.com/bj_bloom)
 - In his words, "Don’t use [`tm`](https://cran.r-project.org/web/packages/tm/index.html). It had its place back in the day." Instead, he's a fan of [`tidytext`](https://cran.r-project.org/web/packages/tidytext/index.html).
 - Other R packages used: [`textrank`](https://cran.r-project.org/web/packages/textrank/index.html) (for pagerank)
 
-<br>
+
 
 ## Spatial Analysis
 
-**The Care and Feeding of Spatial Data**
-
+**The Care and Feeding of Spatial Data**,
 Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
  
 - She described the steps *before* the fancy plots and regression, focusing on the data.
@@ -147,13 +138,12 @@ Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
 - Most important slide she’s ever made in her life: 
 
 <center>
-![](~/AmandaRP.github.io/spatialsearch.jpeg)
+![](/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg)
 </center>
 
-<br>
 
-**R is Not Just Basic Stats: Think Spatially!**
 
+**R is Not Just Basic Stats: Think Spatially!**,
 Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
 
 - Divided household: She's an R enthusiast and her husband is a Python fan `r emo::ji("scream")` 
@@ -162,8 +152,7 @@ Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
 
 ## General R Programming
 
-**Ten Tremendous Tricks in the Tidyverse**
-
+**Ten Tremendous Tricks in the Tidyverse**,
 David Robinson, [*@drob*](https://twitter.com/drob)
 
 - Be sue to catch his `#tidytuesday` screen casts [on YouTube](https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC). 
@@ -186,10 +175,9 @@ blogdown::shortcode('tweet', '1193212461773545472')
 ```
 </center>
 
-<br>
 
-**Raising baby with R**
 
+**Raising baby with R**,
 Jared Lander, [*@jaredlander*](https://twitter.com/jaredlander)
 
 - Jared and his wife recently had a baby. He described his use of R to choose the baby's name and analyze its eating, sleeping, and poo patterns.
@@ -198,10 +186,9 @@ Jared Lander, [*@jaredlander*](https://twitter.com/jaredlander)
 - [`fable.prophet`](https://github.com/mitchelloharawild/fable.prophet) package to use prophet in a fable framework. Used this to perform change-point detection.
 - Slides available [here](https://jaredlander.com/content/2019/11/BabyData.html#1).
 
-<br>
 
-**R and Python coexisting in the same Development environment**
 
+**R and Python coexisting in the same Development environment**,
 Dan Chen, [*@chendaniely*](https://twitter.com/chendaniely), (Author of “Pandas for Everyone")
 
 - What he believes Python does better: environments, web development, and hardware
@@ -225,10 +212,8 @@ https://swcarpentry.github.io/python-novice-inflammation/setup/index.html
 - Slides available [here](https://github.com/chendaniely/rstatsdc_2019-python-r)
  
 
-<br>
 
-**Managing Your Cloud: Working with APIs**
-
+**Managing Your Cloud: Working with APIs**,
 Marck Vaisman, [*@wahululu*](https://twitter.com/wahululu)
 
 - Discussed how to use R to interact with APIs (mostly for the consumption of data)

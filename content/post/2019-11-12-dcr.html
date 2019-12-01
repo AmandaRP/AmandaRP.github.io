@@ -15,15 +15,12 @@ tags:
 <p><strong>Read more</strong>: Below are my notes from selected talks. I’ve divided it into the following sections: <a href="#comms">Communication</a>, <a href="#modeling">modeling</a>, <a href="#other">other R packages</a>, <a href="#doc">documentation</a>, <a href="#programming">general programming</a>.</p>
 <div id="comms" class="section level2">
 <h2>Communication (Dashboards, Websites, and Data Viz)</h2>
-<p><strong>Coursedown: Managing Course Materials Using R Techniques</strong></p>
-<p>Dr Abhijit Dasgupta, <a href="https://twitter.com/webbedfeet"><em><span class="citation">@webbedfeet</span></em></a></p>
+<p><strong>Coursedown: Managing Course Materials Using R Techniques</strong>, Dr Abhijit Dasgupta, <a href="https://twitter.com/webbedfeet"><em><span class="citation">@webbedfeet</span></em></a></p>
 <ul>
 <li>Package available <a href="https://github.com/webbedfeet/coursedown">on GitHub</a>.</li>
 <li>Use <a href="https://github.com/ropensci/drake"><code>drake</code></a> to tie it all together</li>
 </ul>
-<p><br></p>
-<p><strong>Dashboarding Like a Boss</strong></p>
-<p>Malorie Hughes, <a href="https://twitter.com/data_all_day"><em><span class="citation">@data_all_day</span></em></a></p>
+<p><strong>Dashboarding Like a Boss</strong>, Malorie Hughes, <a href="https://twitter.com/data_all_day"><em><span class="citation">@data_all_day</span></em></a></p>
 <ul>
 <li>Don’t email your results. Create a dashboard!</li>
 <li>Talk featured a <a href="https://maloriejhughes.github.io/Dashboarding-Tutorial/">demo of <code>flexdashboard</code></a>. See more info about <code>flexdashboard</code> on <a href="https://rmarkdown.rstudio.com/flexdashboard/">RStudio’s website</a>.<br />
@@ -44,9 +41,7 @@ tags:
 <center>
 {{% tweet "1192878268850081792" %}}
 </center>
-<p><br></p>
-<p><strong>Using networkD3 and R to Visualize and Explore Relationships in Data</strong></p>
-<p>Dr Ami Gates, <a href="https://twitter.com/DrGates309"><em><span class="citation">@DrGates309</span></em></a></p>
+<p><strong>Using networkD3 and R to Visualize and Explore Relationships in Data</strong>, Dr Ami Gates, <a href="https://twitter.com/DrGates309"><em><span class="citation">@DrGates309</span></em></a></p>
 <ul>
 <li>Talk focused on <a href="https://cran.r-project.org/web/packages/networkD3/index.html"><code>networkD3</code></a>: Nice for interactive networks.</li>
 <li>Other options for visualizing networks: <a href="https://cran.r-project.org%20›%20package=igraph"><code>igraph</code></a>, <code>ggnet2()</code> (part of <a href="https://cran.r-project.org/web/packages/GGally/">GGally</a>), and <a href="https://cran.r-project.org%20›%20package=visNetwork"><code>visNetwork</code></a></li>
@@ -54,8 +49,7 @@ tags:
 <li><a href="https://cran.r-project.org%20›%20package=arulesViz"><code>arulesViz</code></a> - for visualization of association rules</li>
 <li>She used the [<code>igraph</code>] package to massage the data before giving it to <code>networkD3</code></li>
 </ul>
-<p><br></p>
-<p><strong>Better DataViz in ggplot2: Tips, Tricks, and Examples</strong> Alex Engler, <a href="https://twitter.com/AlexCEngler"><em><span class="citation">@AlexCEngler</span></em></a></p>
+<p><strong>Better DataViz in ggplot2: Tips, Tricks, and Examples</strong>, Alex Engler, <a href="https://twitter.com/AlexCEngler"><em><span class="citation">@AlexCEngler</span></em></a></p>
 <ol style="list-style-type: decimal">
 <li><code>ggplot2</code> + <a href="https://cran.r-project.org/web/packages/sf/index.html"><code>sf</code></a> for bivariate plots: <code>ggplot2::geom_sf()</code>. See the <a href="https://www.r-spatial.org/r/2018/10/25/ggplot2-sf.html">Drawing beautiful maps with R, sf, and ggplot2 sf</a> tutorial</li>
 <li><a href="https://github.com/clauswilke/ggtext"><code>ggtext</code></a> to add text to plots using markdown. Includes text formatting. Showed an example of how to highlight parts of title to match highlighted part of graph.</li>
@@ -64,7 +58,6 @@ tags:
 <li><code>geofacet::facet_geo()</code> to create a plot per state, positioned in the location of the states on the map.</li>
 <li><code>ggplot2</code> extensions: See www.ggplot2-exts.org/gallery and the <a href="https://cran.r-project.org/web/packages/rayshader/index.html"><code>rayshader</code></a> package.</li>
 </ol>
-<p><br></p>
 </div>
 <div id="modeling" class="section level2">
 <h2>Modeling</h2>
@@ -81,9 +74,7 @@ tags:
 <li>Example shown: Used RBERT to pull out features for <a href="https://cran.r-project.org/web/packages/xgboost/index.html">xgboost</a> model.</li>
 <li>Slides available <a href="https://raw.githack.com/jonthegeek/dcrbert/master/dcrbert.html#1">here</a></li>
 </ul>
-<p><br></p>
-<p><strong>Optimizing Topic Models for Classification Tasks</strong></p>
-<p>Tommy Jones, <a href="https://twitter.com/thos_jones"><em><span class="citation">@thos_jones</span></em></a></p>
+<p><strong>Optimizing Topic Models for Classification Tasks</strong>, Tommy Jones, <a href="https://twitter.com/thos_jones"><em><span class="citation">@thos_jones</span></em></a></p>
 <ul>
 <li>Performing PhD research to optimize LDA topic models</li>
 <li>Cousin to LDA: Text embeddings (considered state of the art). In his words, LDA stopped being cared about after deep learning came along. However, he thinks the LDA work was never completed to determine a good LDA model. He thinks LDA might be competitive with deep neural nets if tuned appropriately.</li>
@@ -92,9 +83,7 @@ tags:
 <li><code>SigOpt</code>: ensemble of Bayesian optimizers for picking hyperparmeters (more efficient than grid search). SigOptR is an R API for <a href="https://sigopt.com/">SigOpt</a>. -Used unigrams, removed stopwords, and words that were seen in less than 5 docs</li>
 <li>Optimized for accuracy and coherence. LDA was way more accurate than LSA. Showed a accuracy vs topic coherence.</li>
 </ul>
-<p><br></p>
-<p><strong>Topic Modeling Consumer Complaints at the Federal Reserve</strong></p>
-<p>BJ Bloom, <a href="https://twitter.com/bj_bloom"><em><span class="citation">@bj_bloom</span></em></a></p>
+<p><strong>Topic Modeling Consumer Complaints at the Federal Reserve</strong>, BJ Bloom, <a href="https://twitter.com/bj_bloom"><em><span class="citation">@bj_bloom</span></em></a></p>
 <ul>
 <li>Goal: Use consumer complaints to inform risk analysis for Federal Reserve Board</li>
 <li>Used LDA topic modeling</li>
@@ -102,12 +91,10 @@ tags:
 <li>In his words, “Don’t use <a href="https://cran.r-project.org/web/packages/tm/index.html"><code>tm</code></a>. It had its place back in the day.” Instead, he’s a fan of <a href="https://cran.r-project.org/web/packages/tidytext/index.html"><code>tidytext</code></a>.</li>
 <li>Other R packages used: <a href="https://cran.r-project.org/web/packages/textrank/index.html"><code>textrank</code></a> (for pagerank)</li>
 </ul>
-<p><br></p>
 </div>
 <div id="spatial-analysis" class="section level2">
 <h2>Spatial Analysis</h2>
-<p><strong>The Care and Feeding of Spatial Data</strong></p>
-<p>Angela Li, <a href="https://twitter.com/CivicAngela"><em><span class="citation">@CivicAngela</span></em></a></p>
+<p><strong>The Care and Feeding of Spatial Data</strong>, Angela Li, <a href="https://twitter.com/CivicAngela"><em><span class="citation">@CivicAngela</span></em></a></p>
 <ul>
 <li>She described the steps <em>before</em> the fancy plots and regression, focusing on the data.</li>
 <li>Two types of spatial data:
@@ -138,9 +125,7 @@ tags:
 <center>
 <img src="/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg" />
 </center>
-<p><br></p>
-<p><strong>R is Not Just Basic Stats: Think Spatially!</strong></p>
-<p>Tatyana Tsvetovat, <a href="https://twitter.com/t_tsvet"><em><span class="citation">@t_tsvet</span></em></a></p>
+<p><strong>R is Not Just Basic Stats: Think Spatially!</strong>, Tatyana Tsvetovat, <a href="https://twitter.com/t_tsvet"><em><span class="citation">@t_tsvet</span></em></a></p>
 <ul>
 <li>Divided household: She’s an R enthusiast and her husband is a Python fan 😱</li>
 <li>Packages she uses: <a href="https://cran.r-project.org/web/packages/rgdal/index.html"><code>rgdal</code></a>, <a href="https://cran.r-project.org/web/packages/rgeos/index.html"><code>rgeos</code></a>, <a href="https://cran.r-project.org/web/packages/sp/index.html"><code>sp</code></a>, <a href="https://cran.r-project.org/web/packages/spatstat/index.html"><code>spatstat</code></a>, <a href="https://cran.r-project.org/web/packages/kernlab/index.html"><code>kernlab</code></a>, <a href="https://cran.r-project.org/web/packages/zoo/index.html"><code>zoo</code></a></li>
@@ -148,8 +133,7 @@ tags:
 </div>
 <div id="general-r-programming" class="section level2">
 <h2>General R Programming</h2>
-<p><strong>Ten Tremendous Tricks in the Tidyverse</strong></p>
-<p>David Robinson, <a href="https://twitter.com/drob"><em><span class="citation">@drob</span></em></a></p>
+<p><strong>Ten Tremendous Tricks in the Tidyverse</strong>, David Robinson, <a href="https://twitter.com/drob"><em><span class="citation">@drob</span></em></a></p>
 <ul>
 <li>Be sue to catch his <code>#tidytuesday</code> screen casts <a href="https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC">on YouTube</a>.</li>
 <li>10 tricks that people have liked from his screen casts:</li>
@@ -170,9 +154,7 @@ tags:
 <center>
 {{% tweet "1193212461773545472" %}}
 </center>
-<p><br></p>
-<p><strong>Raising baby with R</strong></p>
-<p>Jared Lander, <a href="https://twitter.com/jaredlander"><em><span class="citation">@jaredlander</span></em></a></p>
+<p><strong>Raising baby with R</strong>, Jared Lander, <a href="https://twitter.com/jaredlander"><em><span class="citation">@jaredlander</span></em></a></p>
 <ul>
 <li>Jared and his wife recently had a baby. He described his use of R to choose the baby’s name and analyze its eating, sleeping, and poo patterns.</li>
 <li>See the <a href="https://cran.r-project.org/web/packages/babynames/index.html"><code>babynames</code></a> package for data about popularity of baby names</li>
@@ -180,9 +162,7 @@ tags:
 <li><a href="https://github.com/mitchelloharawild/fable.prophet"><code>fable.prophet</code></a> package to use prophet in a fable framework. Used this to perform change-point detection.</li>
 <li>Slides available <a href="https://jaredlander.com/content/2019/11/BabyData.html#1">here</a>.</li>
 </ul>
-<p><br></p>
-<p><strong>R and Python coexisting in the same Development environment</strong></p>
-<p>Dan Chen, <a href="https://twitter.com/chendaniely"><em><span class="citation">@chendaniely</span></em></a>, (Author of “Pandas for Everyone”)</p>
+<p><strong>R and Python coexisting in the same Development environment</strong>, Dan Chen, <a href="https://twitter.com/chendaniely"><em><span class="citation">@chendaniely</span></em></a>, (Author of “Pandas for Everyone”)</p>
 <ul>
 <li>What he believes Python does better: environments, web development, and hardware</li>
 <li>What he likes about R: communication (<code>shiny</code>, <code>rmarkdown</code>, <code>ggplot2</code>)</li>
@@ -202,9 +182,7 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)</code><
 <li>Information on installing python: <a href="https://swcarpentry.github.io/python-novice-inflammation/setup/index.html" class="uri">https://swcarpentry.github.io/python-novice-inflammation/setup/index.html</a></li>
 <li>Slides available <a href="https://github.com/chendaniely/rstatsdc_2019-python-r">here</a></li>
 </ul>
-<p><br></p>
-<p><strong>Managing Your Cloud: Working with APIs</strong></p>
-<p>Marck Vaisman, <a href="https://twitter.com/wahululu"><em><span class="citation">@wahululu</span></em></a></p>
+<p><strong>Managing Your Cloud: Working with APIs</strong>, Marck Vaisman, <a href="https://twitter.com/wahululu"><em><span class="citation">@wahululu</span></em></a></p>
 <ul>
 <li>Discussed how to use R to interact with APIs (mostly for the consumption of data)</li>
 <li><a href="https://cran.r-project.org/web/packages/plumber/index.html"><code>plumber</code></a> for building and serving up APIs</li>
