@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Amanda&#39;s Data Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DC R Conference Recap</title>
+      <link>/2019/11/12/dcr/</link>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/12/dcr/</guid>
+      <description>The overview: DC R 2019, hosted by Lander Analytics, was held Nov 7-9 at Georgtown University. The short, but action-packed, conference consisted of one day of workshops and two days of talks. Find the videos on DC R website (available soon) and associated tweets via the #rstatsdc hashtag on Twitter. Also, see Jared Lander’s blog post for a higher level overview of the conference (with lots of fun pics).</description>
+    </item>
+    
+    <item>
+      <title>classification</title>
+      <link>/2019/10/07/classification/</link>
+      <pubDate>Mon, 07 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/07/classification/</guid>
+      <description>## ── Attaching packages ────────────────────────────── tidyverse 1.2.1 ── ## ✔ ggplot2 3.2.1 ✔ purrr 0.3.3 ## ✔ tibble 2.1.3 ✔ dplyr 0.8.3 ## ✔ tidyr 1.0.0 ✔ stringr 1.4.0 ## ✔ readr 1.1.1 ✔ forcats 0.3.0 ## ── Conflicts ───────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() ## ## Attaching package: &amp;#39;magrittr&amp;#39; ## The following object is masked from &amp;#39;package:purrr&amp;#39;: ## ## set_names ## The following object is masked from &amp;#39;package:tidyr&amp;#39;: ## ## extract ## ## Attaching package: &amp;#39;rtweet&amp;#39; ## The following object is masked from &amp;#39;package:purrr&amp;#39;: ## ## flatten ## here() starts at /home/rstudio/AmandaRP.</description>
+    </item>
     
     <item>
       <title>Shiny App: Twitter Likes</title>

@@ -17,7 +17,7 @@ library(here)
 token <- readRDS(here("twitter_token.rds"))
 ```
 
-```{r cache=TRUE}
+```{r eval=FALSE, cache=TRUE}
 trump <- get_timeline(user = "realDonaldTrump", n=3200, token = token)
 biden <- get_timeline(user = "JoeBiden", n=3200, token = token)
 warren <- get_timeline(user = "SenWarren", n=3200, token = token)
@@ -32,7 +32,7 @@ my_stop_words <- c("donald", "trump", "trump's", "joe", "biden", "bidens", "pres
 
 EDA 1: Time series of candidates
 
-```{r}
+```{r eval=FALSE}
 data %<>% mutate(tweet_day = date(created_at)) 
 
 #
@@ -56,7 +56,7 @@ President Trump tweets the most (no surprise), followed by Joe Biden. Biden has 
 
 EDA 2: Process the text. Make word comparison cloud
 
-```{r}
+```{r eval=FALSE}
 library(wordcloud)
 data %>% 
   unnest_tokens(token, text) %>%

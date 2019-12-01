@@ -1,0 +1,92 @@
+---
+title: classification
+author: Amanda
+date: '2019-10-07'
+slug: classification
+draft: true
+categories: []
+tags: []
+---
+
+
+
+<pre><code>## ── Attaching packages ────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.3
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
+## ✔ readr   1.1.1     ✔ forcats 0.3.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<pre><code>## 
+## Attaching package: &#39;rtweet&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     flatten</code></pre>
+<pre><code>## here() starts at /home/rstudio/AmandaRP.github.io</code></pre>
+<pre class="r"><code>trump &lt;- get_timeline(user = &quot;realDonaldTrump&quot;, n=3200, token = token)
+biden &lt;- get_timeline(user = &quot;JoeBiden&quot;, n=3200, token = token)
+warren &lt;- get_timeline(user = &quot;SenWarren&quot;, n=3200, token = token)
+sanders &lt;- get_timeline(user = &quot;SenSanders&quot;, n=3200, token = token) 
+
+data &lt;- bind_rows(trump, biden, warren, sanders) %&gt;% 
+  filter(is_retweet == FALSE) %&gt;% 
+  select(screen_name, created_at, text, is_quote, favorite_count, hashtags) 
+
+my_stop_words &lt;- c(&quot;donald&quot;, &quot;trump&quot;, &quot;trump&#39;s&quot;, &quot;joe&quot;, &quot;biden&quot;, &quot;bidens&quot;, &quot;president&quot;, &quot;become&quot;, &quot;left&quot;, &quot;right&quot;, &quot;democrats&quot;, &quot;republicans&quot;, &quot;&amp;amp&quot;)</code></pre>
+<p>EDA 1: Time series of candidates</p>
+<pre class="r"><code>data %&lt;&gt;% mutate(tweet_day = date(created_at)) 
+
+#
+cutoff_date &lt;- data %&gt;%
+  group_by(screen_name) %&gt;%
+  summarise(first = min(tweet_day)) %&gt;% 
+  summarise(cutoff = max(first)) 
+
+
+tweet_cnts &lt;- data %&gt;% 
+  filter(tweet_day &gt;= cutoff_date[[1]]) %&gt;%
+  group_by(screen_name, tweet_day) %&gt;%
+  summarize(cnt = n()) %&gt;% arrange(desc(tweet_day)) 
+
+tweet_cnts %&gt;%
+  ggplot(aes(tweet_day, cnt, color = screen_name)) + geom_line()</code></pre>
+<p>President Trump tweets the most (no surprise), followed by Joe Biden. Biden has the largest variance. Each of his peaks fall on the day after his democratic debtate, summarizing the points that he made in the debate.</p>
+<p>EDA 2: Process the text. Make word comparison cloud</p>
+<pre class="r"><code>library(wordcloud)
+data %&gt;% 
+  unnest_tokens(token, text) %&gt;%
+  select(screen_name, token) %&gt;%
+  anti_join(stop_words, by = c(&quot;token&quot;=&quot;word&quot;)) %&gt;%
+  group_by(screen_name) %&gt;%
+  count(token, sort = TRUE) %&gt;%
+  filter(!token %in% c(&quot;t.co&quot;, &quot;https&quot;, &quot;http&quot;, &quot;amp&quot;)) %&gt;%
+  filter(screen_name==&quot;JoeBiden&quot; | screen_name==&quot;realDonaldTrump&quot;) %&gt;%
+  pivot_wider(
+    names_from = screen_name, 
+    values_from = n,
+    values_fill = list(n = 0)
+  ) %&gt;%
+  as.data.frame() %&gt;%
+  column_to_rownames(&quot;token&quot;) %&gt;%
+  comparison.cloud(title.colors = &quot;black&quot;)</code></pre>
+<p>Do some classification</p>
+<p>Model prep: rsample, recipes</p>
+<ol style="list-style-type: decimal">
+<li>xgboost (need to do topic modeling first? try using features from RBERT)</li>
+<li>DL:</li>
+</ol>
+<ul>
+<li>fully connected NN</li>
+<li>wide and deep</li>
+<li>1d convnet</li>
+<li>M’s published method</li>
+</ul>
