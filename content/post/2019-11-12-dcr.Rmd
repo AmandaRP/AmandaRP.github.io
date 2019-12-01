@@ -24,6 +24,7 @@ Dr Abhijit Dasgupta, [*@webbedfeet*](https://twitter.com/webbedfeet)
 - Package available [on GitHub](https://github.com/webbedfeet/coursedown).
 - Use [`drake`](https://github.com/ropensci/drake) to tie it all together
 
+<br>
 
 **Dashboarding Like a Boss**
 
@@ -48,7 +49,7 @@ blogdown::shortcode('tweet', '1192878268850081792')
 ```
 </center>
 
-
+<br>
 
 **Using networkD3 and R to Visualize and Explore Relationships in Data**
 
@@ -61,6 +62,8 @@ Dr Ami Gates, [*@DrGates309*](https://twitter.com/DrGates309)
 - She used the [`igraph`] package to massage the data before giving it to `networkD3`
 
 
+<br>
+
 **Better DataViz in ggplot2: Tips, Tricks, and Examples**
 Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 
@@ -71,7 +74,7 @@ Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 5. `geofacet::facet_geo()` to create a plot per state, positioned in the location of the states on the map.
 6. `ggplot2` extensions: See www.ggplot2-exts.org/gallery and the [`rayshader`](https://cran.r-project.org/web/packages/rayshader/index.html) package.
 
-
+<br>
 
 ## Modeling {#modeling}
 
@@ -88,6 +91,7 @@ Jon Harmon, [*@JonTheGeek*](https://twitter.com/JonTheGeek)
 - Example shown: Used RBERT to pull out features for [xgboost](https://cran.r-project.org/web/packages/xgboost/index.html) model.
 - Slides available [here](https://raw.githack.com/jonthegeek/dcrbert/master/dcrbert.html#1)
 
+<br>
 
 **Optimizing Topic Models for Classification Tasks**
 
@@ -101,6 +105,7 @@ Tommy Jones, [*@thos_jones*](https://twitter.com/thos_jones)
 -Used unigrams, removed stopwords, and words that were seen in less than 5 docs
 - Optimized for accuracy and coherence. LDA was way more accurate than LSA. Showed a accuracy vs topic coherence. 
 
+<br>
 
 **Topic Modeling Consumer Complaints at the Federal Reserve**
 
@@ -112,6 +117,7 @@ BJ Bloom, [*@bj_bloom*](https://twitter.com/bj_bloom)
 - In his words, "Don’t use [`tm`](https://cran.r-project.org/web/packages/tm/index.html). It had its place back in the day." Instead, he's a fan of [`tidytext`](https://cran.r-project.org/web/packages/tidytext/index.html).
 - Other R packages used: [`textrank`](https://cran.r-project.org/web/packages/textrank/index.html) (for pagerank)
 
+<br>
 
 ## Spatial Analysis
 
@@ -144,6 +150,7 @@ Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
 ![](~/AmandaRP.github.io/spatialsearch.jpeg)
 </center>
 
+<br>
 
 **R is Not Just Basic Stats: Think Spatially!**
 
@@ -179,7 +186,7 @@ blogdown::shortcode('tweet', '1193212461773545472')
 ```
 </center>
 
-
+<br>
 
 **Raising baby with R**
 
@@ -191,7 +198,7 @@ Jared Lander, [*@jaredlander*](https://twitter.com/jaredlander)
 - [`fable.prophet`](https://github.com/mitchelloharawild/fable.prophet) package to use prophet in a fable framework. Used this to perform change-point detection.
 - Slides available [here](https://jaredlander.com/content/2019/11/BabyData.html#1).
 
-
+<br>
 
 **R and Python coexisting in the same Development environment**
 
@@ -218,7 +225,7 @@ https://swcarpentry.github.io/python-novice-inflammation/setup/index.html
 - Slides available [here](https://github.com/chendaniely/rstatsdc_2019-python-r)
  
 
-
+<br>
 
 **Managing Your Cloud: Working with APIs**
 
