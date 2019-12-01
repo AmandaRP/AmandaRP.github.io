@@ -8,11 +8,11 @@ tags:
   - Conference
 ---
 
-**The overview**: [DC R](https://dc.rstats.ai/) 2019, hosted by Lander Analytics, was held Nov 7-9 at Georgtown University. The short, but action-packed, conference consisted of one day of workshops and two days of talks. Find the videos on [DC R website](https://dc.rstats.ai/) (available soon) and associated tweets via the `#rstatsdc` hashtag on Twitter. Also, see [Jared Lander's blog post](https://www.jaredlander.com/2019/11/the-r-conference-returns-to-dc-for-a-second-year/) for a higher level overview of the conference (with lots of fun pics).
+**The overview**: [DC R](https://dc.rstats.ai/) 2019, hosted by Lander Analytics, was held Nov 7-9 at Georgtown University. The short, but action-packed, conference consisted of one day of workshops and two days of talks. Find the videos on [DC R website](https://dc.rstats.ai/) (available soon) and associated tweets via the `#rstatsdc` hashtag on Twitter. Also, see [Jared Lander's blog post](https://www.jaredlander.com/2019/11/the-r-conference-returns-to-dc-for-a-second-year/) for a higher level overview of the conference with lots of fun pics.
 
-Highlights for me personally included Malorie Hughes' presentation of [`flexdashboard`](#comms). Somehow in the hype of R [`shiny`](https://shiny.rstudio.com/), I had missed this dashboard tool. I was also excited to learn about Dr Dasgupta's [`coursedown`](#comms) package, which I'm looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google's [BERT model in R](#modeling) by Jon Harmon & Jonathan Bratt.   
+Highlights for me personally included [Malorie Hughes' presentation of `flexdashboard`](#comms). Somehow in the hype of R [`shiny`](https://shiny.rstudio.com/), I had missed this dashboard tool. I was also excited to learn about [Dr Dasgupta's `coursedown`](#comms) package, which I'm looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google's [BERT model in R](#modeling) by Jon Harmon & Jonathan Bratt.   
 
-**Read more**: Below are my notes from selected talks. I've divided it into the following sections: [Communication](#comms), [modeling](#modeling), [other R packages](#other), [documentation](#doc), [general programming](#programming). 
+**Read more**: Below are my notes from selected talks. I've divided it into the following sections: [Communication](#comms), [modeling](#modeling), [Spatial Analysis](#spatial), [General R Programming](#general), and [A Few Remaining Random Bits](#random). 
 
 
 ## Communication (Dashboards, Websites, and Data Viz) {#comms}
@@ -110,7 +110,7 @@ BJ Bloom, [*@bj_bloom*](https://twitter.com/bj_bloom)
 
 
 
-## Spatial Analysis
+## Spatial Analysis {#spatial}
 
 **The Care and Feeding of Spatial Data**,
 Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
@@ -136,11 +136,12 @@ Angela Li, [*@CivicAngela*](https://twitter.com/CivicAngela)
 - See `#rspatial` on Twitter
 - Most important slide she’s ever made in her life: 
 
-
-```{r echo=FALSE}
-# All defaults
-knitr::include_graphics("/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg")
+<center>
+```{r out.width='80%', echo=FALSE}
+knitr::include_graphics("/post/2019-11-12-dcr_files/spatialsearch.jpeg")
 ```
+</center>
+
 
 **R is Not Just Basic Stats: Think Spatially!**,
 Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
@@ -149,7 +150,7 @@ Tatyana Tsvetovat, [*@t_tsvet*](https://twitter.com/t_tsvet)
 - Packages she uses: [`rgdal`](https://cran.r-project.org/web/packages/rgdal/index.html), [`rgeos`](https://cran.r-project.org/web/packages/rgeos/index.html), [`sp`](https://cran.r-project.org/web/packages/sp/index.html), [`spatstat`](https://cran.r-project.org/web/packages/spatstat/index.html), [`kernlab`](https://cran.r-project.org/web/packages/kernlab/index.html), [`zoo`](https://cran.r-project.org/web/packages/zoo/index.html)
 
 
-## General R Programming
+## General R Programming {#general}
 
 **Ten Tremendous Tricks in the Tidyverse**,
 David Robinson, [*@drob*](https://twitter.com/drob)
@@ -220,7 +221,7 @@ Marck Vaisman, [*@wahululu*](https://twitter.com/wahululu)
 
 
 
-## A Few Remaining Random Bits
+## A Few Remaining Random Bits {#random}
 
 - Check out the [`memeR`](https://github.com/sctyner/memer) package by `@sctyner`
 - R Markdown tips from `@datadanya`: Include `session_info()` at the end of all markdown docs. See https://bootswatch.com/3/ for a list of R Markdown themes

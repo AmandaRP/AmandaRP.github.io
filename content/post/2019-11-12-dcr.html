@@ -10,9 +10,9 @@ tags:
 
 
 
-<p><strong>The overview</strong>: <a href="https://dc.rstats.ai/">DC R</a> 2019, hosted by Lander Analytics, was held Nov 7-9 at Georgtown University. The short, but action-packed, conference consisted of one day of workshops and two days of talks. Find the videos on <a href="https://dc.rstats.ai/">DC R website</a> (available soon) and associated tweets via the <code>#rstatsdc</code> hashtag on Twitter. Also, see <a href="https://www.jaredlander.com/2019/11/the-r-conference-returns-to-dc-for-a-second-year/">Jared Lander’s blog post</a> for a higher level overview of the conference (with lots of fun pics).</p>
-<p>Highlights for me personally included Malorie Hughes’ presentation of <a href="#comms"><code>flexdashboard</code></a>. Somehow in the hype of R <a href="https://shiny.rstudio.com/"><code>shiny</code></a>, I had missed this dashboard tool. I was also excited to learn about Dr Dasgupta’s <a href="#comms"><code>coursedown</code></a> package, which I’m looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google’s <a href="#modeling">BERT model in R</a> by Jon Harmon &amp; Jonathan Bratt.</p>
-<p><strong>Read more</strong>: Below are my notes from selected talks. I’ve divided it into the following sections: <a href="#comms">Communication</a>, <a href="#modeling">modeling</a>, <a href="#other">other R packages</a>, <a href="#doc">documentation</a>, <a href="#programming">general programming</a>.</p>
+<p><strong>The overview</strong>: <a href="https://dc.rstats.ai/">DC R</a> 2019, hosted by Lander Analytics, was held Nov 7-9 at Georgtown University. The short, but action-packed, conference consisted of one day of workshops and two days of talks. Find the videos on <a href="https://dc.rstats.ai/">DC R website</a> (available soon) and associated tweets via the <code>#rstatsdc</code> hashtag on Twitter. Also, see <a href="https://www.jaredlander.com/2019/11/the-r-conference-returns-to-dc-for-a-second-year/">Jared Lander’s blog post</a> for a higher level overview of the conference with lots of fun pics.</p>
+<p>Highlights for me personally included <a href="#comms">Malorie Hughes’ presentation of <code>flexdashboard</code></a>. Somehow in the hype of R <a href="https://shiny.rstudio.com/"><code>shiny</code></a>, I had missed this dashboard tool. I was also excited to learn about <a href="#comms">Dr Dasgupta’s <code>coursedown</code></a> package, which I’m looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google’s <a href="#modeling">BERT model in R</a> by Jon Harmon &amp; Jonathan Bratt.</p>
+<p><strong>Read more</strong>: Below are my notes from selected talks. I’ve divided it into the following sections: <a href="#comms">Communication</a>, <a href="#modeling">modeling</a>, <a href="#spatial">Spatial Analysis</a>, <a href="#general">General R Programming</a>, and <a href="#random">A Few Remaining Random Bits</a>.</p>
 <div id="comms" class="section level2">
 <h2>Communication (Dashboards, Websites, and Data Viz)</h2>
 <p><strong>Coursedown: Managing Course Materials Using R Techniques</strong>, Dr Abhijit Dasgupta, <a href="https://twitter.com/webbedfeet"><em><span class="citation">@webbedfeet</span></em></a></p>
@@ -91,7 +91,7 @@ tags:
 <li>Other R packages used: <a href="https://cran.r-project.org/web/packages/textrank/index.html"><code>textrank</code></a> (for pagerank)</li>
 </ul>
 </div>
-<div id="spatial-analysis" class="section level2">
+<div id="spatial" class="section level2">
 <h2>Spatial Analysis</h2>
 <p><strong>The Care and Feeding of Spatial Data</strong>, Angela Li, <a href="https://twitter.com/CivicAngela"><em><span class="citation">@CivicAngela</span></em></a></p>
 <ul>
@@ -121,14 +121,16 @@ tags:
 <li>See <code>#rspatial</code> on Twitter</li>
 <li>Most important slide she’s ever made in her life:</li>
 </ul>
-<p><img src="/home/rstudio/AmandaRP.github.io/spatialsearch.jpeg" width="1024" /></p>
+<center>
+<img src="/post/2019-11-12-dcr_files/spatialsearch.jpeg" width="80%" />
+</center>
 <p><strong>R is Not Just Basic Stats: Think Spatially!</strong>, Tatyana Tsvetovat, <a href="https://twitter.com/t_tsvet"><em><span class="citation">@t_tsvet</span></em></a></p>
 <ul>
 <li>Divided household: She’s an R enthusiast and her husband is a Python fan 😱</li>
 <li>Packages she uses: <a href="https://cran.r-project.org/web/packages/rgdal/index.html"><code>rgdal</code></a>, <a href="https://cran.r-project.org/web/packages/rgeos/index.html"><code>rgeos</code></a>, <a href="https://cran.r-project.org/web/packages/sp/index.html"><code>sp</code></a>, <a href="https://cran.r-project.org/web/packages/spatstat/index.html"><code>spatstat</code></a>, <a href="https://cran.r-project.org/web/packages/kernlab/index.html"><code>kernlab</code></a>, <a href="https://cran.r-project.org/web/packages/zoo/index.html"><code>zoo</code></a></li>
 </ul>
 </div>
-<div id="general-r-programming" class="section level2">
+<div id="general" class="section level2">
 <h2>General R Programming</h2>
 <p><strong>Ten Tremendous Tricks in the Tidyverse</strong>, David Robinson, <a href="https://twitter.com/drob"><em><span class="citation">@drob</span></em></a></p>
 <p>Be sue to catch his <code>#tidytuesday</code> screen casts <a href="https://www.youtube.com/playlist?list=PLEtQC6FY-llkqIhZjI1TYkm4cV6WjobTC">on YouTube</a>. Ten tricks that people have liked from his screen casts:</p>
@@ -183,7 +185,7 @@ conda_envs$name[[1]] #have to restart R if you want to change env again)</code><
 <li>three package to be aware of: <a href="https://cran.r-project.org/web/packages/httr/index.html"><code>httr</code></a> (Part of the <code>tidyverse</code>. More abstract/easier than <code>curl</code> package), <a href="https://cran.r-project.org/web/packages/curl/index.html"><code>curl</code></a> (new package), <a href="https://cran.r-project.org/web/packages/jsonlite/index.html"><code>jsonlite</code></a></li>
 </ul>
 </div>
-<div id="a-few-remaining-random-bits" class="section level2">
+<div id="random" class="section level2">
 <h2>A Few Remaining Random Bits</h2>
 <ul>
 <li>Check out the <a href="https://github.com/sctyner/memer"><code>memeR</code></a> package by <code>@sctyner</code></li>
