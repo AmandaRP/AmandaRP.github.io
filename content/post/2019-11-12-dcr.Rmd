@@ -73,8 +73,8 @@ Alex Engler, [*@AlexCEngler*](https://twitter.com/AlexCEngler)
 
 
 ## Modeling {#modeling}
-**RBERT: Cutting Edge NLP in R**
 
+**RBERT: Cutting Edge NLP in R**,
 Jon Harmon, [*@JonTheGeek*](https://twitter.com/JonTheGeek)
 
 - BERT: **B**idirectional **E**ncoder **R**epresentations from **T**ransformers. Transfer learning for natural language processing. Created by Google. [RBERT](https://github.com/jonathanbratt/RBERT) is the R implementation.
