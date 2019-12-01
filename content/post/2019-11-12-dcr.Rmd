@@ -12,7 +12,7 @@ tags:
 
 Highlights for me personally included [Malorie Hughes' presentation of `flexdashboard`](#comms). Somehow in the hype of R [`shiny`](https://shiny.rstudio.com/), I had missed this dashboard tool. I was also excited to learn about [Dr Dasgupta's `coursedown`](#comms) package, which I'm looking forward to testing out for the class that I teach. Another highlight was learning more about the implementation of Google's [BERT model in R](#modeling) by Jon Harmon & Jonathan Bratt.   
 
-**Read more**: Below are my notes from selected talks. I've divided it into the following sections: [Communication](#comms), [modeling](#modeling), [Spatial Analysis](#spatial), [General R Programming](#general), and [A Few Remaining Random Bits](#random). 
+**Read more**: Below are my notes from selected talks. I've divided it into the following sections: [Communication](#comms), [Modeling](#modeling), [Spatial Analysis](#spatial), [General R Programming](#general), and [A Few Remaining Random Bits](#random). 
 
 
 ## Communication (Dashboards, Websites, and Data Viz) {#comms}
