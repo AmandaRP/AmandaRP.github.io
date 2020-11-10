@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Amanda&#39;s Data Blog</title>
-    <link>/categories/r/</link>
+    <link>https://amanda.rbind.io/categories/r/</link>
     <description>Recent content in R on Amanda&#39;s Data Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 07 Feb 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://amanda.rbind.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shiny R-Ladies</title>
-      <link>/2020/02/07/shiny-r-ladies/</link>
+      <link>https://amanda.rbind.io/2020/02/07/shiny-r-ladies/</link>
       <pubDate>Fri, 07 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/02/07/shiny-r-ladies/</guid>
+      <guid>https://amanda.rbind.io/2020/02/07/shiny-r-ladies/</guid>
       <description>Earlier this year I had the pleasure of talking about R shiny at the Baltimore R-Ladies Meetup. shiny is an R package for building interactive web applications.
 We made an app showing the wildfires in south eastern Australia along with historic rainfall and temperature data. This dataset was provided as a Tidy Tuesday dataset by the R for Data Science Learning Community.
 Here is a peak at the app…</description>
@@ -24,19 +20,19 @@ Here is a peak at the app…</description>
     
     <item>
       <title>Shiny App: Twitter Likes</title>
-      <link>/2019/08/02/rstats-love/</link>
+      <link>https://amanda.rbind.io/2019/08/02/rstats-love/</link>
       <pubDate>Fri, 02 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/08/02/rstats-love/</guid>
+      <guid>https://amanda.rbind.io/2019/08/02/rstats-love/</guid>
       <description>I love that Twitter recently came out with bookmarks! My previous MO on Twitter was to ❤️ posts that contain information that I want to keep for later, most of which are #rstats tweets. I now have 700+ likes, which are time consuming to browse through when I need to find something. I didn’t find an easy way to search likes within Twitter itself, so I built a shiny app to do that using the rtweet and shiny R packages.</description>
     </item>
     
     <item>
       <title>rstudio::conf recap</title>
-      <link>/2019/01/26/rstudio-conf-2019-recap/</link>
+      <link>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</link>
       <pubDate>Sat, 26 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/01/26/rstudio-conf-2019-recap/</guid>
+      <guid>https://amanda.rbind.io/2019/01/26/rstudio-conf-2019-recap/</guid>
       <description>The overview: I had the pleasure of attending rstudio::conf 2019 (in Austin, TX), a conference about all things R and RStudio. Over 1700 people attended the main conference, which consisted of three tracks (so my notes below cover only a third of the conference talks). There were an additional two days of tutorials and a two-day hackathon, which I did not attend. The 2020 conference will be in San Francisco Jan 27-30.</description>
     </item>
     

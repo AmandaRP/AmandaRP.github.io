@@ -1,8 +1,8 @@
 ---
-title: What exactly are we testig? A closer look at the train/test split
+title: What exactly are we testing? A closer look at the train/test split for machine learning
 author: Amanda
 date: '2020-11-08'
-slug: what-exactly-are-we-testig-a-closer-look-at-the-train-test-split
+slug: what-exactly-are-we-testing-a-closer-look-at-the-train-test-split
 categories:
   - Machine Learning
 draft: false
@@ -24,18 +24,15 @@ output:
 
 
 <p>In the paper <a href="https://arxiv.org/pdf/1907.06902.pdf">Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches</a>, authors Dacrema, Cremonesi, and Jannach evaluate various neural networks which were designed for recommendation systems and proposed in prominent machine learning journals. A recommendation system is an information filtering system which uses user history (e.g. purchases, page views, clicks, thumbs up/down, etc) to provide personalized item recommendations to users.</p>
-<p>The authors point out a few mistakes or “questionable techniques” used in the research they were attempting to reproduce and evaluate. Figure 1 in the article snippet below points out that, for a particular model they were evaluating, the popularity distribution of items assigned to the test and train data splits did not seem to be the same. <em>Interestingly, this affected the reported results and potentially the claim that the proposed model was a state-of-the-art!</em> See the article for more details.</p>
-<p></br></p>
+<p>The authors point out a few mistakes or “questionable techniques” used in the research they were attempting to reproduce and evaluate. The figure in the article snippet below points out that, for a particular model they were evaluating, the popularity distribution of items assigned to the test and train data splits did not seem to be the same. <em>Interestingly, this affected the reported results and potentially the claim that the proposed model was a state-of-the-art!</em> See the article for more details.</p>
 <hr />
 <center>
-<p><img width="45%" src="images/para1.png"/>
-<img width="45%" src="images/para2.png"/></p>
-<strong>Figure 1</strong>: Snippet of the 2020 paper, “Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches”, by Dacrema, Cremonesi, and Jannach
+<p><img width=48%" src="images/para1.png"/>
+<img width="48%" src="images/para2.png"/></p>
+Snippet of the 2020 paper, “Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches”, by Dacrema, Cremonesi, and Jannach
 </center>
 <hr />
-<p></br></p>
-<p>I thought this was a nice example comparing the distribution of two multinomial vectors (i.e. comparing the item popularity of the test set versus the training set). See the <a href="#closing">Closing Thoughts</a> section at the end for a discussion about the multinomial assumption.</p>
-<p>Why is this important? Well, because we would like to train our model using data similar that which the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before.</p>
+<p>I thought this was a nice example comparing the distribution of two samples (i.e. comparing the item popularity of the test set versus the training set). Why is this important? Well, because we would like to train our model using data similar that which the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before.</p>
 <p>The authors mentioned that they used the Gini index to evaluate the distribution of the test set. One might also wonder if a hypothesis test could be used to consider the evidence for or against the training and test sets having the same underlying distribution. Let’s look at both approaches.</p>
 <div id="the-data" class="section level2">
 <h2>The data</h2>
@@ -48,7 +45,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#usilzdzmaf .gt_table {
+#vykcoaueba .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -73,7 +70,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-left-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_heading {
+#vykcoaueba .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -85,7 +82,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_title {
+#vykcoaueba .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -95,7 +92,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-width: 0;
 }
 
-#usilzdzmaf .gt_subtitle {
+#vykcoaueba .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -105,13 +102,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-width: 0;
 }
 
-#usilzdzmaf .gt_bottom_border {
+#vykcoaueba .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_col_headings {
+#vykcoaueba .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -126,7 +123,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_col_heading {
+#vykcoaueba .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -146,7 +143,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#usilzdzmaf .gt_column_spanner_outer {
+#vykcoaueba .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -158,15 +155,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 4px;
 }
 
-#usilzdzmaf .gt_column_spanner_outer:first-child {
+#vykcoaueba .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#usilzdzmaf .gt_column_spanner_outer:last-child {
+#vykcoaueba .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#usilzdzmaf .gt_column_spanner {
+#vykcoaueba .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -178,7 +175,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   width: 100%;
 }
 
-#usilzdzmaf .gt_group_heading {
+#vykcoaueba .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -200,7 +197,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#usilzdzmaf .gt_empty_group_heading {
+#vykcoaueba .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -215,15 +212,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#usilzdzmaf .gt_from_md > :first-child {
+#vykcoaueba .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#usilzdzmaf .gt_from_md > :last-child {
+#vykcoaueba .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#usilzdzmaf .gt_row {
+#vykcoaueba .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -242,7 +239,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#usilzdzmaf .gt_stub {
+#vykcoaueba .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -254,7 +251,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-left: 12px;
 }
 
-#usilzdzmaf .gt_summary_row {
+#vykcoaueba .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -264,7 +261,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#usilzdzmaf .gt_first_summary_row {
+#vykcoaueba .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -274,7 +271,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_grand_summary_row {
+#vykcoaueba .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -284,7 +281,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#usilzdzmaf .gt_first_grand_summary_row {
+#vykcoaueba .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -294,11 +291,11 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_striped {
+#vykcoaueba .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#usilzdzmaf .gt_table_body {
+#vykcoaueba .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -307,7 +304,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_footnotes {
+#vykcoaueba .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -321,13 +318,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_footnote {
+#vykcoaueba .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#usilzdzmaf .gt_sourcenotes {
+#vykcoaueba .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -341,46 +338,46 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#usilzdzmaf .gt_sourcenote {
+#vykcoaueba .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#usilzdzmaf .gt_left {
+#vykcoaueba .gt_left {
   text-align: left;
 }
 
-#usilzdzmaf .gt_center {
+#vykcoaueba .gt_center {
   text-align: center;
 }
 
-#usilzdzmaf .gt_right {
+#vykcoaueba .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#usilzdzmaf .gt_font_normal {
+#vykcoaueba .gt_font_normal {
   font-weight: normal;
 }
 
-#usilzdzmaf .gt_font_bold {
+#vykcoaueba .gt_font_bold {
   font-weight: bold;
 }
 
-#usilzdzmaf .gt_font_italic {
+#vykcoaueba .gt_font_italic {
   font-style: italic;
 }
 
-#usilzdzmaf .gt_super {
+#vykcoaueba .gt_super {
   font-size: 65%;
 }
 
-#usilzdzmaf .gt_footnote_marks {
+#vykcoaueba .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="usilzdzmaf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="vykcoaueba" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Sample of Training Data</th>
@@ -397,24 +394,24 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_center">4025</td>
-      <td class="gt_row gt_center">2489</td>
+      <td class="gt_row gt_center">3570</td>
+      <td class="gt_row gt_center">2216</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">4652</td>
-      <td class="gt_row gt_center">44</td>
+      <td class="gt_row gt_center">3590</td>
+      <td class="gt_row gt_center">484</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">4366</td>
-      <td class="gt_row gt_center">1200</td>
+      <td class="gt_row gt_center">5459</td>
+      <td class="gt_row gt_center">382</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">4377</td>
-      <td class="gt_row gt_center">141</td>
+      <td class="gt_row gt_center">1114</td>
+      <td class="gt_row gt_center">68</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">5543</td>
-      <td class="gt_row gt_center">1256</td>
+      <td class="gt_row gt_center">2185</td>
+      <td class="gt_row gt_center">2805</td>
     </tr>
   </tbody>
   
@@ -425,7 +422,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#xjnlqgfvto .gt_table {
+#rbxduzybtf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -450,7 +447,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-left-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_heading {
+#rbxduzybtf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -462,7 +459,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_title {
+#rbxduzybtf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -472,7 +469,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-width: 0;
 }
 
-#xjnlqgfvto .gt_subtitle {
+#rbxduzybtf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -482,13 +479,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-width: 0;
 }
 
-#xjnlqgfvto .gt_bottom_border {
+#rbxduzybtf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_col_headings {
+#rbxduzybtf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -503,7 +500,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_col_heading {
+#rbxduzybtf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -523,7 +520,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#xjnlqgfvto .gt_column_spanner_outer {
+#rbxduzybtf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -535,15 +532,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 4px;
 }
 
-#xjnlqgfvto .gt_column_spanner_outer:first-child {
+#rbxduzybtf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#xjnlqgfvto .gt_column_spanner_outer:last-child {
+#rbxduzybtf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#xjnlqgfvto .gt_column_spanner {
+#rbxduzybtf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -555,7 +552,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   width: 100%;
 }
 
-#xjnlqgfvto .gt_group_heading {
+#rbxduzybtf .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -577,7 +574,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#xjnlqgfvto .gt_empty_group_heading {
+#rbxduzybtf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -592,15 +589,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#xjnlqgfvto .gt_from_md > :first-child {
+#rbxduzybtf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#xjnlqgfvto .gt_from_md > :last-child {
+#rbxduzybtf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#xjnlqgfvto .gt_row {
+#rbxduzybtf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -619,7 +616,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#xjnlqgfvto .gt_stub {
+#rbxduzybtf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -631,7 +628,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-left: 12px;
 }
 
-#xjnlqgfvto .gt_summary_row {
+#rbxduzybtf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -641,7 +638,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#xjnlqgfvto .gt_first_summary_row {
+#rbxduzybtf .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -651,7 +648,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_grand_summary_row {
+#rbxduzybtf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -661,7 +658,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#xjnlqgfvto .gt_first_grand_summary_row {
+#rbxduzybtf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -671,11 +668,11 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_striped {
+#rbxduzybtf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#xjnlqgfvto .gt_table_body {
+#rbxduzybtf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -684,7 +681,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_footnotes {
+#rbxduzybtf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -698,13 +695,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_footnote {
+#rbxduzybtf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#xjnlqgfvto .gt_sourcenotes {
+#rbxduzybtf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -718,46 +715,46 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#xjnlqgfvto .gt_sourcenote {
+#rbxduzybtf .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#xjnlqgfvto .gt_left {
+#rbxduzybtf .gt_left {
   text-align: left;
 }
 
-#xjnlqgfvto .gt_center {
+#rbxduzybtf .gt_center {
   text-align: center;
 }
 
-#xjnlqgfvto .gt_right {
+#rbxduzybtf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#xjnlqgfvto .gt_font_normal {
+#rbxduzybtf .gt_font_normal {
   font-weight: normal;
 }
 
-#xjnlqgfvto .gt_font_bold {
+#rbxduzybtf .gt_font_bold {
   font-weight: bold;
 }
 
-#xjnlqgfvto .gt_font_italic {
+#rbxduzybtf .gt_font_italic {
   font-style: italic;
 }
 
-#xjnlqgfvto .gt_super {
+#rbxduzybtf .gt_super {
   font-size: 65%;
 }
 
-#xjnlqgfvto .gt_footnote_marks {
+#rbxduzybtf .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="xjnlqgfvto" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="rbxduzybtf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="6" class="gt_heading gt_title gt_font_normal" style>Summary of Training Data</th>
@@ -803,7 +800,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rfmybuwbsa .gt_table {
+#snhfewhqfa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -828,7 +825,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-left-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_heading {
+#snhfewhqfa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -840,7 +837,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_title {
+#snhfewhqfa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -850,7 +847,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-width: 0;
 }
 
-#rfmybuwbsa .gt_subtitle {
+#snhfewhqfa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -860,13 +857,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-width: 0;
 }
 
-#rfmybuwbsa .gt_bottom_border {
+#snhfewhqfa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_col_headings {
+#snhfewhqfa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -881,7 +878,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_col_heading {
+#snhfewhqfa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,7 +898,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#rfmybuwbsa .gt_column_spanner_outer {
+#snhfewhqfa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -913,15 +910,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 4px;
 }
 
-#rfmybuwbsa .gt_column_spanner_outer:first-child {
+#snhfewhqfa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rfmybuwbsa .gt_column_spanner_outer:last-child {
+#snhfewhqfa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rfmybuwbsa .gt_column_spanner {
+#snhfewhqfa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -933,7 +930,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   width: 100%;
 }
 
-#rfmybuwbsa .gt_group_heading {
+#snhfewhqfa .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -955,7 +952,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#rfmybuwbsa .gt_empty_group_heading {
+#snhfewhqfa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -970,15 +967,15 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   vertical-align: middle;
 }
 
-#rfmybuwbsa .gt_from_md > :first-child {
+#snhfewhqfa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rfmybuwbsa .gt_from_md > :last-child {
+#snhfewhqfa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rfmybuwbsa .gt_row {
+#snhfewhqfa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -997,7 +994,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   overflow-x: hidden;
 }
 
-#rfmybuwbsa .gt_stub {
+#snhfewhqfa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1009,7 +1006,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-left: 12px;
 }
 
-#rfmybuwbsa .gt_summary_row {
+#snhfewhqfa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1019,7 +1016,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#rfmybuwbsa .gt_first_summary_row {
+#snhfewhqfa .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1029,7 +1026,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_grand_summary_row {
+#snhfewhqfa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1039,7 +1036,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   padding-right: 5px;
 }
 
-#rfmybuwbsa .gt_first_grand_summary_row {
+#snhfewhqfa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1049,11 +1046,11 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-top-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_striped {
+#snhfewhqfa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rfmybuwbsa .gt_table_body {
+#snhfewhqfa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1062,7 +1059,7 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-bottom-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_footnotes {
+#snhfewhqfa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1076,13 +1073,13 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_footnote {
+#snhfewhqfa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rfmybuwbsa .gt_sourcenotes {
+#snhfewhqfa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1096,46 +1093,46 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   border-right-color: #D3D3D3;
 }
 
-#rfmybuwbsa .gt_sourcenote {
+#snhfewhqfa .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rfmybuwbsa .gt_left {
+#snhfewhqfa .gt_left {
   text-align: left;
 }
 
-#rfmybuwbsa .gt_center {
+#snhfewhqfa .gt_center {
   text-align: center;
 }
 
-#rfmybuwbsa .gt_right {
+#snhfewhqfa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rfmybuwbsa .gt_font_normal {
+#snhfewhqfa .gt_font_normal {
   font-weight: normal;
 }
 
-#rfmybuwbsa .gt_font_bold {
+#snhfewhqfa .gt_font_bold {
   font-weight: bold;
 }
 
-#rfmybuwbsa .gt_font_italic {
+#snhfewhqfa .gt_font_italic {
   font-style: italic;
 }
 
-#rfmybuwbsa .gt_super {
+#snhfewhqfa .gt_super {
   font-size: 65%;
 }
 
-#rfmybuwbsa .gt_footnote_marks {
+#snhfewhqfa .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="rfmybuwbsa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="snhfewhqfa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1180,8 +1177,10 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   
 </table></div>
 <p><br></p>
-<p>Let’s use this information and to re-create the plot from the paper:</p>
-<p><br></p>
+<p>We can use this information to re-create the plot from the paper:</p>
+<details>
+<p><summary>View code</summary></p>
+<p></br></p>
 <pre class="r"><code>item_frequency %&gt;%
   mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %&gt;%
   arrange(desc(count_train)) %&gt;%
@@ -1191,10 +1190,11 @@ For convenience I also saved them as R dataframes in the <a href="TODO">data dir
   ggplot(aes(train_rank, num_interactions, group = data, color = data)) +
   geom_line() +
   geom_point() +
-  xlab(&quot;Items&quot;) +
+  xlab(&quot;Item Index&quot;) +
   ylab(&quot;Normalized number of interactions&quot;)</code></pre>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="{{< relref "post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/index.html" >}}index_files/figure-html/unnamed-chunk-8-1.png" alt="Comparison of the provided test and train data" width="672" />
+</details>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="{{< relref "post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/index.html" >}}index_files/figure-html/unnamed-chunk-9-1.png" alt="Comparison of the provided test and train data" width="672" />
 <p class="caption">
 Figure 1: Comparison of the provided test and train data
 </p>
@@ -1206,23 +1206,7 @@ Figure 1: Comparison of the provided test and train data
 <p>The article authors used the Gini index to evaluate the distribution of the provided test set. Let’s try it to see how it works. We’ll use the <a href="https://CRAN.R-project.org/package=ineq"><code>ineq</code></a> R package.</p>
 <pre class="r fold-show"><code>#install.packages(&quot;ineq&quot;)
 library(ineq)</code></pre>
-<p>The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there was no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That’s not the case since some movies were watched more than others. Let’s look at the Gini index for the full dataset.</p>
-<pre class="r fold-show"><code># Join the previous train &amp; test sets together to get full dataset
-data_full &lt;- bind_rows(train,test)
-
-# Gini index for full dataset:
-gini_full &lt;- 
-  data_full %&gt;% 
-  group_by(item) %&gt;% 
-  count() %&gt;% 
-  ungroup() %&gt;% 
-  select(n) %&gt;%
-  as.matrix() %&gt;%
-  ineq(type=&quot;Gini&quot;)
-
-gini_full</code></pre>
-<pre><code>## [1] 0.7497474</code></pre>
-<p>The resulting value is approximately 0.75. Assuming the sampled datasets are representative of the original data, we would expect the Gini index of the train and test sets to be close to 0.75. The Gini index for the provided test set is computed below.</p>
+<p>The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there was no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That’s not the case since some movies were watched more than others. Let’s look at the Gini index for the provided train and test sets.</p>
 <pre class="r fold-show"><code># Gini index for provided test set
 gini_provided_test &lt;- 
   item_frequency %&gt;% 
@@ -1230,9 +1214,18 @@ gini_provided_test &lt;-
   as.matrix() %&gt;%
   ineq(type=&quot;Gini&quot;)
 
-gini_provided_test</code></pre>
+# Gini index for provided train set
+gini_provided_train &lt;- 
+  item_frequency %&gt;% 
+  select(-item, -count_test) %&gt;%
+  as.matrix() %&gt;%
+  ineq(type=&quot;Gini&quot;)
+
+gini_provided_train</code></pre>
+<pre><code>## [1] 0.7636983</code></pre>
+<pre class="r fold-show"><code>gini_provided_test</code></pre>
 <pre><code>## [1] 0.9044503</code></pre>
-<p>The provided test set has a much higher Gini index than the full dataset (0.9 compared to 0.75). The Gini index for the training set (0.76) is much closer.</p>
+<p>The provided test set has a much higher Gini index than the train dataset (0.9 compared to 0.76). Is such a difference expected for a random train/test split? Keep reading.</p>
 </div>
 <div id="resampling-the-test-data" class="section level2">
 <h2>Resampling the test data</h2>
@@ -1241,6 +1234,7 @@ gini_provided_test</code></pre>
 (pct_test &lt;- nrow(test)/(nrow(test) + nrow(train)))</code></pre>
 <pre><code>## [1] 0.2081349</code></pre>
 <pre class="r fold-show"><code># Sample test set (stratify by user)
+data_full &lt;- bind_rows(train,test)
 test_new &lt;- 
   data_full %&gt;% 
   group_by(user) %&gt;%
@@ -1259,8 +1253,11 @@ item_frequency_new &lt;-
   ) %&gt;%
   rename(count_train = n.x, count_test = n.y) %&gt;%
   replace_na(list(count_train = 0, count_test = 0))</code></pre>
-<p>Let’s visualize the newly sampled train and test data, which we can compare to Figure 2.</p>
-<pre class="r fold-hide"><code>item_frequency_new %&gt;%
+<p>Let’s visualize the newly sampled train and test data, which we can compare to Figure 1.</p>
+<details>
+<p><summary>View code</summary></p>
+<p></br></p>
+<pre class="r"><code>item_frequency_new %&gt;%
   mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %&gt;%
   arrange(desc(count_train)) %&gt;%
   mutate(train_rank = row_number()) %&gt;%
@@ -1271,13 +1268,14 @@ item_frequency_new &lt;-
   geom_point() +
   xlab(&quot;Items&quot;) +
   ylab(&quot;Normalized number of interactions&quot;)</code></pre>
+</details>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
 <img src="{{< relref "post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/index.html" >}}index_files/figure-html/unnamed-chunk-15-1.png" alt="Comparison of our sampled test and train data" width="672" />
 <p class="caption">
 Figure 2: Comparison of our sampled test and train data
 </p>
 </div>
-<p>The test and train popularity distributions look much closer.</p>
+<p>The test and train popularity distributions look much closer!</p>
 </div>
 <div id="gini-index-revisited" class="section level2">
 <h2>Gini Index Revisited</h2>
@@ -1289,14 +1287,23 @@ gini_ours_test &lt;-
   as.matrix() %&gt;%
   ineq(type=&quot;Gini&quot;)
 gini_ours_test</code></pre>
-<pre><code>## [1] 0.7542006</code></pre>
-<p>We see that our sampled test set has a Gini index (0.75) that is much closer to that of the full dataset (0.75). Likewise, the Gini index for our sampled training set is 0.75.</p>
-<p>But, how much difference in the Gini index can we expect between the two datasets having the same distribution? Is the difference likely due to random sampling or some other reason? Let’s take a look at a couple of hypothesis tests.</p>
+<pre><code>## [1] 0.7556439</code></pre>
+<pre class="r fold-show"><code># Gini index for our sampled train set:
+gini_ours_train &lt;- 
+  item_frequency_new %&gt;% 
+  select(-item, -count_test) %&gt;%
+  as.matrix() %&gt;%
+  ineq(type=&quot;Gini&quot;)
+
+gini_ours_train</code></pre>
+<pre><code>## [1] 0.750777</code></pre>
+<p>We see that our sampled test set has a Gini index (0.76) that is much closer to that of our sampled training dataset (0.75).</p>
+<p>But, how much difference can we expect between the two sampled datasets that are representative of the same distribution? Is the observed difference in the provided datasets likely due to random sampling or some other reason? Let’s take a look at a couple of hypothesis tests.</p>
 </div>
 <div id="hypothesis-testing" class="section level2">
 <h2>Hypothesis testing</h2>
-<div id="chi2-test" class="section level3">
-<h3><span class="math inline">\(\chi^2\)</span> Test</h3>
+<div id="chi2-test-of-homogeneity" class="section level3">
+<h3><span class="math inline">\(\chi^2\)</span> Test of Homogeneity</h3>
 <p>Let’s suppose that our null hypothesis is that the train and test sets have the <em>same</em> underlying distribution (vs the alternative hypothesis that they do not). We can consider the data as a 2 by 3232 contingency table (since there are 3232 items).
 One might naively choose to run a <span class="math inline">\(\chi^2\)</span> test to test this hypothesis. Let’s try it on the provided train and test sets:</p>
 <pre class="r fold-show"><code>chisq.test(item_frequency$count_train, item_frequency$count_test)</code></pre>
@@ -1315,50 +1322,129 @@ One might naively choose to run a <span class="math inline">\(\chi^2\)</span> te
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  item_frequency_new$count_train and item_frequency_new$count_test
-## X-squared = 306832, df = 54020, p-value &lt; 2.2e-16</code></pre>
-<p>Both tests (for the provided data and our sampled data) indicate that there is enough evidence to reject the null hypothesis. <strong>However</strong>, notice the warning that the “Chi_squared approximation may be incorrect.” Recall that one of the rule-of-thumb assumptions for the <span class="math inline">\(\chi^2\)</span> test is that no more than 20% of the cells in the table are less than 5. Let’s check to see if this assumption is satisfied.</p>
-<pre class="r fold-show"><code># Check to see percentage of cells that are &lt; 5
+## X-squared = 321817, df = 53789, p-value &lt; 2.2e-16</code></pre>
+<p>Both tests (for the provided data and our sampled data) indicate that there is enough evidence to reject the null hypothesis. <strong>However</strong>, notice the warning that the “Chi_squared approximation may be incorrect.” The <span class="math inline">\(\chi^2\)</span> test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the <span class="math inline">\(\chi^2\)</span> test is that no more than 20% of the expected cells counts are less than 5. Let’s check to see if this assumption is satisfied.</p>
+<pre class="r fold-show"><code># Check to see percentage of expected cell values are &lt; 5
 
-value_counts &lt;- 
-  # Stack the test/train values in one column
-  bind_rows(select(item_frequency, count_train) %&gt;% rename(value = count_train), 
-            select(item_frequency, count_test)  %&gt;% rename(value = count_test)) %&gt;%
-  # determine count of each value
-  group_by(value) %&gt;%
-  count() %&gt;%
-  ungroup() 
+# Compute the expected values
+n_train &lt;- sum(item_frequency$count_train)
+n_test &lt;- sum(item_frequency$count_test) 
+n &lt;- n_train + n_test
+item_frequency %&lt;&gt;% 
+  mutate(p = (count_train + count_test)/n,
+         e_test = p * n_test,
+         e_train = p * n_train)
 
-# Determine how many values are less than 5
-lt_five &lt;-
-  value_counts %&gt;%
-  filter(value &lt; 5) %&gt;%
-  summarize(num_lt_five = sum(n))
-
-# Determine counts of all values
-total &lt;- 
-  value_counts %&gt;%
-  summarize(total = sum(n))
-   
-(pct &lt;- lt_five[[1]] / total[[1]]) </code></pre>
-<pre><code>## [1] 0.545328</code></pre>
-<p>We see here that 54.5% of the data is very small (less than 5), meaning that the assumption in question is <strong>not</strong> satisfied. Thus <span class="math inline">\(\chi^2\)</span> test result cannot be trusted.</p>
+# Check what percentage of the expected values are less than 5
+(pct_expected_small &lt;- sum((item_frequency$e_test &lt; 5) + (item_frequency$e_test &lt; 5))/(2*nrow(item_frequency)))</code></pre>
+<pre><code>## [1] 0.5792079</code></pre>
+<p>We see here that 57.9% of the expected values are very small (less than 5), meaning that the assumption in question is <strong>not</strong> satisfied. Thus <span class="math inline">\(\chi^2\)</span> test result cannot be trusted.</p>
 <p>Let’s look at an alternative method.</p>
 </div>
 <div id="hypothesis-testing-of-high-dimensional-and-sparse-discrete-data" class="section level3">
 <h3>Hypothesis testing of high dimensional (and sparse) discrete data</h3>
-<p>In a <a href="https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/">previous blog post</a> I introduced a new method for testing whether two high dimensional mutlinomial vectors come from the same distribution. Compared to the <span class="math inline">\(\chi^2\)</span> test, this method is more robust in the presence of small values. The R method is available via the <code>hddtest</code> package available in the <a href="https://github.com/AmandaRP/hddtest">AmandaRP/hddtest</a> GitHub repository.</p>
+<p>In a <a href="https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/">previous blog post</a> I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the <span class="math inline">\(\chi^2\)</span> test, this method is more robust in the presence of small values. The R method is available via the <code>hddtest</code> package available in the <a href="https://github.com/AmandaRP/hddtest">AmandaRP/hddtest</a> GitHub repository.</p>
 <pre class="r fold-show"><code>#devtools::install_github(&quot;AmandaRP/hddtest&quot;, build = TRUE, build_opts = c(&quot;--no-resave-data&quot;, &quot;--no-manual&quot;))
 library(&quot;hddtest&quot;)</code></pre>
-<p>To test the null hypothesis that the test and train data come from the same distribution, we might consider using the <code>multinom.test</code> function from this package. However, a simulation experiment shows that the <a href="https://en.wikipedia.org/wiki/Size_(statistics)">size</a> of the test is not well controlled when the data is stratified by user (see the Appendix). In other words, the test is too sensitive.</p>
-<p>Alternatively, we can consider the null hypothesis that the test and train vectors are within some neighborhood, <span class="math inline">\(\delta\)</span>. What value of <span class="math inline">\(\delta\)</span> should be used? Figure 4 below shows the p-value curves for various values of <span class="math inline">\(\delta\)</span>, comparing multiple random test/train splits (blue) and also the provided test &amp; train data (red). We won’t actually perform the hypothesis test because we’ve now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits.</p>
-<p><img src="{{< relref "post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/index.html" >}}index_files/figure-html/unnamed-chunk-22-1.png" width="768" /></p>
+<p>We’ll assume that the train and test vectors have an underlying multinomial distribution with parameters (<span class="math inline">\(p_{train}\)</span>, <span class="math inline">\(n_{train}\)</span>) and (<span class="math inline">\(p_{test}\)</span>, <span class="math inline">\(n_{test}\)</span>) respectively. (See the <a href="#closing">Closing Thoughts</a> section at the end for a discussion about the multinomial assumption.) We’d like to test the null hypothesis that <span class="math inline">\(p_{train} = p_{test}\)</span> vs the althernative that they are not equal. To do this we might consider using the <code>multinom.test</code> function from the <code>hddtest</code> package. However, a simulation experiment shows that the <a href="https://en.wikipedia.org/wiki/Size_(statistics)">size</a> of the test is not well controlled when the data is stratified by user (see the Appendix at the end of the article). In other words, the test is too sensitive.</p>
+<p>Alternatively, we can consider the null hypothesis that <span class="math inline">\(p_{train}\)</span> and <span class="math inline">\(p_{test}\)</span> are within some neighborhood, <span class="math inline">\(\delta\)</span> (vs the alternative that they are not). What value of <span class="math inline">\(\delta\)</span> should be used? Figure 3 below shows the p-value curves for various values of <span class="math inline">\(\delta\)</span>, comparing multiple random test/train splits (teal) and also the provided test &amp; train data (red). We won’t actually perform the hypothesis test because we’ve now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits.</p>
+<details>
+<p><summary>View code</summary>
+</br></p>
+<pre class="r"><code>num_reps &lt;- 50
+stratified &lt;- TRUE
+vecs2Test &lt;- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency)))
+for(i in 1:num_reps){
+  if(stratified){
+    test_sim &lt;- 
+      data_full %&gt;% 
+      group_by(user) %&gt;%
+      slice_sample(prop = pct_test) %&gt;%
+      ungroup()
+  }else{
+    test_sim &lt;- 
+      data_full %&gt;% 
+      slice_sample(prop = pct_test) 
+  }
+  
+  # Put remaining data in train:
+  train_sim &lt;- anti_join(data_full, test_sim)
+
+  # Recreate our interaction counts for each item:
+  item_frequency_sim &lt;- 
+    full_join(
+      train_sim %&gt;% group_by(item) %&gt;% count() %&gt;% ungroup(),
+      test_sim  %&gt;% group_by(item) %&gt;% count() %&gt;% ungroup(),
+      by = &quot;item&quot;
+    ) %&gt;%
+    rename(count_train = n.x, count_test = n.y) %&gt;%
+    replace_na(list(count_train = 0, count_test = 0))
+  
+  # Build a matrix of vectors to test
+  vecs2Test[[1]][i, ] &lt;- item_frequency_sim$count_train
+  vecs2Test[[2]][i, ] &lt;- item_frequency_sim$count_test
+  
+}
+
+#Perform the test:
+delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) )
+result_sampled &lt;- vecs2Test %&gt;% multinom.neighborhood.test(delta = delta)
+p_sampled &lt;- result_sampled$pvalue_delta
+result_original &lt;- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
+p_original &lt;- result_original$pvalue_delta
+
+dat1 &lt;- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %&gt;%
+  gather(-delta, key = &quot;replication&quot;, value = pvalue) %&gt;% 
+  mutate(&quot;hypothesis&quot; = str_extract(replication,&quot;\\w{1,}&quot;))
+p1 &lt;- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
+  geom_line() +
+  geom_hline(yintercept = 0.05, linetype = &quot;dotted&quot;) +
+  annotate(&quot;text&quot;, x = 300, y = .09, label = &quot;alpha = 0.05&quot;) +
+  labs(y = &quot;p-value&quot;, title = &quot;P-Value Curves for Original and Sampled Train/Test Splits&quot;, color = &quot;Dataset&quot;) + 
+  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,&quot;mm&quot;)), color = &quot;darkgrey&quot;) +
+  theme_classic() +
+  theme(title = element_text(face = &quot;bold&quot;, size = 14),
+        panel.grid = element_blank())
+
+
+delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5)
+result_sampled &lt;- vecs2Test %&gt;% multinom.neighborhood.test(delta = delta)
+p_sampled &lt;- result_sampled$pvalue_delta
+result_original &lt;- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
+p_original &lt;- result_original$pvalue_delta
+
+dat2 &lt;- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %&gt;%
+  gather(-delta, key = &quot;replication&quot;, value = pvalue) %&gt;% 
+  mutate(&quot;hypothesis&quot; = str_extract(replication,&quot;\\w{1,}&quot;))
+p2 &lt;- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
+  geom_line() +
+  labs(y = element_blank()) + 
+  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,&quot;mm&quot;)), color = &quot;darkgrey&quot;) +
+  theme_classic() +
+  theme(title = element_text(face = &quot;bold&quot;, size = 14),
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.position = &quot;none&quot;
+        )
+
+
+ggdraw(p1) +
+  draw_plot(p2, .25, .25, .4, .5) </code></pre>
+</details>
+<div class="figure"><span id="fig:unnamed-chunk-22"></span>
+<img src="{{< relref "post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/index.html" >}}index_files/figure-html/unnamed-chunk-22-1.png" alt="Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5]." width="768" />
+<p class="caption">
+Figure 3: Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].
+</p>
+</div>
 </div>
 </div>
 <div id="closing" class="section level2">
 <h2>Closing Thoughts</h2>
+<p>Using a few methods (vizualization, Gini index, and hypothesis testing) we observed that the provided test data set did not follow the same popularity distribution as the training set.</p>
 <p>Should we always expect our train and test data to have the same distribution? What if the test/train split were based on time (i.e. we use earlier data to train the model and use the most recent data to test). This might be an interesting experiment for a future blog post or a class exercise.</p>
-<p>One might also argue that we should not assume a multinomial distribution for the item counts. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.</p>
-<p>If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at <span class="citation">@DrAmandaRP</span> or comment on <a href="TODO">this Twitter post</a>). Thanks for reading!</p>
+<p>One might also argue that we should not assume a multinomial distribution for the item counts as we did for the hypothesis testing. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.</p>
+<p>If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at <span class="citation">[@DrAmandaRP]</span>(<a href="https://twitter.com/DrAmandaRP" class="uri">https://twitter.com/DrAmandaRP</a>)). Thanks for reading!</p>
 <details>
 <p><summary><strong>Appendix</strong>: Size Study</summary></p>
 <p>To understand the size of the hypothesis test (i.e. the <code>multinom.test</code> from the <code>hddtest</code> package) for the application of comparing the test and training datasets, let’s run a simulation sampling mulitple test/train splits.</p>

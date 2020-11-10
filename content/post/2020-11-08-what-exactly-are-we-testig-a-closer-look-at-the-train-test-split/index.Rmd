@@ -1,8 +1,8 @@
 ---
-title: What exactly are we testig? A closer look at the train/test split
+title: What exactly are we testing? A closer look at the train/test split for machine learning
 author: Amanda
 date: '2020-11-08'
-slug: what-exactly-are-we-testig-a-closer-look-at-the-train-test-split
+slug: what-exactly-are-we-testing-a-closer-look-at-the-train-test-split
 categories:
   - Machine Learning
 draft: false
@@ -25,26 +25,21 @@ knitr::opts_chunk$set(echo = TRUE)
 
 In the paper [Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches](https://arxiv.org/pdf/1907.06902.pdf), authors Dacrema, Cremonesi, and Jannach evaluate various neural networks which were designed for recommendation systems and proposed in prominent machine learning journals. A recommendation system is an information filtering system which uses user history (e.g. purchases, page views, clicks, thumbs up/down, etc) to provide personalized item recommendations to users. 
 
-The authors point out a few mistakes or "questionable techniques" used in the research they were attempting to reproduce and evaluate. Figure 1 in the article snippet below points out that, for a particular model they were evaluating, the popularity distribution of items assigned to the test and train data splits did not seem to be the same. *Interestingly, this affected the reported results and potentially the claim that the proposed model was a state-of-the-art!* See the article for more details.  
+The authors point out a few mistakes or "questionable techniques" used in the research they were attempting to reproduce and evaluate. The figure in the article snippet below points out that, for a particular model they were evaluating, the popularity distribution of items assigned to the test and train data splits did not seem to be the same. *Interestingly, this affected the reported results and potentially the claim that the proposed model was a state-of-the-art!* See the article for more details.  
 
-</br>
 
 ***
 
 <center>
-<img width="45%" src="images/para1.png"/>
-<img width="45%" src="images/para2.png"/>
+<img width=48%" src="images/para1.png"/>
+<img width="48%" src="images/para2.png"/>
 
-**Figure 1**: Snippet of the 2020 paper, "Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches", by Dacrema, Cremonesi, and Jannach
+Snippet of the 2020 paper, "Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches", by Dacrema, Cremonesi, and Jannach
 </center>
 
 ***
 
-</br>
-
-I thought this was a nice example comparing the distribution of two multinomial vectors (i.e. comparing the item popularity of the test set versus the training set). See the [Closing Thoughts](#closing) section at the end for a discussion about the multinomial assumption. 
-
-Why is this important? Well, because we would like to train our model using data similar that which the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before. 
+I thought this was a nice example comparing the distribution of two samples (i.e. comparing the item popularity of the test set versus the training set). Why is this important? Well, because we would like to train our model using data similar that which the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before. 
 
 The authors mentioned that they used the Gini index to evaluate the distribution of the test set. One might also wonder if a hypothesis test could be used to consider the evidence for or against the training and test sets having the same underlying distribution. Let's look at both approaches. 
 
@@ -56,6 +51,7 @@ library(tidyverse)
 library(gt)
 library(details)
 library(cowplot)
+library(magrittr)
 ```
 
 ```{r eval = FALSE, include=FALSE}
@@ -149,11 +145,14 @@ item_frequency %>%
 
 <br>
 
-Let's use this information and to re-create the plot from the paper:
+We can use this information to re-create the plot from the paper:
 
-<br>
+<details>
+  <summary>View code</summary>
+  
+</br>  
 
-```{r fig.align='center', fig.cap='Comparison of the provided test and train data'}
+```{r echo = TRUE, eval = FALSE, fig.align='center', fig.cap='Comparison of the provided test and train data'}
 item_frequency %>%
   mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %>%
   arrange(desc(count_train)) %>%
@@ -163,7 +162,23 @@ item_frequency %>%
   ggplot(aes(train_rank, num_interactions, group = data, color = data)) +
   geom_line() +
   geom_point() +
-  xlab("Items") +
+  xlab("Item Index") +
+  ylab("Normalized number of interactions")
+```
+
+</details>
+
+```{r echo = FALSE, fig.align='center', fig.cap='Comparison of the provided test and train data'}
+item_frequency %>%
+  mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %>%
+  arrange(desc(count_train)) %>%
+  mutate(train_rank = row_number()) %>%
+  select(-count_train, -count_test) %>%
+  pivot_longer(-c(item, train_rank), names_to = "data", values_to = "num_interactions") %>%
+  ggplot(aes(train_rank, num_interactions, group = data, color = data)) +
+  geom_line() +
+  geom_point() +
+  xlab("Item Index") +
   ylab("Normalized number of interactions")
 ```
 
@@ -179,26 +194,7 @@ The article authors used the Gini index to evaluate the distribution of the prov
 library(ineq)
 ```
 
-The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there was no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That's not the case since some movies were watched more than others. Let's look at the Gini index for the full dataset.
-
-```{r class.source = "fold-show"}
-# Join the previous train & test sets together to get full dataset
-data_full <- bind_rows(train,test)
-
-# Gini index for full dataset:
-gini_full <- 
-  data_full %>% 
-  group_by(item) %>% 
-  count() %>% 
-  ungroup() %>% 
-  select(n) %>%
-  as.matrix() %>%
-  ineq(type="Gini")
-
-gini_full
-```
-
-The resulting value is approximately `r round(gini_full, digits = 2)`. Assuming the sampled datasets are representative of the original data, we would expect the Gini index of the train and test sets to be close to `r round(gini_full, digits = 2)`. The Gini index for the provided test set is computed below.
+The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there was no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That's not the case since some movies were watched more than others. Let's look at the Gini index for the provided train and test sets.
 
 
 ```{r class.source = "fold-show"}
@@ -209,10 +205,6 @@ gini_provided_test <-
   as.matrix() %>%
   ineq(type="Gini")
 
-gini_provided_test
-```
-
-```{r echo = FALSE, include=FALSE}
 # Gini index for provided train set
 gini_provided_train <- 
   item_frequency %>% 
@@ -221,11 +213,11 @@ gini_provided_train <-
   ineq(type="Gini")
 
 gini_provided_train
-
+gini_provided_test
 ```
 
 
-The provided test set has a much higher Gini index than the full dataset (`r round(gini_provided_test, digits = 2)` compared to `r round(gini_full, digits = 2)`). The Gini index for the training set (`r round(gini_provided_train, digits = 2)`) is much closer. 
+The provided test set has a much higher Gini index than the train dataset (`r round(gini_provided_test, digits = 2)` compared to `r round(gini_provided_train, digits = 2)`). Is such a difference expected for a random train/test split? Keep reading.
 
 
 ## Resampling the test data
@@ -239,6 +231,7 @@ Let's try sampling our own test set to see how that affects the Gini index. We'l
 
 ```{r message = FALSE, class.source = "fold-show"}
 # Sample test set (stratify by user)
+data_full <- bind_rows(train,test)
 test_new <- 
   data_full %>% 
   group_by(user) %>%
@@ -261,9 +254,14 @@ item_frequency_new <-
 ```
 
 
-Let's visualize the newly sampled train and test data, which we can compare to Figure 2.
+Let's visualize the newly sampled train and test data, which we can compare to Figure 1.
 
-```{r class.source = "fold-hide", fig.align='center', fig.cap='Comparison of our sampled test and train data'}
+<details>
+  <summary>View code</summary>
+  
+</br> 
+
+```{r echo = TRUE, eval = FALSE, fig.align='center', fig.cap='Comparison of our sampled test and train data'}
 item_frequency_new %>%
   mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %>%
   arrange(desc(count_train)) %>%
@@ -277,7 +275,23 @@ item_frequency_new %>%
   ylab("Normalized number of interactions")
 ```
 
-The test and train popularity distributions look much closer. 
+</details>
+
+```{r echo = FALSE, fig.align='center', fig.cap='Comparison of our sampled test and train data'}
+item_frequency_new %>%
+  mutate(train = count_train/max(count_train), test = count_test/max(count_test)) %>%
+  arrange(desc(count_train)) %>%
+  mutate(train_rank = row_number()) %>%
+  select(-count_train, -count_test) %>%
+  pivot_longer(-c(item, train_rank), names_to = "data", values_to = "num_interactions") %>%
+  ggplot(aes(train_rank, num_interactions, group = data, color = data)) +
+  geom_line() +
+  geom_point() +
+  xlab("Items") +
+  ylab("Normalized number of interactions")
+```
+
+The test and train popularity distributions look much closer! 
 
 ## Gini Index Revisited
 
@@ -291,25 +305,25 @@ gini_ours_test <-
   as.matrix() %>%
   ineq(type="Gini")
 gini_ours_test
-```
 
-```{r echo = FALSE, include=FALSE}
-# Gini index for our sampled test set:
+# Gini index for our sampled train set:
 gini_ours_train <- 
   item_frequency_new %>% 
   select(-item, -count_test) %>%
   as.matrix() %>%
   ineq(type="Gini")
+
+gini_ours_train
 ```
 
-We see that our sampled test set has a Gini index (`r round(gini_ours_test, digits = 2)`) that is much closer to that of the full dataset (`r round(gini_full, digits = 2)`). Likewise, the Gini index for our sampled training set is `r round(gini_ours_train, digits = 2)`.
+We see that our sampled test set has a Gini index (`r round(gini_ours_test, digits = 2)`) that is much closer to that of our sampled training dataset (`r round(gini_ours_train, digits = 2)`). 
 
-But, how much difference in the Gini index can we expect between the two datasets having the same distribution? Is the difference likely due to random sampling or some other reason? Let's take a look at a couple of hypothesis tests. 
+But, how much difference can we expect between the two sampled datasets that are representative of the same distribution? Is the observed difference in the provided datasets likely due to random sampling or some other reason? Let's take a look at a couple of hypothesis tests. 
 
 
 ## Hypothesis testing
 
-### $\chi^2$ Test
+### $\chi^2$ Test of Homogeneity
 
 Let's suppose that our null hypothesis is that the train and test sets have the *same* underlying distribution (vs the alternative hypothesis that they do not). We can consider the data as a 2 by `r nrow(item_frequency)` contingency table (since there are `r nrow(item_frequency)` items).
 One might naively choose to run a $\chi^2$ test to test this hypothesis. Let's try it on the provided train and test sets:  
@@ -324,53 +338,132 @@ And on our newly sampled test and train sets:
 chisq.test(item_frequency_new$count_train, item_frequency_new$count_test)
 ```
 
-Both tests (for the provided data and our sampled data) indicate that there is enough evidence to reject the null hypothesis. **However**, notice the warning that the "Chi_squared approximation may be incorrect." Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the cells in the table are less than 5. Let's check to see if this assumption is satisfied.
+Both tests (for the provided data and our sampled data) indicate that there is enough evidence to reject the null hypothesis. **However**, notice the warning that the "Chi_squared approximation may be incorrect." The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. Let's check to see if this assumption is satisfied.
 
 ```{r class.source = "fold-show"}
-# Check to see percentage of cells that are < 5
+# Check to see percentage of expected cell values are < 5
 
-value_counts <- 
-  # Stack the test/train values in one column
-  bind_rows(select(item_frequency, count_train) %>% rename(value = count_train), 
-            select(item_frequency, count_test)  %>% rename(value = count_test)) %>%
-  # determine count of each value
-  group_by(value) %>%
-  count() %>%
-  ungroup() 
+# Compute the expected values
+n_train <- sum(item_frequency$count_train)
+n_test <- sum(item_frequency$count_test) 
+n <- n_train + n_test
+item_frequency %<>% 
+  mutate(p = (count_train + count_test)/n,
+         e_test = p * n_test,
+         e_train = p * n_train)
 
-# Determine how many values are less than 5
-lt_five <-
-  value_counts %>%
-  filter(value < 5) %>%
-  summarize(num_lt_five = sum(n))
-
-# Determine counts of all values
-total <- 
-  value_counts %>%
-  summarize(total = sum(n))
-   
-(pct <- lt_five[[1]] / total[[1]]) 
+# Check what percentage of the expected values are less than 5
+(pct_expected_small <- sum((item_frequency$e_test < 5) + (item_frequency$e_test < 5))/(2*nrow(item_frequency)))
 ```
 
-We see here that `r round(100*lt_five[[1]] / total[[1]], digits = 1)`% of the data is very small (less than 5), meaning that the assumption in question is **not** satisfied. Thus $\chi^2$ test result cannot be trusted. 
+We see here that `r round(100*pct_expected_small, digits = 1)`% of the expected values are very small (less than 5), meaning that the assumption in question is **not** satisfied. Thus $\chi^2$ test result cannot be trusted. 
 
 Let's look at an alternative method.
 
 ### Hypothesis testing of high dimensional (and sparse) discrete data
 
-In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/) I introduced a new method for testing whether two high dimensional mutlinomial vectors come from the same distribution. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest) GitHub repository.
+In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/) I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest) GitHub repository.
 
 ```{r class.source = "fold-show"}
 #devtools::install_github("AmandaRP/hddtest", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"))
 library("hddtest")
 ```
 
-To test the null hypothesis that the test and train data come from the same distribution, we might consider using the `multinom.test` function from this package. However, a simulation experiment shows that the [size](https://en.wikipedia.org/wiki/Size_(statistics)) of the test is not well controlled when the data is stratified by user (see the Appendix). In other words, the test is too sensitive. 
+We'll assume that the train and test vectors have an underlying multinomial distribution with parameters ($p_{train}$, $n_{train}$) and ($p_{test}$, $n_{test}$) respectively. (See the [Closing Thoughts](#closing) section at the end for a discussion about the multinomial assumption.) We'd like to test the null hypothesis that $p_{train} = p_{test}$ vs the althernative that they are not equal. To do this we might consider using the `multinom.test` function from the `hddtest` package. However, a simulation experiment shows that the [size](https://en.wikipedia.org/wiki/Size_(statistics)) of the test is not well controlled when the data is stratified by user (see the Appendix at the end of the article). In other words, the test is too sensitive. 
 
-Alternatively, we can consider the null hypothesis that the test and train vectors are within some neighborhood, $\delta$. What value of $\delta$ should be used? Figure 4 below shows the p-value curves for various values of $\delta$, comparing multiple random test/train splits (blue) and also the provided test & train data (red). We won't actually perform the hypothesis test because we've now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits.
+Alternatively, we can consider the null hypothesis that $p_{train}$ and $p_{test}$ are within some neighborhood, $\delta$ (vs the alternative that they are not). What value of $\delta$ should be used? Figure 3 below shows the p-value curves for various values of $\delta$, comparing multiple random test/train splits (teal) and also the provided test & train data (red). We won't actually perform the hypothesis test because we've now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits.
+
+<details>
+  <summary>View code</summary>
+</br> 
+
+```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'}
+num_reps <- 50
+stratified <- TRUE
+vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency)))
+for(i in 1:num_reps){
+  if(stratified){
+    test_sim <- 
+      data_full %>% 
+      group_by(user) %>%
+      slice_sample(prop = pct_test) %>%
+      ungroup()
+  }else{
+    test_sim <- 
+      data_full %>% 
+      slice_sample(prop = pct_test) 
+  }
+  
+  # Put remaining data in train:
+  train_sim <- anti_join(data_full, test_sim)
+
+  # Recreate our interaction counts for each item:
+  item_frequency_sim <- 
+    full_join(
+      train_sim %>% group_by(item) %>% count() %>% ungroup(),
+      test_sim  %>% group_by(item) %>% count() %>% ungroup(),
+      by = "item"
+    ) %>%
+    rename(count_train = n.x, count_test = n.y) %>%
+    replace_na(list(count_train = 0, count_test = 0))
+  
+  # Build a matrix of vectors to test
+  vecs2Test[[1]][i, ] <- item_frequency_sim$count_train
+  vecs2Test[[2]][i, ] <- item_frequency_sim$count_test
+  
+}
+
+#Perform the test:
+delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) )
+result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
+p_sampled <- result_sampled$pvalue_delta
+result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
+p_original <- result_original$pvalue_delta
+
+dat1 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
+  gather(-delta, key = "replication", value = pvalue) %>% 
+  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
+p1 <- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
+  geom_line() +
+  geom_hline(yintercept = 0.05, linetype = "dotted") +
+  annotate("text", x = 300, y = .09, label = "alpha = 0.05") +
+  labs(y = "p-value", title = "P-Value Curves for Original and Sampled Train/Test Splits", color = "Dataset") + 
+  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
+  theme_classic() +
+  theme(title = element_text(face = "bold", size = 14),
+        panel.grid = element_blank())
 
 
-```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = FALSE}
+delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5)
+result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
+p_sampled <- result_sampled$pvalue_delta
+result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
+p_original <- result_original$pvalue_delta
+
+dat2 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
+  gather(-delta, key = "replication", value = pvalue) %>% 
+  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
+p2 <- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
+  geom_line() +
+  labs(y = element_blank()) + 
+  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
+  theme_classic() +
+  theme(title = element_text(face = "bold", size = 14),
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.position = "none"
+        )
+
+
+ggdraw(p1) +
+  draw_plot(p2, .25, .25, .4, .5) 
+
+```
+
+
+</details>
+
+```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'}
 num_reps <- 50
 stratified <- TRUE
 vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency)))
@@ -455,14 +548,15 @@ ggdraw(p1) +
 
 
 
-
 ## Closing Thoughts {#closing}
+
+Using a few methods (vizualization, Gini index, and hypothesis testing) we observed that the provided test data set did not follow the same popularity distribution as the training set.
 
 Should we always expect our train and test data to have the same distribution? What if the test/train split were based on time (i.e. we use earlier data to train the model and use the most recent data to test). This might be an interesting experiment for a future blog post or a class exercise.
 
-One might also argue that we should not assume a multinomial distribution for the item counts. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.
+One might also argue that we should not assume a multinomial distribution for the item counts as we did for the hypothesis testing. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.
 
-If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at @DrAmandaRP or comment on [this Twitter post](TODO)). Thanks for reading!
+If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at [@DrAmandaRP](https://twitter.com/DrAmandaRP)). Thanks for reading!
 
 <details>
   <summary>**Appendix**: Size Study</summary>

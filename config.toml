@@ -4,7 +4,7 @@ title = "Amanda's Data Blog"
 theme = "hugo-lithium"
 googleAnalytics = "UA-136228275-1"
 #disqusShortname = "amanda-data-blog.disqus.com"
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
