@@ -326,19 +326,9 @@ But, how much difference can we expect between the two sampled datasets that are
 ### $\chi^2$ Test of Homogeneity
 
 Let's suppose that our null hypothesis is that the train and test sets have the *same* underlying distribution (vs the alternative hypothesis that they do not). We can consider the data as a 2 by `r nrow(item_frequency)` contingency table (since there are `r nrow(item_frequency)` items).
-One might naively choose to run a $\chi^2$ test to test this hypothesis. Let's try it on the provided train and test sets:  
+One might naively choose to run a $\chi^2$ test to test this hypothesis. 
 
-```{r class.source = "fold-show"}
-chisq.test(item_frequency$count_train, item_frequency$count_test)
-```
-
-And on our newly sampled test and train sets:
-
-```{r class.source = "fold-show"}
-chisq.test(item_frequency_new$count_train, item_frequency_new$count_test)
-```
-
-Both tests (for the provided data and our sampled data) indicate that there is enough evidence to reject the null hypothesis. **However**, notice the warning that the "Chi_squared approximation may be incorrect." The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. Let's check to see if this assumption is satisfied.
+The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. Let's check to see if this assumption is satisfied.
 
 ```{r class.source = "fold-show"}
 # Check to see percentage of expected cell values are < 5
@@ -356,7 +346,7 @@ item_frequency %<>%
 (pct_expected_small <- sum((item_frequency$e_test < 5) + (item_frequency$e_test < 5))/(2*nrow(item_frequency)))
 ```
 
-We see here that `r round(100*pct_expected_small, digits = 1)`% of the expected values are very small (less than 5), meaning that the assumption in question is **not** satisfied. Thus $\chi^2$ test result cannot be trusted. 
+We see here that `r round(100*pct_expected_small, digits = 1)`% of the expected values are very small (less than 5), meaning that the assumption in question is **not** satisfied.  
 
 Let's look at an alternative method.
 
@@ -556,7 +546,7 @@ Should we always expect our train and test data to have the same distribution? W
 
 One might also argue that we should not assume a multinomial distribution for the item counts as we did for the hypothesis testing. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.
 
-If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at [@DrAmandaRP](https://twitter.com/DrAmandaRP)). Thanks for reading!
+If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me at [@DrAmandaRP](https://twitter.com/DrAmandaRP) ). Thanks for reading!
 
 <details>
   <summary>**Appendix**: Size Study</summary>
