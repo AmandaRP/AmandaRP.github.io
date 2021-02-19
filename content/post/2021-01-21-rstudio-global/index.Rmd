@@ -40,9 +40,14 @@ knitr::include_graphics("images/gather.jpeg")
 
 ## R & Python: Going Steady
 
-**Speaker**: Sean Lopp (Customer success engineer at RStudio)
+**Speaker**: Sean Lopp (Project Manager at RStudio)
 
-I unfortunately only caught the last part of this talk. Sean talked about the benefits of [RStudio Connect](https://rstudio.com/products/connect/){target="_blank"}: It provides a common architecture for many different types of data science tools (e.g. Jupyter notebooks, RStudio, and hosting of end products such as reports, notebooks, APIs, shiny applications). IT teams only need to set up one infrastructure instead of supporting many tools. Additionally, RStudio Connect increases collaboration between team members using different programming languages and tools. My thoughts: I would `r emo::ji("heart")` to have access to RStudio Connect.
+* Myth: Data science teams need to choose between R and Python (or some other language). 
+* Truth: Using the right tool for the right job can make data science teams more effective.
+* [RStudio Server Pro](https://rstudio.com/products/rstudio-server-pro/){target="_blank"}: Provides a common architecture for many different types of data science tools (e.g. Jupyter notebooks, JupyterLab, RStudio). IT teams only need to set up one infrastructure instead of supporting many tools. 
+* [RStudio Connect](https://rstudio.com/products/connect/){target="_blank"}: Provides a common hosting architecture for many different types of data science products (e.g. reports, notebooks, APIs, shiny applications).  Additionally, RStudio Connect increases collaboration between team members using different programming languages and tools. 
+* My thoughts: I would `r emo::ji("heart")` to have access to RStudio Connect.
+
 
 <br>
 
