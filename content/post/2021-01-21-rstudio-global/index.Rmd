@@ -117,6 +117,10 @@ Options for distributing at scale:
 * shinyapps.io or RStudio connect, or  
 * distribute within a package
 
+```{r echo=FALSE, out.width = '100%'}
+knitr::include_graphics("images/mine.png")
+```
+
 
 <br>
 
