@@ -1,0 +1,103 @@
+---
+title: rstudio::global(2021) %>% summarize()
+author: 'Amanda'
+date: '2021-01-21'
+slug: rstudio-global
+categories: []
+tags: []
+---
+
+<link href="{{< relref "post/2021-01-21-rstudio-global/index.html" >}}index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="{{< relref "post/2021-01-21-rstudio-global/index.html" >}}index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<p>Due to the COVID-19 pandemic, this year’s rstudio::conf was virtual (and free!). The conference is about all things R and RStudio. There were 15K+ registrants. Talks ran concurrently over a 12 hour period (and repeated again for viewers in other time zones). My notes below are only for a handful of selected talks– there are many others that I was not able to watch (yet). Videos are available on the <a href="https://resources.rstudio.com/resources/rstudioglobal-2021/">RStuduio website</a>.</p>
+<div id="keynote-maintaining-the-house-that-tidyverse-built" class="section level2">
+<h2>Keynote: Maintaining the house that tidyverse built</h2>
+<p><strong>Speaker</strong>: Hadley Wickham (Chief Scientist at RStudio)</p>
+<p><img src="images/hadley.png" width="100%" /></p>
+<ul>
+<li>Discussed the life cycle of functions and packages, which you will see tagged on many of RStudio’s packages. See <a href="https://www.tidyverse.org/lifecycle/">this page</a> and the <a href="https://cran.r-project.org/web/packages/lifecycle/index.html"><code>lifecycle</code></a> package for more details.</li>
+<li>To maintain a static package installation for a project: Use <a href="https://rstudio.github.io/renv/"><code>renv</code></a> or <a href="https://packagemanager.rstudio.com/client/#/">RStudio’s public package manager</a>. On the latter, just pick a day in the past to maintain package state from that date (only for packages on CRAN).</li>
+<li>If you haven’t already heard, <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a>’s spread &amp; gather functions are not going away. However, the recommended replacement functions are <code>pivot_longer</code> and <code>wider_wider</code>.</li>
+</ul>
+<p><img src="images/gather.jpeg" width="85%" style="display: block; margin: auto;" /></p>
+<ul>
+<li><a href="https://magrittr.tidyverse.org/"><code>magrittr</code></a> will be around for at least 4 or 5 years, but people will be encouraged to use the new pipe in base R version 4.1.</li>
+<li><a href="https://modelr.tidyverse.org/"><code>modelr</code></a> is superseded by <a href="https://www.tidymodels.org/"><code>tidymodels</code></a>.</li>
+</ul>
+<p><br></p>
+</div>
+<div id="r-python-going-steady" class="section level2">
+<h2>R &amp; Python: Going Steady</h2>
+<p><strong>Speaker</strong>: Sean Lopp (Customer success engineer at RStudio)</p>
+<p>I unfortunately only caught the last part of this talk. Sean talked about the benefits of <a href="https://rstudio.com/products/connect/">RStudio Connect</a>: It provides a common architecture for many different types of data science tools (e.g. Jupyter notebooks, RStudio, and hosting of end products such as reports, notebooks, APIs, shiny applications). IT teams only need to set up one infrastructure instead of supporting many tools. Additionally, RStudio Connect increases collaboration between team members using different programming languages and tools. My thoughts: I would ❤️ to have access to RStudio Connect.</p>
+<p><br></p>
+</div>
+<div id="art-lessons-one-year-as-rstudios-artist-in-residence" class="section level2">
+<h2>Art Lessons: One Year as RStudio’s Artist-in-Residence</h2>
+<p><strong>Speaker</strong>: Allison Horst (Professor at the Bren School of Environmental Science and Management at UC Santa Barbara)</p>
+<p>Allison talked about the importance of art for making R instruction material more approachable for learners. Some of her new artwork was featured in this talk– I’m feeling motivated to add some of new artwork to some of my training materials. Allison’s artwork can be found in her <a href="https://github.com/allisonhorst/stats-illustrations">GitHub repo</a>.</p>
+<p><img src="images/horst2.png" width="100%" /></p>
+<p><br></p>
+</div>
+<div id="keynote-reporting-on-and-visualising-the-pandemic" class="section level2">
+<h2>Keynote: Reporting on and visualising the pandemic</h2>
+<p><strong>Speaker</strong>: John Burn-Murdoch (Financial Timesâ senior data visualization journalist, and creator of the FTâ’s coronavirus trajectory tracker charts)</p>
+<p>John’s talk focused on data visualization for a mass audience. The data viz research paper that has been the most influential on his work: <a href="https://vcg.seas.harvard.edu/files/pfister/files/infovis_submission251-camera.pdf?m=1441898216">Beyond Memorability: Visualization Recognition and Recall</a>.</p>
+<p><img src="images/keynote2.png" width="100%" /></p>
+<p>Lessons:</p>
+<ul>
+<li>Text and other annotations are critical when sharing charts to the masses. The annotations make the chart accessible.</li>
+<li>It’s the responsibility of the chart designer to make sure the reader is not confused when looking at the chart.</li>
+<li>Info viz is personal and often political. People will bring their prior beliefs to the plot and make judgments about the utility of the chart (for example many strong opinions about the use of log scale on the vertical axis).</li>
+<li>Don’t publish and vanish. Incorporate readers’ feedback.</li>
+<li>Ease of understanding is top priority (more than accuracy). For example, using a 7 day rolling average may be easier for people to understand than splines (even though the latter shows more accurate numbers).</li>
+<li>Animation can be incredibly effective (but use it sparingly).</li>
+</ul>
+<p><br></p>
+</div>
+<div id="whats-new-in-tidymodels" class="section level2">
+<h2>What’s new in <code>tidymodels</code>?</h2>
+<p><strong>Speaker</strong>: Max Kuhn (Software engineer at RStudio)</p>
+<p>Recent updates in <code>tidymodels</code>:</p>
+<ul>
+<li>Added limited support for sparse matrices.</li>
+<li><a href="https://cran.r-project.org/web/packages/finetune/index.html"><code>finetune</code></a> package (extension of <a href="https://tune.tidymodels.org/"><code>tune</code></a> package) for finding optimal tuning hyper-parameters. Nice methods available in <code>finetune</code> finding optimal hyper-parameters (methods are more efficient that full grid search):
+<ul>
+<li>Racing methods</li>
+<li>Simulated Annealing search</li>
+</ul></li>
+</ul>
+<p>How do you pick a modeling framework (e.g. <code>mlr3</code>, <code>h2o</code>, <code>tidymodels</code>)?</p>
+<ul>
+<li><code>h2o</code> for speed (sub-second latency).</li>
+<li>If your framework is tidyverse, you might go with <code>tidymodels</code>.</li>
+<li><code>mlr3</code> is great, too 😃</li>
+</ul>
+<p>See the book: <a href="https://www.tmwr.org/">Tidy modeling with R</a>. Slides for talk available <a href="https://github.com/rstudio/rstudio-conf/tree/master/2021/maxkuhn">here</a>.</p>
+<p><br></p>
+</div>
+<div id="feedback-at-scale" class="section level2">
+<h2>Feedback at scale</h2>
+<p><strong>Speaker</strong>: Mine Çetinkaya-Rundel (Educator and Data Scientist at RStudio, Senior Lecturer in the School of Mathematics at University of Edinburgh)</p>
+<p>Building tutorials using <a href="https://rstudio.github.io/learnr/"><code>learnr</code></a>:</p>
+<ul>
+<li>Really shines with coding exercises. Provides instant feedback to students.</li>
+<li>Recommendations: Include starter code for students to complete. Give “human friendly” feedback in response to incorrect responses. Check the result instead of checking the code (since students can order operations in multiple ways).</li>
+</ul>
+<p><a href="https://github.com/rundel/learnrhash/"><code>learnrhash</code></a>: Use with <code>learnr</code> to collect (hashed) answer submissions from student <code>learnr</code> sessions.</p>
+<p>Options for distributing at scale:</p>
+<ul>
+<li>shinyapps.io or RStudio connect, or<br />
+</li>
+<li>distribute within a package</li>
+</ul>
+<p><br></p>
+</div>
+<div id="always-look-on-the-bright-side-of-plots" class="section level2">
+<h2>Always look on the bright side of plots</h2>
+<p><strong>Speaker</strong>: Kara Woo (Research scientist in data curation at Sage Bionetworks)</p>
+<p>Discussion points: Mapping mishaps, scale snafus (setting scale limits removes data before statistical summaries. To zoom in on a plot, better to set coordinate limits), and theme threats. Kara talked about common mistakes that people make when using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<p>Follow <a href="https://twitter.com/accidental__aRt">accidental aRt</a> on Twitter.</p>
+</div>
