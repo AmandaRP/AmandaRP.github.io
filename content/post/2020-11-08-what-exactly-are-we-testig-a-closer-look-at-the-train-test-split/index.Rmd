@@ -23,7 +23,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-In the paper [Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches](https://arxiv.org/pdf/1907.06902.pdf), authors Dacrema, Cremonesi, and Jannach evaluate various neural networks which were designed for recommendation systems and proposed in prominent machine learning journals. A recommendation system is an information filtering system which uses user history (e.g. purchases, page views, clicks, thumbs up/down, etc) to provide personalized item recommendations to users. 
+In the paper [Are We Really Making Much Progress? A Worrying Analysis of Recent Neural Recommendation Approaches](https://arxiv.org/pdf/1907.06902.pdf){target="_blank"}, authors Dacrema, Cremonesi, and Jannach evaluate various neural networks which were designed for recommendation systems and proposed in prominent machine learning journals. A recommendation system is an information filtering system which uses user history (e.g. purchases, page views, clicks, thumbs up/down, etc) to provide personalized item recommendations to users. 
 
 The authors point out a few mistakes or "questionable techniques" used in the research they were attempting to reproduce and evaluate. The figure in the article snippet below points out that, for a particular model they were evaluating, the popularity distribution of items assigned to the test and train data splits did not seem to be the same. *Interestingly, this affected the reported results and potentially the claim that the proposed model was a state-of-the-art!* See the article for more details.  
 
@@ -85,14 +85,14 @@ save(test, train, file = "data/train_test.RData")
 ## The data
 
 
-The train and test data mentioned in the article above are available at [github.com/lzheng21/SpectralCF](https://github.com/lzheng21/SpectralCF/tree/master/data/ml-1m). 
-For convenience I also saved them as R dataframes in the [data directory](https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/data) of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
+The train and test data mentioned in the article above are available at [github.com/lzheng21/SpectralCF](https://github.com/lzheng21/SpectralCF/tree/master/data/ml-1m){target="_blank"}. 
+For convenience I also saved them as R dataframes in the [data directory](https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/data){target="_blank"}{target="_blank"} of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
 
 ```{r class.source = "fold-show"}
 load("data/train_test.RData")
 ```
 
-Let's take a peek at the training set. The data is composed of two columns containing user ids and item ids. It comes from [MovieLens](https://grouplens.org/datasets/movielens/), which provides data about movie watching history. The existence of user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as "implicit feedback", inferring that the user "liked" the item.     
+Let's take a peek at the training set. The data is composed of two columns containing user ids and item ids. It comes from [MovieLens](https://grouplens.org/datasets/movielens/){target="_blank"}, which provides data about movie watching history. The existence of user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as "implicit feedback", inferring that the user "liked" the item.     
 
 <br>
 
@@ -187,7 +187,7 @@ I think that looks pretty close to the image in the article! As the authors poin
 
 ## Gini Index
 
-The article authors used the Gini index to evaluate the distribution of the provided test set. Let's try it to see how it works. We'll use the [`ineq`](https://CRAN.R-project.org/package=ineq) R package.
+The article authors used the Gini index to evaluate the distribution of the provided test set. Let's try it to see how it works. We'll use the [`ineq`](https://CRAN.R-project.org/package=ineq){target="_blank"} R package.
 
 ```{r class.source = "fold-show"}
 #install.packages("ineq")
@@ -383,7 +383,7 @@ In this case the p-value is large meaning that we fail to reject the null hypoth
 
 <!-- ### Hypothesis testing of high dimensional (and sparse) discrete data -->
 
-<!-- In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/) I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest) GitHub repository. -->
+<!-- In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/){target="_blank"} I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest){target="_blank"} GitHub repository. -->
 
 <!-- ```{r class.source = "fold-show"} -->
 <!-- #devtools::install_github("AmandaRP/hddtest", build = TRUE, build_opts = c("--no-resave-data", "--no-manual")) -->
