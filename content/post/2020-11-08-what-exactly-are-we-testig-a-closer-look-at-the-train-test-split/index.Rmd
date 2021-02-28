@@ -370,16 +370,16 @@ item_frequency %>%
   select(count_train, count_test) %>% 
   fisher.test(simulate.p.value = TRUE)
 ```
-The p-value is very small indicating that there is sufficient evidence that the movie popularity distribution is dependent on the dataset (test or train). 
+The p-value is very small indicating that there is sufficient evidence that movie popularity is dependent on the dataset (test or train). 
 
-Now consider Fisher's exact test for our re-sampled train/test data:
+Now consider Fisher's exact test for our re-sampled train/test data: 
 
 ```{r}
 item_frequency_new %>% 
   select(count_train, count_test) %>% 
   fisher.test(simulate.p.value = TRUE)
 ```
-In this case the p-value is large meaning that we fail to reject the hypothesis that the movie popularity distribution is independent of the dataset. In other words, we see a similar pattern in both the test and train data sets that we sampled. These results align with our expectation.
+In this case the p-value is large meaning that we fail to reject the null hypothesis that movie popularity is independent of the dataset. In other words, we see a similar popularity pattern in both the test and train data sets that we sampled. These results align with our expectation.
 
 <!-- ### Hypothesis testing of high dimensional (and sparse) discrete data -->
 
