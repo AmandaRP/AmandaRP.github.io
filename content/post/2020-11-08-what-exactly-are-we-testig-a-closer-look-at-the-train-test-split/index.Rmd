@@ -323,7 +323,7 @@ But, how much difference can we expect between the two sampled datasets that are
 
 ## Hypothesis Testing
 
-### $\chi^2$ Test of Independence
+### $\chi^2$ Test of Homogeneity
 
 <!-- ### $\chi^2$ Goodness of Fit Test -->
 
@@ -353,193 +353,211 @@ item_frequency %<>%
 
 We see here that `r round(100*pct_expected_small, digits = 1)`% of the expected values are very small (less than 5), meaning that the assumption in question is **not** satisfied.  
 
+In addition to this issue, the test and train vectors are not independent. (The test/train split is a random partition of the full dataset. The data assigned to one of the sets is dependent on the data that is sampled for the other.) Independence is another assumption for the $\chi^2$ test.
+
 Let's look at an alternative method.
 
-### Hypothesis testing of high dimensional (and sparse) discrete data
+### Fisher's Exact Test
 
-In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/) I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest) GitHub repository.
+```{r}
 
-```{r class.source = "fold-show"}
-#devtools::install_github("AmandaRP/hddtest", build = TRUE, build_opts = c("--no-resave-data", "--no-manual"))
-library("hddtest")
-```
+item_frequency %>% select(count_train, count_test) %>% fisher.test(simulate.p.value = TRUE)
 
-We'll assume that the train and test vectors have an underlying multinomial distribution with parameters ($p_{train}$, $n_{train}$) and ($p_{test}$, $n_{test}$) respectively. (See the [Closing Thoughts](#closing) section at the end for a discussion about the multinomial assumption.) We'd like to test the null hypothesis that $p_{train} = p_{test}$ vs the althernative that they are not equal. To do this we might consider using the `multinom.test` function from the `hddtest` package. However, a simulation experiment shows that the [size](https://en.wikipedia.org/wiki/Size_(statistics)) of the test is not well controlled when the data is stratified by user (see the Appendix at the end of the article). In other words, the test is too sensitive. 
-
-Alternatively, we can consider the null hypothesis that $p_{train}$ and $p_{test}$ are within some neighborhood, $\delta$ (vs the alternative that they are not). What value of $\delta$ should be used? Figure 3 below shows the p-value curves for various values of $\delta$, comparing multiple random test/train splits (teal) and also the provided test & train data (red). We won't actually perform the hypothesis test because we've now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits.
-
-<details>
-  <summary>View code</summary>
-</br> 
-
-```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'}
-num_reps <- 50
-stratified <- TRUE
-vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency)))
-for(i in 1:num_reps){
-  if(stratified){
-    test_sim <- 
-      data_full %>% 
-      group_by(user) %>%
-      slice_sample(prop = pct_test) %>%
-      ungroup()
-  }else{
-    test_sim <- 
-      data_full %>% 
-      slice_sample(prop = pct_test) 
-  }
-  
-  # Put remaining data in train:
-  train_sim <- anti_join(data_full, test_sim)
-
-  # Recreate our interaction counts for each item:
-  item_frequency_sim <- 
-    full_join(
-      train_sim %>% group_by(item) %>% count() %>% ungroup(),
-      test_sim  %>% group_by(item) %>% count() %>% ungroup(),
-      by = "item"
-    ) %>%
-    rename(count_train = n.x, count_test = n.y) %>%
-    replace_na(list(count_train = 0, count_test = 0))
-  
-  # Build a matrix of vectors to test
-  vecs2Test[[1]][i, ] <- item_frequency_sim$count_train
-  vecs2Test[[2]][i, ] <- item_frequency_sim$count_test
-  
-}
-
-#Perform the test:
-delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) )
-result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
-p_sampled <- result_sampled$pvalue_delta
-result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
-p_original <- result_original$pvalue_delta
-
-dat1 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
-  gather(-delta, key = "replication", value = pvalue) %>% 
-  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
-p1 <- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
-  geom_line() +
-  geom_hline(yintercept = 0.05, linetype = "dotted") +
-  annotate("text", x = 300, y = .09, label = "alpha = 0.05") +
-  labs(y = "p-value", title = "P-Value Curves for Original and Sampled Train/Test Splits", color = "Dataset") + 
-  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
-  theme_classic() +
-  theme(title = element_text(face = "bold", size = 14),
-        panel.grid = element_blank())
-
-
-delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5)
-result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
-p_sampled <- result_sampled$pvalue_delta
-result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
-p_original <- result_original$pvalue_delta
-
-dat2 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
-  gather(-delta, key = "replication", value = pvalue) %>% 
-  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
-p2 <- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
-  geom_line() +
-  labs(y = element_blank()) + 
-  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
-  theme_classic() +
-  theme(title = element_text(face = "bold", size = 14),
-        panel.grid = element_blank(),
-        legend.title = element_blank(),
-        legend.position = "none"
-        )
-
-
-ggdraw(p1) +
-  draw_plot(p2, .25, .25, .4, .5) 
 
 ```
 
 
-</details>
-
-```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'}
-num_reps <- 50
-stratified <- TRUE
-vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency)))
-for(i in 1:num_reps){
-  if(stratified){
-    test_sim <- 
-      data_full %>% 
-      group_by(user) %>%
-      slice_sample(prop = pct_test) %>%
-      ungroup()
-  }else{
-    test_sim <- 
-      data_full %>% 
-      slice_sample(prop = pct_test) 
-  }
-  
-  # Put remaining data in train:
-  train_sim <- anti_join(data_full, test_sim)
-
-  # Recreate our interaction counts for each item:
-  item_frequency_sim <- 
-    full_join(
-      train_sim %>% group_by(item) %>% count() %>% ungroup(),
-      test_sim  %>% group_by(item) %>% count() %>% ungroup(),
-      by = "item"
-    ) %>%
-    rename(count_train = n.x, count_test = n.y) %>%
-    replace_na(list(count_train = 0, count_test = 0))
-  
-  # Build a matrix of vectors to test
-  vecs2Test[[1]][i, ] <- item_frequency_sim$count_train
-  vecs2Test[[2]][i, ] <- item_frequency_sim$count_test
-  
-}
-
-#Perform the test:
-delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) )
-result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
-p_sampled <- result_sampled$pvalue_delta
-result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
-p_original <- result_original$pvalue_delta
-
-dat1 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
-  gather(-delta, key = "replication", value = pvalue) %>% 
-  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
-p1 <- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
-  geom_line() +
-  geom_hline(yintercept = 0.05, linetype = "dotted") +
-  annotate("text", x = 300, y = .09, label = "alpha = 0.05") +
-  labs(y = "p-value", title = "P-Value Curves for Original and Sampled Train/Test Splits", color = "Dataset") + 
-  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
-  theme_classic() +
-  theme(title = element_text(face = "bold", size = 14),
-        panel.grid = element_blank())
-
-
-delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5)
-result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta)
-p_sampled <- result_sampled$pvalue_delta
-result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta)
-p_original <- result_original$pvalue_delta
-
-dat2 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>%
-  gather(-delta, key = "replication", value = pvalue) %>% 
-  mutate("hypothesis" = str_extract(replication,"\\w{1,}"))
-p2 <- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) + 
-  geom_line() +
-  labs(y = element_blank()) + 
-  #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") +
-  theme_classic() +
-  theme(title = element_text(face = "bold", size = 14),
-        panel.grid = element_blank(),
-        legend.title = element_blank(),
-        legend.position = "none"
-        )
-
-
-ggdraw(p1) +
-  draw_plot(p2, .25, .25, .4, .5) 
+```{r}
+item_frequency_new %>% select(count_train, count_test) %>% fisher.test(simulate.p.value = TRUE)
 
 ```
+
+
+<!-- ### Hypothesis testing of high dimensional (and sparse) discrete data -->
+
+<!-- In a [previous blog post](https://amanda.rbind.io/2019/05/24/new-r-package-hddtest/) I introduced a new method for testing whether two high dimensional mutlinomial vectors have the same underlying probability vector. Compared to the $\chi^2$ test, this method is more robust in the presence of small values. The R method is available via the `hddtest` package available in the [AmandaRP/hddtest](https://github.com/AmandaRP/hddtest) GitHub repository. -->
+
+<!-- ```{r class.source = "fold-show"} -->
+<!-- #devtools::install_github("AmandaRP/hddtest", build = TRUE, build_opts = c("--no-resave-data", "--no-manual")) -->
+<!-- library("hddtest") -->
+<!-- ``` -->
+
+<!-- We'll assume that the train and test vectors have an underlying multinomial distribution with parameters ($p_{train}$, $n_{train}$) and ($p_{test}$, $n_{test}$) respectively. (See the [Closing Thoughts](#closing) section at the end for a discussion about the multinomial assumption.) We'd like to test the null hypothesis that $p_{train} = p_{test}$ vs the althernative that they are not equal. To do this we might consider using the `multinom.test` function from the `hddtest` package. However, a simulation experiment shows that the [size](https://en.wikipedia.org/wiki/Size_(statistics)) of the test is not well controlled when the data is stratified by user (see the Appendix at the end of the article). In other words, the test is too sensitive.  -->
+
+<!-- Alternatively, we can consider the null hypothesis that $p_{train}$ and $p_{test}$ are within some neighborhood, $\delta$ (vs the alternative that they are not). What value of $\delta$ should be used? Figure 3 below shows the p-value curves for various values of $\delta$, comparing multiple random test/train splits (teal) and also the provided test & train data (red). We won't actually perform the hypothesis test because we've now peaked at our data. However, you can see that the p-value curve for the provided data looks much different than those for the random test/train splits. -->
+
+<!-- <details> -->
+<!--   <summary>View code</summary> -->
+<!-- </br>  -->
+
+<!-- ```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = TRUE, eval = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'} -->
+<!-- num_reps <- 50 -->
+<!-- stratified <- TRUE -->
+<!-- vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency))) -->
+<!-- for(i in 1:num_reps){ -->
+<!--   if(stratified){ -->
+<!--     test_sim <-  -->
+<!--       data_full %>%  -->
+<!--       group_by(user) %>% -->
+<!--       slice_sample(prop = pct_test) %>% -->
+<!--       ungroup() -->
+<!--   }else{ -->
+<!--     test_sim <-  -->
+<!--       data_full %>%  -->
+<!--       slice_sample(prop = pct_test)  -->
+<!--   } -->
+
+<!--   # Put remaining data in train: -->
+<!--   train_sim <- anti_join(data_full, test_sim) -->
+
+<!--   # Recreate our interaction counts for each item: -->
+<!--   item_frequency_sim <-  -->
+<!--     full_join( -->
+<!--       train_sim %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       test_sim  %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       by = "item" -->
+<!--     ) %>% -->
+<!--     rename(count_train = n.x, count_test = n.y) %>% -->
+<!--     replace_na(list(count_train = 0, count_test = 0)) -->
+
+<!--   # Build a matrix of vectors to test -->
+<!--   vecs2Test[[1]][i, ] <- item_frequency_sim$count_train -->
+<!--   vecs2Test[[2]][i, ] <- item_frequency_sim$count_test -->
+
+<!-- } -->
+
+<!-- #Perform the test: -->
+<!-- delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) ) -->
+<!-- result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta) -->
+<!-- p_sampled <- result_sampled$pvalue_delta -->
+<!-- result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta) -->
+<!-- p_original <- result_original$pvalue_delta -->
+
+<!-- dat1 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>% -->
+<!--   gather(-delta, key = "replication", value = pvalue) %>%  -->
+<!--   mutate("hypothesis" = str_extract(replication,"\\w{1,}")) -->
+<!-- p1 <- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) +  -->
+<!--   geom_line() + -->
+<!--   geom_hline(yintercept = 0.05, linetype = "dotted") + -->
+<!--   annotate("text", x = 300, y = .09, label = "alpha = 0.05") + -->
+<!--   labs(y = "p-value", title = "P-Value Curves for Original and Sampled Train/Test Splits", color = "Dataset") +  -->
+<!--   #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") + -->
+<!--   theme_classic() + -->
+<!--   theme(title = element_text(face = "bold", size = 14), -->
+<!--         panel.grid = element_blank()) -->
+
+
+<!-- delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5) -->
+<!-- result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta) -->
+<!-- p_sampled <- result_sampled$pvalue_delta -->
+<!-- result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta) -->
+<!-- p_original <- result_original$pvalue_delta -->
+
+<!-- dat2 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>% -->
+<!--   gather(-delta, key = "replication", value = pvalue) %>%  -->
+<!--   mutate("hypothesis" = str_extract(replication,"\\w{1,}")) -->
+<!-- p2 <- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) +  -->
+<!--   geom_line() + -->
+<!--   labs(y = element_blank()) +  -->
+<!--   #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") + -->
+<!--   theme_classic() + -->
+<!--   theme(title = element_text(face = "bold", size = 14), -->
+<!--         panel.grid = element_blank(), -->
+<!--         legend.title = element_blank(), -->
+<!--         legend.position = "none" -->
+<!--         ) -->
+
+
+<!-- ggdraw(p1) + -->
+<!--   draw_plot(p2, .25, .25, .4, .5)  -->
+
+<!-- ``` -->
+
+
+<!-- </details> -->
+
+<!-- ```{r, fig.width=8, fig.height=3.5, message = FALSE, warning=FALSE, echo = FALSE, fig.cap='Delta in (0, 2800]. Inset image: Zoomed view of delta in (0, 5].'} -->
+<!-- num_reps <- 50 -->
+<!-- stratified <- TRUE -->
+<!-- vecs2Test <- list(matrix(NA, num_reps, nrow(item_frequency)), matrix(NA, num_reps, nrow(item_frequency))) -->
+<!-- for(i in 1:num_reps){ -->
+<!--   if(stratified){ -->
+<!--     test_sim <-  -->
+<!--       data_full %>%  -->
+<!--       group_by(user) %>% -->
+<!--       slice_sample(prop = pct_test) %>% -->
+<!--       ungroup() -->
+<!--   }else{ -->
+<!--     test_sim <-  -->
+<!--       data_full %>%  -->
+<!--       slice_sample(prop = pct_test)  -->
+<!--   } -->
+
+<!--   # Put remaining data in train: -->
+<!--   train_sim <- anti_join(data_full, test_sim) -->
+
+<!--   # Recreate our interaction counts for each item: -->
+<!--   item_frequency_sim <-  -->
+<!--     full_join( -->
+<!--       train_sim %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       test_sim  %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       by = "item" -->
+<!--     ) %>% -->
+<!--     rename(count_train = n.x, count_test = n.y) %>% -->
+<!--     replace_na(list(count_train = 0, count_test = 0)) -->
+
+<!--   # Build a matrix of vectors to test -->
+<!--   vecs2Test[[1]][i, ] <- item_frequency_sim$count_train -->
+<!--   vecs2Test[[2]][i, ] <- item_frequency_sim$count_test -->
+
+<!-- } -->
+
+<!-- #Perform the test: -->
+<!-- delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, seq(from=1,to=2800, by = 100) ) -->
+<!-- result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta) -->
+<!-- p_sampled <- result_sampled$pvalue_delta -->
+<!-- result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta) -->
+<!-- p_original <- result_original$pvalue_delta -->
+
+<!-- dat1 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>% -->
+<!--   gather(-delta, key = "replication", value = pvalue) %>%  -->
+<!--   mutate("hypothesis" = str_extract(replication,"\\w{1,}")) -->
+<!-- p1 <- ggplot(dat1, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) +  -->
+<!--   geom_line() + -->
+<!--   geom_hline(yintercept = 0.05, linetype = "dotted") + -->
+<!--   annotate("text", x = 300, y = .09, label = "alpha = 0.05") + -->
+<!--   labs(y = "p-value", title = "P-Value Curves for Original and Sampled Train/Test Splits", color = "Dataset") +  -->
+<!--   #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") + -->
+<!--   theme_classic() + -->
+<!--   theme(title = element_text(face = "bold", size = 14), -->
+<!--         panel.grid = element_blank()) -->
+
+
+<!-- delta = c(.00000001, .00001, .0001, .001, .01, .1, .5, .75, 1:5) -->
+<!-- result_sampled <- vecs2Test %>% multinom.neighborhood.test(delta = delta) -->
+<!-- p_sampled <- result_sampled$pvalue_delta -->
+<!-- result_original <- multinom.neighborhood.test(x = item_frequency$count_train, y = item_frequency$count_test, delta = delta) -->
+<!-- p_original <- result_original$pvalue_delta -->
+
+<!-- dat2 <- data.frame(delta=delta, sampled = t(p_sampled), original = t(p_original)) %>% -->
+<!--   gather(-delta, key = "replication", value = pvalue) %>%  -->
+<!--   mutate("hypothesis" = str_extract(replication,"\\w{1,}")) -->
+<!-- p2 <- ggplot(dat2, aes(x = delta, y = pvalue, group = replication, colour = hypothesis)) +  -->
+<!--   geom_line() + -->
+<!--   labs(y = element_blank()) +  -->
+<!--   #geom_curve(aes(x = 75, y = .71, xend = 61, yend = .6), curvature = -0.3, arrow = arrow(length=unit(2,"mm")), color = "darkgrey") + -->
+<!--   theme_classic() + -->
+<!--   theme(title = element_text(face = "bold", size = 14), -->
+<!--         panel.grid = element_blank(), -->
+<!--         legend.title = element_blank(), -->
+<!--         legend.position = "none" -->
+<!--         ) -->
+
+
+<!-- ggdraw(p1) + -->
+<!--   draw_plot(p2, .25, .25, .4, .5)  -->
+
+<!-- ``` -->
 
 
 
@@ -549,55 +567,55 @@ Using a few methods (vizualization, Gini index, and hypothesis testing) we obser
 
 Should we always expect our train and test data to have the same distribution? What if the test/train split were based on time (i.e. we use earlier data to train the model and use the most recent data to test). This might be an interesting experiment for a future blog post or a class exercise.
 
-One might also argue that we should not assume a multinomial distribution for the item counts as we did for the hypothesis testing. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required.
+<!-- One might also argue that we should not assume a multinomial distribution for the item counts as we did for the hypothesis testing. If there is correlation between the items (e.g. if the first movie in a series was popular, we might expect the sequel to also do well), then the Dirichlet-multinomial distribution may be a better assumption. In this case, a different hypothesis tests is required. -->
 
 If you would like to provide feedback on this blog post, you can contact me via Twitter (DM me @DrAmandaRP). Thanks for reading!
 
-<details>
-  <summary>**Appendix**: Size Study</summary>
-  
-To understand the size of the hypothesis test (i.e. the `multinom.test` from the `hddtest` package) for the application of comparing the test and training datasets, let's run a simulation sampling mulitple test/train splits. 
+<!-- <details> -->
+<!--   <summary>**Appendix**: Size Study</summary> -->
+
+<!-- To understand the size of the hypothesis test (i.e. the `multinom.test` from the `hddtest` package) for the application of comparing the test and training datasets, let's run a simulation sampling mulitple test/train splits.  -->
 
 
-```{r eval = FALSE, class.source = 'fold-show'}
-data_full_sim <- data_full
-alpha <- 0.05
-num_reps <- 10000
-stratified <- FALSE
-result <- array(NA, dim = num_reps)
-for(i in 1:num_reps){
-  if(stratified){
-    test_sim <- 
-      data_full_sim %>% 
-      group_by(user) %>%
-      slice_sample(prop = pct_test) %>%
-      ungroup()
-  }else{
-    test_sim <- 
-      data_full_sim %>% 
-      slice_sample(prop = pct_test) 
-  }
-  
-  # Put remaining data in train:
-  train_sim <- anti_join(data_full_sim, test_sim)
+<!-- ```{r eval = FALSE, class.source = 'fold-show'} -->
+<!-- data_full_sim <- data_full -->
+<!-- alpha <- 0.05 -->
+<!-- num_reps <- 10000 -->
+<!-- stratified <- FALSE -->
+<!-- result <- array(NA, dim = num_reps) -->
+<!-- for(i in 1:num_reps){ -->
+<!--   if(stratified){ -->
+<!--     test_sim <-  -->
+<!--       data_full_sim %>%  -->
+<!--       group_by(user) %>% -->
+<!--       slice_sample(prop = pct_test) %>% -->
+<!--       ungroup() -->
+<!--   }else{ -->
+<!--     test_sim <-  -->
+<!--       data_full_sim %>%  -->
+<!--       slice_sample(prop = pct_test)  -->
+<!--   } -->
 
-  # Recreate our interaction counts for each item:
-  item_frequency_sim <- 
-    full_join(
-      train_sim %>% group_by(item) %>% count() %>% ungroup(),
-      test_sim  %>% group_by(item) %>% count() %>% ungroup(),
-      by = "item"
-    ) %>%
-    rename(count_train = n.x, count_test = n.y) %>%
-    replace_na(list(count_train = 0, count_test = 0))
-  
-  result[i] <- multinom.test(item_frequency_sim$count_train, item_frequency_sim$count_test)$pvalue 
-}
-mean(result <= alpha)
-# size for stratified data: 0.2351 (using 10K reps). Not controlling size well. 
-# size for non-stratified data: 0.0517 (using 10K reps)
-```
+<!--   # Put remaining data in train: -->
+<!--   train_sim <- anti_join(data_full_sim, test_sim) -->
 
-Using 10K replications and $\alpha = 0.05$, the size of the test on the stratified sampled data is 0.2351 (not well controlled). However, the size of the test for the non-stratified sampled data is 0.0517, which is much better. In other words, the test is too sensitive for the stratified sampled dataset.
+<!--   # Recreate our interaction counts for each item: -->
+<!--   item_frequency_sim <-  -->
+<!--     full_join( -->
+<!--       train_sim %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       test_sim  %>% group_by(item) %>% count() %>% ungroup(), -->
+<!--       by = "item" -->
+<!--     ) %>% -->
+<!--     rename(count_train = n.x, count_test = n.y) %>% -->
+<!--     replace_na(list(count_train = 0, count_test = 0)) -->
 
-</details> 
+<!--   result[i] <- multinom.test(item_frequency_sim$count_train, item_frequency_sim$count_test)$pvalue  -->
+<!-- } -->
+<!-- mean(result <= alpha) -->
+<!-- # size for stratified data: 0.2351 (using 10K reps). Not controlling size well.  -->
+<!-- # size for non-stratified data: 0.0517 (using 10K reps) -->
+<!-- ``` -->
+
+<!-- Using 10K replications and $\alpha = 0.05$, the size of the test on the stratified sampled data is 0.2351 (not well controlled). However, the size of the test for the non-stratified sampled data is 0.0517, which is much better. In other words, the test is too sensitive for the stratified sampled dataset. -->
+
+<!-- </details>  -->
