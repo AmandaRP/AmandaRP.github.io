@@ -333,7 +333,9 @@ One might naively choose to run a $\chi^2$ test to test this hypothesis.
 <!-- Let's suppose that our null hypothesis is that the test set is representative of the full dataset (vs the alternative hypothesis that it is not). We can consider the data as a 2 by `r nrow(item_frequency)` contingency table (since there are `r nrow(item_frequency)` items). -->
 <!-- One might naively choose to run a $\chi^2$ test to test this hypothesis.  -->
 
-The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. (Sometimes a slightly different rule of thumb is used: that *all* cell counts have an expected value of *at least* 5.) Let's check to see if this assumption is satisfied.
+The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. 
+<!-- (Sometimes a slightly different rule of thumb is used: that *all* cell counts have an expected value of *at least* 5.)  -->  
+Let's check to see if this assumption is satisfied.
 
 ```{r class.source = "fold-show"}
 # Check to see percentage of expected cell values are < 5
@@ -361,7 +363,7 @@ Let's look at an alternative method.
 
 Again consider a 2 by `r nrow(item_frequency)` contingency table composed of the test and train vectors. We can utilize a test that is acceptable for small sample sizes: Fisher's exact test can be used to test the null hypothesis that the two factors of a 2-dimensional contingency table are independent (no relationship) vs the alternative that they are not.
 
-Consider first the hypothesis test for the original train/test data:
+Consider first the Fisher's exact test for the original train/test data:
 
 ```{r}
 item_frequency %>% 
@@ -370,7 +372,7 @@ item_frequency %>%
 ```
 The p-value is very small indicating that there is sufficient evidence that the movie popularity distribution is dependent on the dataset (test or train). 
 
-Now consider the test for our re-sampled train/test data:
+Now consider Fisher's exact test for our re-sampled train/test data:
 
 ```{r}
 item_frequency_new %>% 
