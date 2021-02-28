@@ -1,5 +1,5 @@
 ---
-title: A closer look at the train/test split for machine learning
+title: 'Mirror, mirror on the wall, does my test data reflect my training data at all?'
 author: Amanda
 date: '2020-11-08'
 slug: what-exactly-are-we-testing-a-closer-look-at-the-train-test-split
@@ -39,7 +39,7 @@ Snippet of the 2020 paper, "Are We Really Making Much Progress? A Worrying Analy
 
 ***
 
-I thought this was a nice example comparing the distribution of two samples (i.e. comparing the item popularity of the test set versus the training set). Why is this important? Well, because we would like to train our model using data similar that which the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before. 
+I thought this was a nice example comparing the distribution of two samples (i.e. comparing the item popularity of the test set versus the training set). Why is this important? Well, because we would like to train our model using data similar to data that the model will score in the future. The test set is used to tell us how good (or bad) our model performs on data that it has not seen before. 
 
 The authors mentioned that they used the Gini index to evaluate the distribution of the test set. One might also wonder if a hypothesis test could be used to consider the evidence for or against the training and test sets having the same underlying distribution. Let's look at both approaches. 
 
@@ -92,7 +92,7 @@ For convenience I also saved them as R dataframes in the [data directory](https:
 load("data/train_test.RData")
 ```
 
-Let's take a peak at the training set. The data is composed of two columns containing user id's and item id's. It comes from [MovieLens](https://grouplens.org/datasets/movielens/), which provides data about user movie watching history. The existence of user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as "implicit feedback", inferring that the user "liked" the item.   
+Let's take a peek at the training set. The data is composed of two columns containing user ids and item ids. It comes from [MovieLens](https://grouplens.org/datasets/movielens/), which provides data about movie watching history. The existence of user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as "implicit feedback", inferring that the user "liked" the item.     
 
 <br>
 
@@ -194,7 +194,7 @@ The article authors used the Gini index to evaluate the distribution of the prov
 library(ineq)
 ```
 
-The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there was no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That's not the case since some movies were watched more than others. Let's look at the Gini index for the provided train and test sets.
+The Gini index is a measure of inequality ranging from 0 (equality) to 1 (no equality). For example, if there were no popularity bias in the dataset (i.e. all items had the same number of interactions), then the Gini index would be 0. That's not the case since some movies were watched more than others. Let's look at the Gini index for the provided train and test sets.
 
 
 ```{r class.source = "fold-show"}
@@ -222,7 +222,7 @@ The provided test set has a much higher Gini index than the train dataset (`r ro
 
 ## Resampling the test data
 
-Let's try sampling our own test set to see how that affects the Gini index. We'll start with the full dataset, sampling at the same rate as the provided train/test split and stratifying by user. 
+Let's try sampling our own test set to see how that affects the Gini index. We'll start with the full dataset, sampling user-item interactions at the same rate as the provided train/test split and stratifying by user. 
 
 ```{r class.source = "fold-show"}
 # Determine percentage of data that should be sampled for test
@@ -363,7 +363,7 @@ Let's look at an alternative method.
 
 Again consider a 2 by `r nrow(item_frequency)` contingency table composed of the test and train vectors. We can utilize a test that is acceptable for small sample sizes: Fisher's exact test can be used to test the null hypothesis that the two factors of a 2-dimensional contingency table are independent (no relationship) vs the alternative that they are not.
 
-Consider first the Fisher's exact test for the original train/test data:
+Consider first Fisher's exact test for the original train/test data:
 
 ```{r}
 item_frequency %>% 
