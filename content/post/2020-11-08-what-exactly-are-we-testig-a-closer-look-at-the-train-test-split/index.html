@@ -39,13 +39,13 @@ Snippet of the 2020 paper, “Are We Really Making Much Progress? A Worrying Ana
 <p>The train and test data mentioned in the article above are available at <a href="https://github.com/lzheng21/SpectralCF/tree/master/data/ml-1m" target="_blank">github.com/lzheng21/SpectralCF</a>.
 For convenience I also saved them as R dataframes in the <a href="https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/data" target="_blank">data directory</a> of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.</p>
 <pre class="r fold-show"><code>load(&quot;data/train_test.RData&quot;)</code></pre>
-<p>Let’s take a peek at the training set. The data is composed of two columns containing user ids and item ids. It comes from <a href="https://grouplens.org/datasets/movielens/" target="_blank">MovieLens</a>, which provides data about movie watching history. The existence of user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as “implicit feedback”, inferring that the user “liked” the item.</p>
+<p>Let’s take a peek at the training set. The data is composed of two columns containing user ids and item ids. It comes from <a href="https://grouplens.org/datasets/movielens/" target="_blank">MovieLens</a>, which provides data about movie watching history. The existence of a user-item pair in the data means that the user interacted with the item (in this case the user watched the movie). A data scientist can use this information as “implicit feedback”, inferring that the user “liked” the item.</p>
 <p><br></p>
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#uemjfntdpd .gt_table {
+#ldwqgabmap .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -70,7 +70,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-left-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_heading {
+#ldwqgabmap .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -82,7 +82,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_title {
+#ldwqgabmap .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -92,7 +92,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-width: 0;
 }
 
-#uemjfntdpd .gt_subtitle {
+#ldwqgabmap .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -102,13 +102,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-width: 0;
 }
 
-#uemjfntdpd .gt_bottom_border {
+#ldwqgabmap .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_col_headings {
+#ldwqgabmap .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -123,7 +123,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_col_heading {
+#ldwqgabmap .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -143,7 +143,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#uemjfntdpd .gt_column_spanner_outer {
+#ldwqgabmap .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -155,15 +155,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 4px;
 }
 
-#uemjfntdpd .gt_column_spanner_outer:first-child {
+#ldwqgabmap .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#uemjfntdpd .gt_column_spanner_outer:last-child {
+#ldwqgabmap .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#uemjfntdpd .gt_column_spanner {
+#ldwqgabmap .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -175,7 +175,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   width: 100%;
 }
 
-#uemjfntdpd .gt_group_heading {
+#ldwqgabmap .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -197,7 +197,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#uemjfntdpd .gt_empty_group_heading {
+#ldwqgabmap .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -212,15 +212,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#uemjfntdpd .gt_from_md > :first-child {
+#ldwqgabmap .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#uemjfntdpd .gt_from_md > :last-child {
+#ldwqgabmap .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#uemjfntdpd .gt_row {
+#ldwqgabmap .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -239,7 +239,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#uemjfntdpd .gt_stub {
+#ldwqgabmap .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -251,7 +251,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-left: 12px;
 }
 
-#uemjfntdpd .gt_summary_row {
+#ldwqgabmap .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -261,7 +261,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#uemjfntdpd .gt_first_summary_row {
+#ldwqgabmap .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -271,7 +271,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_grand_summary_row {
+#ldwqgabmap .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -281,7 +281,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#uemjfntdpd .gt_first_grand_summary_row {
+#ldwqgabmap .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -291,11 +291,11 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_striped {
+#ldwqgabmap .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#uemjfntdpd .gt_table_body {
+#ldwqgabmap .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -304,7 +304,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_footnotes {
+#ldwqgabmap .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -318,13 +318,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_footnote {
+#ldwqgabmap .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#uemjfntdpd .gt_sourcenotes {
+#ldwqgabmap .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -338,46 +338,46 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#uemjfntdpd .gt_sourcenote {
+#ldwqgabmap .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#uemjfntdpd .gt_left {
+#ldwqgabmap .gt_left {
   text-align: left;
 }
 
-#uemjfntdpd .gt_center {
+#ldwqgabmap .gt_center {
   text-align: center;
 }
 
-#uemjfntdpd .gt_right {
+#ldwqgabmap .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#uemjfntdpd .gt_font_normal {
+#ldwqgabmap .gt_font_normal {
   font-weight: normal;
 }
 
-#uemjfntdpd .gt_font_bold {
+#ldwqgabmap .gt_font_bold {
   font-weight: bold;
 }
 
-#uemjfntdpd .gt_font_italic {
+#ldwqgabmap .gt_font_italic {
   font-style: italic;
 }
 
-#uemjfntdpd .gt_super {
+#ldwqgabmap .gt_super {
   font-size: 65%;
 }
 
-#uemjfntdpd .gt_footnote_marks {
+#ldwqgabmap .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="uemjfntdpd" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ldwqgabmap" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="2" class="gt_heading gt_title gt_font_normal" style>Sample of Training Data</th>
@@ -394,24 +394,24 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   </thead>
   <tbody class="gt_table_body">
     <tr>
-      <td class="gt_row gt_center">2891</td>
-      <td class="gt_row gt_center">214</td>
+      <td class="gt_row gt_center">1608</td>
+      <td class="gt_row gt_center">1045</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">214</td>
-      <td class="gt_row gt_center">420</td>
+      <td class="gt_row gt_center">5822</td>
+      <td class="gt_row gt_center">1042</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">346</td>
-      <td class="gt_row gt_center">610</td>
+      <td class="gt_row gt_center">2746</td>
+      <td class="gt_row gt_center">22</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">5697</td>
-      <td class="gt_row gt_center">29</td>
+      <td class="gt_row gt_center">703</td>
+      <td class="gt_row gt_center">128</td>
     </tr>
     <tr>
-      <td class="gt_row gt_center">2938</td>
-      <td class="gt_row gt_center">1651</td>
+      <td class="gt_row gt_center">3794</td>
+      <td class="gt_row gt_center">669</td>
     </tr>
   </tbody>
   
@@ -422,7 +422,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#alsypptrtw .gt_table {
+#wwcmdggrou .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -447,7 +447,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-left-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_heading {
+#wwcmdggrou .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -459,7 +459,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_title {
+#wwcmdggrou .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -469,7 +469,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-width: 0;
 }
 
-#alsypptrtw .gt_subtitle {
+#wwcmdggrou .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -479,13 +479,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-width: 0;
 }
 
-#alsypptrtw .gt_bottom_border {
+#wwcmdggrou .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_col_headings {
+#wwcmdggrou .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -500,7 +500,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_col_heading {
+#wwcmdggrou .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -520,7 +520,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#alsypptrtw .gt_column_spanner_outer {
+#wwcmdggrou .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -532,15 +532,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 4px;
 }
 
-#alsypptrtw .gt_column_spanner_outer:first-child {
+#wwcmdggrou .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#alsypptrtw .gt_column_spanner_outer:last-child {
+#wwcmdggrou .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#alsypptrtw .gt_column_spanner {
+#wwcmdggrou .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -552,7 +552,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   width: 100%;
 }
 
-#alsypptrtw .gt_group_heading {
+#wwcmdggrou .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -574,7 +574,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#alsypptrtw .gt_empty_group_heading {
+#wwcmdggrou .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -589,15 +589,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#alsypptrtw .gt_from_md > :first-child {
+#wwcmdggrou .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#alsypptrtw .gt_from_md > :last-child {
+#wwcmdggrou .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#alsypptrtw .gt_row {
+#wwcmdggrou .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -616,7 +616,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#alsypptrtw .gt_stub {
+#wwcmdggrou .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -628,7 +628,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-left: 12px;
 }
 
-#alsypptrtw .gt_summary_row {
+#wwcmdggrou .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -638,7 +638,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#alsypptrtw .gt_first_summary_row {
+#wwcmdggrou .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -648,7 +648,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_grand_summary_row {
+#wwcmdggrou .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -658,7 +658,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#alsypptrtw .gt_first_grand_summary_row {
+#wwcmdggrou .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -668,11 +668,11 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_striped {
+#wwcmdggrou .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#alsypptrtw .gt_table_body {
+#wwcmdggrou .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -681,7 +681,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_footnotes {
+#wwcmdggrou .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -695,13 +695,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_footnote {
+#wwcmdggrou .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#alsypptrtw .gt_sourcenotes {
+#wwcmdggrou .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -715,46 +715,46 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#alsypptrtw .gt_sourcenote {
+#wwcmdggrou .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#alsypptrtw .gt_left {
+#wwcmdggrou .gt_left {
   text-align: left;
 }
 
-#alsypptrtw .gt_center {
+#wwcmdggrou .gt_center {
   text-align: center;
 }
 
-#alsypptrtw .gt_right {
+#wwcmdggrou .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#alsypptrtw .gt_font_normal {
+#wwcmdggrou .gt_font_normal {
   font-weight: normal;
 }
 
-#alsypptrtw .gt_font_bold {
+#wwcmdggrou .gt_font_bold {
   font-weight: bold;
 }
 
-#alsypptrtw .gt_font_italic {
+#wwcmdggrou .gt_font_italic {
   font-style: italic;
 }
 
-#alsypptrtw .gt_super {
+#wwcmdggrou .gt_super {
   font-size: 65%;
 }
 
-#alsypptrtw .gt_footnote_marks {
+#wwcmdggrou .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="alsypptrtw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="wwcmdggrou" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   <thead class="gt_header">
     <tr>
       <th colspan="6" class="gt_heading gt_title gt_font_normal" style>Summary of Training Data</th>
@@ -800,7 +800,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rnvqanhkln .gt_table {
+#ivhwdlmdmu .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -825,7 +825,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-left-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_heading {
+#ivhwdlmdmu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -837,7 +837,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_title {
+#ivhwdlmdmu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -847,7 +847,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-width: 0;
 }
 
-#rnvqanhkln .gt_subtitle {
+#ivhwdlmdmu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -857,13 +857,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-width: 0;
 }
 
-#rnvqanhkln .gt_bottom_border {
+#ivhwdlmdmu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_col_headings {
+#ivhwdlmdmu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -878,7 +878,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_col_heading {
+#ivhwdlmdmu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -898,7 +898,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#rnvqanhkln .gt_column_spanner_outer {
+#ivhwdlmdmu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -910,15 +910,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 4px;
 }
 
-#rnvqanhkln .gt_column_spanner_outer:first-child {
+#ivhwdlmdmu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rnvqanhkln .gt_column_spanner_outer:last-child {
+#ivhwdlmdmu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rnvqanhkln .gt_column_spanner {
+#ivhwdlmdmu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -930,7 +930,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   width: 100%;
 }
 
-#rnvqanhkln .gt_group_heading {
+#ivhwdlmdmu .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -952,7 +952,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#rnvqanhkln .gt_empty_group_heading {
+#ivhwdlmdmu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -967,15 +967,15 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   vertical-align: middle;
 }
 
-#rnvqanhkln .gt_from_md > :first-child {
+#ivhwdlmdmu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rnvqanhkln .gt_from_md > :last-child {
+#ivhwdlmdmu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rnvqanhkln .gt_row {
+#ivhwdlmdmu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -994,7 +994,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   overflow-x: hidden;
 }
 
-#rnvqanhkln .gt_stub {
+#ivhwdlmdmu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1006,7 +1006,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-left: 12px;
 }
 
-#rnvqanhkln .gt_summary_row {
+#ivhwdlmdmu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1016,7 +1016,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#rnvqanhkln .gt_first_summary_row {
+#ivhwdlmdmu .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1026,7 +1026,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_grand_summary_row {
+#ivhwdlmdmu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1036,7 +1036,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   padding-right: 5px;
 }
 
-#rnvqanhkln .gt_first_grand_summary_row {
+#ivhwdlmdmu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1046,11 +1046,11 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-top-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_striped {
+#ivhwdlmdmu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rnvqanhkln .gt_table_body {
+#ivhwdlmdmu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1059,7 +1059,7 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-bottom-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_footnotes {
+#ivhwdlmdmu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1073,13 +1073,13 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_footnote {
+#ivhwdlmdmu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#rnvqanhkln .gt_sourcenotes {
+#ivhwdlmdmu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1093,46 +1093,46 @@ For convenience I also saved them as R dataframes in the <a href="https://github
   border-right-color: #D3D3D3;
 }
 
-#rnvqanhkln .gt_sourcenote {
+#ivhwdlmdmu .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#rnvqanhkln .gt_left {
+#ivhwdlmdmu .gt_left {
   text-align: left;
 }
 
-#rnvqanhkln .gt_center {
+#ivhwdlmdmu .gt_center {
   text-align: center;
 }
 
-#rnvqanhkln .gt_right {
+#ivhwdlmdmu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rnvqanhkln .gt_font_normal {
+#ivhwdlmdmu .gt_font_normal {
   font-weight: normal;
 }
 
-#rnvqanhkln .gt_font_bold {
+#ivhwdlmdmu .gt_font_bold {
   font-weight: bold;
 }
 
-#rnvqanhkln .gt_font_italic {
+#ivhwdlmdmu .gt_font_italic {
   font-style: italic;
 }
 
-#rnvqanhkln .gt_super {
+#ivhwdlmdmu .gt_super {
   font-size: 65%;
 }
 
-#rnvqanhkln .gt_footnote_marks {
+#ivhwdlmdmu .gt_footnote_marks {
   font-style: italic;
   font-size: 65%;
 }
 </style>
-<div id="rnvqanhkln" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+<div id="ivhwdlmdmu" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
   
   <thead class="gt_col_headings">
     <tr>
@@ -1287,7 +1287,7 @@ gini_ours_test &lt;-
   as.matrix() %&gt;%
   ineq(type=&quot;Gini&quot;)
 gini_ours_test</code></pre>
-<pre><code>## [1] 0.7534412</code></pre>
+<pre><code>## [1] 0.7574247</code></pre>
 <pre class="r fold-show"><code># Gini index for our sampled train set:
 gini_ours_train &lt;- 
   item_frequency_new %&gt;% 
@@ -1296,8 +1296,8 @@ gini_ours_train &lt;-
   ineq(type=&quot;Gini&quot;)
 
 gini_ours_train</code></pre>
-<pre><code>## [1] 0.7513762</code></pre>
-<p>We see that our sampled test set has a Gini index (0.75) that is much closer to that of our sampled training dataset (0.75).</p>
+<pre><code>## [1] 0.7503023</code></pre>
+<p>We see that our sampled test set has a Gini index (0.76) that is much closer to that of our sampled training dataset (0.75).</p>
 <p>But, how much difference can we expect between the two sampled datasets that are representative of the same distribution? Is the observed difference in the provided datasets likely due to random sampling or some other reason? Let’s take a look at a couple of hypothesis tests.</p>
 </div>
 <div id="hypothesis-testing" class="section level2">
@@ -1354,7 +1354,7 @@ item_frequency %&lt;&gt;%
 ##  2000 replicates)
 ## 
 ## data:  .
-## p-value = 0.03148
+## p-value = 0.6437
 ## alternative hypothesis: two.sided</code></pre>
 <p>In this case the p-value is large meaning that we fail to reject the null hypothesis that movie popularity is independent of the dataset. In other words, we see a similar popularity pattern in both the test and train data sets that we sampled. These results align with our expectation.</p>
 <!-- ### Hypothesis testing of high dimensional (and sparse) discrete data -->
