@@ -1,5 +1,5 @@
 ---
-title: What exactly are we testing? A closer look at the train/test split for machine learning
+title: A closer look at the train/test split for machine learning
 author: Amanda
 date: '2020-11-08'
 slug: what-exactly-are-we-testing-a-closer-look-at-the-train-test-split
@@ -353,25 +353,31 @@ item_frequency %<>%
 
 We see here that `r round(100*pct_expected_small, digits = 1)`% of the expected values are very small (less than 5), meaning that the assumption in question is **not** satisfied.  
 
-In addition to this issue, the test and train vectors are not independent. (The test/train split is a random partition of the full dataset. The data assigned to one of the sets is dependent on the data that is sampled for the other.) Independence is another assumption for the $\chi^2$ test.
+<!-- In addition to this issue, the test and train vectors are not independent. (The test/train split is a random partition of the full dataset. The data assigned to one of the sets is dependent on the data that is sampled for the other.) Independence is another assumption for the $\chi^2$ test. -->
 
 Let's look at an alternative method.
 
 ### Fisher's Exact Test
 
-```{r}
+Again consider a 2 by `r nrow(item_frequency)` contingency table composed of the test and train vectors. We can utilize a test that is acceptable for small sample sizes: Fisher's exact test can be used to test the null hypothesis that the two factors of a 2-dimensional contingency table are independent (no relationship) vs the alternative that they are not.
 
-item_frequency %>% select(count_train, count_test) %>% fisher.test(simulate.p.value = TRUE)
-
-
-```
-
+Consider first the hypothesis test for the original train/test data:
 
 ```{r}
-item_frequency_new %>% select(count_train, count_test) %>% fisher.test(simulate.p.value = TRUE)
-
+item_frequency %>% 
+  select(count_train, count_test) %>% 
+  fisher.test(simulate.p.value = TRUE)
 ```
+The p-value is very small indicating that there is sufficient evidence that the movie popularity distribution is dependent on the dataset (test or train). 
 
+Now consider the test for our re-sampled train/test data:
+
+```{r}
+item_frequency_new %>% 
+  select(count_train, count_test) %>% 
+  fisher.test(simulate.p.value = TRUE)
+```
+In this case the p-value is large meaning that we fail to reject the hypothesis that the movie popularity distribution is independent of the dataset. In other words, we see a similar pattern in both the test and train data sets that we sampled. These results align with our expectation.
 
 <!-- ### Hypothesis testing of high dimensional (and sparse) discrete data -->
 
