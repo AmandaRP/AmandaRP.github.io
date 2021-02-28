@@ -64,7 +64,7 @@ con <- pins::pin(url)
 
 test <- read_lines(con) %>%
   as_tibble() %>%
-  separate(value, sep = "[:blank:]{1}", into = c("user", "item"), extra = "merge") %>%
+  separate(value,  into = c("user", "item"), extra = "merge") %>%
   separate_rows(item, sep = " ") %>%
   mutate_at(c("user","item"), as.integer)
 
@@ -73,7 +73,7 @@ con <- pins::pin(url)
 
 train <- read_lines(con) %>%
   as_tibble() %>%
-  separate(value, sep = "[:blank:]{1}", into = c("user", "item"), extra = "merge") %>%
+  separate(value, into = c("user", "item"), extra = "merge") %>%
   separate_rows(item, sep = " ")  %>%
   mutate_at(c("user","item"), as.integer)
 
@@ -86,7 +86,7 @@ save(test, train, file = "data/train_test.RData")
 
 
 The train and test data mentioned in the article above are available at [github.com/lzheng21/SpectralCF](https://github.com/lzheng21/SpectralCF/tree/master/data/ml-1m). 
-For convenience I also saved them as R dataframes in the [data directory](TODO) of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
+For convenience I also saved them as R dataframes in the [data directory](https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/data) of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
 
 ```{r class.source = "fold-show"}
 load("data/train_test.RData")
@@ -321,14 +321,19 @@ We see that our sampled test set has a Gini index (`r round(gini_ours_test, digi
 But, how much difference can we expect between the two sampled datasets that are representative of the same distribution? Is the observed difference in the provided datasets likely due to random sampling or some other reason? Let's take a look at a couple of hypothesis tests. 
 
 
-## Hypothesis testing
+## Hypothesis Testing
 
-### $\chi^2$ Test of Homogeneity
+### $\chi^2$ Test of Independence
+
+<!-- ### $\chi^2$ Goodness of Fit Test -->
 
 Let's suppose that our null hypothesis is that the train and test sets have the *same* underlying distribution (vs the alternative hypothesis that they do not). We can consider the data as a 2 by `r nrow(item_frequency)` contingency table (since there are `r nrow(item_frequency)` items).
-One might naively choose to run a $\chi^2$ test to test this hypothesis. 
+One might naively choose to run a $\chi^2$ test to test this hypothesis.
 
-The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. Let's check to see if this assumption is satisfied.
+<!-- Let's suppose that our null hypothesis is that the test set is representative of the full dataset (vs the alternative hypothesis that it is not). We can consider the data as a 2 by `r nrow(item_frequency)` contingency table (since there are `r nrow(item_frequency)` items). -->
+<!-- One might naively choose to run a $\chi^2$ test to test this hypothesis.  -->
+
+The $\chi^2$ test is most appropriate when the data is not too sparse. Recall that one of the rule-of-thumb assumptions for the $\chi^2$ test is that no more than 20% of the expected cells counts are less than 5. (Sometimes a slightly different rule of thumb is used: that *all* cell counts have an expected value of *at least* 5.) Let's check to see if this assumption is satisfied.
 
 ```{r class.source = "fold-show"}
 # Check to see percentage of expected cell values are < 5
