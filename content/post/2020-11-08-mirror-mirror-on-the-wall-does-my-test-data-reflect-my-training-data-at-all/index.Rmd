@@ -86,7 +86,7 @@ save(test, train, file = "data/train_test.RData")
 
 
 The train and test data mentioned in the article above are available at [github.com/lzheng21/SpectralCF](https://github.com/lzheng21/SpectralCF/tree/master/data/ml-1m){target="_blank"}. 
-For convenience I also saved them as R dataframes in the [data directory](https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-what-exactly-are-we-testig-a-closer-look-at-the-train-test-split/data){target="_blank"} of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
+For convenience I also saved them as R dataframes in the [data directory](https://github.com/AmandaRP/AmandaRP.github.io/tree/master/content/post/2020-11-08-mirror-mirror-on-the-wall-does-my-test-data-reflect-my-training-data-at-all/data){target="_blank"} of the GitHub repo associated with this analysis. Using R, the data can be loaded as follows.
 
 ```{r class.source = "fold-show"}
 load("data/train_test.RData")
