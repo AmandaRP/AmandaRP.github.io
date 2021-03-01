@@ -5,7 +5,7 @@ date: '2020-11-08'
 slug: what-exactly-are-we-testing-a-closer-look-at-the-train-test-split
 categories:
   - Machine Learning
-draft: false
+draft: true
 tags: [ml]
 output:
   blogdown::html_page:
