@@ -1,5 +1,5 @@
 ---
-title: Book Recommendations using Neural Collaborative Filtering
+title: Book Recommendations via Neural Collaborative Filtering
 author: Amanda Peterson-Plunkett
 date: '2021-04-03'
 slug: book-recommendations-using-neural-collaborative-filtering
@@ -18,16 +18,21 @@ I plan to continue reading books, but what should I read?
 I decided to build a recommender system.</p>
 <div id="the-technical-details" class="section level2">
 <h2>The technical details</h2>
-<p>A recommender system utilizes user feedback history (either explict such as star ratings or implicit such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society.</p>
-<p>In this experiment, I’ll be using a Neural Collaborative Filtering (NCF) model, a deep learning model originally proposed by He et. al. in their <a href="https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------">2017 paper</a>. The model is implemented by the authors using (Python) Keras and is available in <a href="https://github.com/hexiangnan/neural_collaborative_filtering">this GitHub repository</a>. For my own fun exercise, I implemented the model using <a href="https://keras.rstudio.com/">R Keras</a>. You can find it in my <a href="https://github.com/AmandaRP/NeuralCollaborativeFiltering">GitHub repository</a>.</p>
-<p>The model is designed for binary feedback (that is, positive and negative user preferences). I’ll be using a mixture of explicit and implicit feedback, which is described in the <a href="#bookmark">Inferring Likes and Dislikes section</a> of this post. The neural network model architecture is shown below (image from the <a href="https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------">NCF paper</a>).</p>
+<p>A recommender system utilizes user feedback history (either “explicit” such as star ratings or “implicit” such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society. Examples include:</p>
+<ul>
+<li>Amazon recommends products to buy</li>
+<li>Facebook recommends friends to connect with</li>
+<li>YouTube recommends videos to watch</li>
+</ul>
+<p>In this experiment, I’ll be using a Neural Collaborative Filtering (NCF) model, which is a deep learning model originally proposed by He et. al. in their <a href="https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------">2017 paper</a>. The model is implemented by the authors using (Python) Keras and is available in <a href="https://github.com/hexiangnan/neural_collaborative_filtering">this GitHub repository</a>. For my own fun exercise, I implemented the model using <a href="https://keras.rstudio.com/">R Keras</a>. You can find it in my <a href="https://github.com/AmandaRP/NeuralCollaborativeFiltering">GitHub repository</a>.</p>
+<p>The model is designed for binary feedback (that is, positive and negative user preferences). I’ll be using a mixture of explicit and implicit feedback, described in more details in the <a href="#bookmark">Inferring Likes and Dislikes section</a> of this post. The neural network model architecture is shown below (image from the <a href="https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------">NCF paper</a>).</p>
 <p><img src="images/NCFarchitecture.png" width="90%" height="90%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="the-data" class="section level1">
 <h1>The Data</h1>
 <p>To train the model I used a data set originally obtained from <a href="https://en.wikipedia.org/wiki/Goodreads">GoodReads.com</a>, a social book cataloging system. The data is available on the <a href="https://sites.google.com/eng.ucsd.edu/ucsdbookgraph">USCD Book Graph webiste</a>. Specifically, I’m using three files, each containing the following fields:</p>
 <ul>
-<li><strong>interactions</strong>: Contains fields <code>user_id</code>, <code>book_id</code>, <code>is_read</code>, <code>rating</code>, <code>is_reviewed</code></li>
+<li><strong>interactions</strong>: Contains <code>user_id</code>, <code>book_id</code>, <code>is_read</code>, <code>rating</code>, <code>is_reviewed</code></li>
 <li><strong>book_info</strong>: Information about the books including title, isbn, author(s), and list of shelves.</li>
 <li><strong>book_id_map</strong>: books ids used to join the other two data sets together</li>
 </ul>
@@ -57,7 +62,7 @@ Figure 1: The top five books appearing on the most shelves
 <li>The book is on their shelf and not read yet. That is, <code>(is_read == 0)</code>.</li>
 </ol>
 <p>This is an optimistic viewpoint because we may include books on the reader’s shelf that they later read and decide that they do not like.</p>
-<p>Alternatively, We’ll assume that a reader did <em>not</em> like a book if they read it and gave it a rating of 1 or 2. Books with a score of 3 were not used for model training.</p>
+<p>Alternatively, we’ll assume that a reader did <em>not</em> like a book if they read it and gave it a rating of 1 or 2. Books with a score of 3 were not used for model training.</p>
 <p>Note that there exist cases where no rating was provided (value of <code>rating</code> is 0), but a text review exists. An enhancement for obtaining more positive and negative examples might be to mine the sentiment of reviews for these instances.</p>
 <p>After performing these steps, I filtered out users who did not have at least 3 “positive” book examples (a threshold that could be tweaked). As a result we have a total of 2.6489810^{5} users and 25450 books.</p>
 </div>
@@ -94,16 +99,16 @@ and <a href="https://www.goodreads.com/book/show/40402597-my-heart-belongs-in-th
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
-<p>The distribution of predictions for all books and users in the test is shown below (separated for “good” and “bad” books).</p>
+<p>The distribution of predictions for all books and users in the test is shown below (separated by “good” and “bad” books).</p>
 <p><img src="images/plt_preds.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>I’m happy to see that the most of the “bad” books have low scores while the “good” books are more evenly spread out with a little bump on the high end. The goal is to score “good” higher than the “bad” (on a per-user basis).</p>
 <p>The scores can be used to rank the books for each user. A couple of useful metrics for evaluating that ranking are:</p>
 <ul>
-<li>Hit rate at 10 (<a href="mailto:HR@10" class="email">HR@10</a>): The percentage of users who’s “good” book appeared in their top 10 recommended books. (Recall the test set is composed of 100 “bad” and 1 “good” book for each user.)</li>
-<li>Normalized Discounted Cummulative Gain at 10 (NDGC at 10): TODO</li>
+<li>Hit rate (HR) at <em>k</em>: The percentage of users who’s “good” book appeared in their top <em>k</em> recommended books. (Recall the test set is composed of 100 “bad” and 1 “good” book for each user.)</li>
+<li>Normalized Discounted Cummulative Gain (NDGC) at 10: TODO</li>
 </ul>
-<p>The result was 0.59 <a href="mailto:HR@10" class="email">HR@10</a> and 0.37 <a href="mailto:NDGC@10" class="email">NDGC@10</a> (evaluated on the test set).</p>
-<p>As a sanity check I also computed the metrics for a recommender “model” based solely on popularity (i.e. everyone’s number one recommendation will be “The Lion, The Witch, and The Wardrobe” unless they already have it on their shelf), then it turns out that the <a href="mailto:HR@10" class="email">HR@10</a> is 0.28 and the <a href="mailto:NDCG@10" class="email">NDCG@10</a> is 0.15. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.</p>
+<p>The result was 0.59 HR at 10 and 0.37 NDGC at 10 (evaluated on the test set).</p>
+<p>As a sanity check I also computed the metrics for a recommender “model” based solely on popularity (i.e. everyone’s number one recommendation will be “The Lion, The Witch, and The Wardrobe” unless they already have it on their shelf), then it turns out that the HR at 10 is 0.28 and the NDCG at 10 is 0.15. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.</p>
 </div>
 <div id="recommendations-for-my-book-club" class="section level2">
 <h2>Recommendations for my book club</h2>
@@ -130,7 +135,7 @@ toward this author.</p>
 <li>Due to hardware limitations and slow model training, I didn’t perform hyper-parameter tuning. (I am using a GTX 970 GPU. Each training epoch takes a few hours.) Instead I used the defaults that were used in the NCF paper. A grid search of the hyperparamter space would likely be beneficial.</li>
 <li>My group’s training data is small (nine books). Compare that to Goodreads, which requires users to rate 20 books before they will provide recommendations. A model that is better suited for cold start situations (users with little to no training data) may be beneficial. Such models incorporates side features (e.g. author, book description).</li>
 <li>As mentioned earlier, the Goodreads data set that I used is a couple of years out of date. It would be great to retrain the model on the newer data.</li>
-<li>There are many other types of recommendation models to try, some of which claim to beat NCF. (TODO: References?)</li>
+<li>There are many other types of recommendation models to try, some of which claim to beat NCF. See <a href="https://github.com/hongleizhang/RSPapers">this list of must-read recommender papers</a>.</li>
 </ol>
 <p>In the meantime, I have a few books on my short list to read, but I’m still in search of more. I may try another recommender model. Or, let me know if you have a good suggestion! You can find me on Twitter <span class="citation">@DrAmandaRP</span>.</p>
 <p>P.S. If you are new to deep learning in R, I recommend the <a href="https://www.manning.com/books/deep-learning-with-r">Deep Learning with R</a> book by François Chollet with J. J. Allaire.</p>
