@@ -1,7 +1,7 @@
 ---
 title: Book Recommendations via Neural Collaborative Filtering
 author: Amanda Peterson-Plunkett
-date: '2021-04-03'
+date: '2021-04-12'
 slug: book-recommendations-using-neural-collaborative-filtering
 categories: []
 draft: false
