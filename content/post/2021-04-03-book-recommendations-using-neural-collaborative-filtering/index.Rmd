@@ -151,8 +151,7 @@ The scores can be used to rank the books for each user. A couple of useful metri
 
 The experiment result was `r round(hr_test, 2)` HR at 10 and `r round(ndcg_test, 2)` NDGC at 10 (evaluated on the test set). 
 
-As a sanity check I also computed the metrics for a recommender "model" based solely on popularity (i.e. everyone's number one recommendation will be [The Lion, The Witch, and The Wardrobe](https://www.goodreads.com/book/show/100915.The_Lion_the_Witch_and_the_Wardrobe?from_search=true&from_srp=true&rank=1) unless they already have it on their shelf), then it turns out that the HR at 10 is `r round(hr_pop, 2)` and the NDCG at 10 is `r round(ndcg_pop, 2)`. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.
-
+As a sanity check I also computed the metrics for a recommender "model" based solely on popularity (i.e. everyone's number one recommendation will be [The Lion, The Witch, and The Wardrobe](https://www.goodreads.com/book/show/100915.The_Lion_the_Witch_and_the_Wardrobe?from_search=true&from_srp=true&rank=1) unless they already have it on their shelf). The resulting HR at 10 is `r round(hr_pop, 2)` and the NDCG at 10 is `r round(ndcg_pop, 2)`. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.
 
 
 ## Recommendations for my book club
@@ -195,7 +194,7 @@ There are a few areas of improvement that could be made:
 
 In the meantime, I have a few books on my short list to read, but I'm still in search of more. I may try another recommender model. Or, let me know if you have a good suggestion! You can find me on Twitter @DrAmandaRP.
 
-P.S. If you are new to deep learning in R, I recommend the [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r) book by François Chollet with J. J. Allaire.
+P.S. If you are new to deep learning in R, I recommend the [Deep Learning with R](https://www.manning.com/books/deep-learning-with-r) book by François Chollet with J. J. Allaire. 
 
 
 

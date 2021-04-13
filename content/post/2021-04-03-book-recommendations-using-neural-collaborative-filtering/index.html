@@ -108,7 +108,7 @@ and <a href="https://www.goodreads.com/book/show/40402597-my-heart-belongs-in-th
 <li>Normalized Discounted Cumulative Gain (NDGC) at 10: “Good” items appearing lower on the list are penalized (only considering the top <em>k</em> items). Normalization occurs by dividing the discounted cumulative gain by its “optimal” value. The metric is then averaged over all users. The range is [0, 1].</li>
 </ul>
 <p>The experiment result was 0.59 HR at 10 and 0.37 NDGC at 10 (evaluated on the test set).</p>
-<p>As a sanity check I also computed the metrics for a recommender “model” based solely on popularity (i.e. everyone’s number one recommendation will be <a href="https://www.goodreads.com/book/show/100915.The_Lion_the_Witch_and_the_Wardrobe?from_search=true&amp;from_srp=true&amp;rank=1">The Lion, The Witch, and The Wardrobe</a> unless they already have it on their shelf), then it turns out that the HR at 10 is 0.28 and the NDCG at 10 is 0.15. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.</p>
+<p>As a sanity check I also computed the metrics for a recommender “model” based solely on popularity (i.e. everyone’s number one recommendation will be <a href="https://www.goodreads.com/book/show/100915.The_Lion_the_Witch_and_the_Wardrobe?from_search=true&amp;from_srp=true&amp;rank=1">The Lion, The Witch, and The Wardrobe</a> unless they already have it on their shelf). The resulting HR at 10 is 0.28 and the NDCG at 10 is 0.15. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.</p>
 </div>
 <div id="recommendations-for-my-book-club" class="section level2">
 <h2>Recommendations for my book club</h2>
