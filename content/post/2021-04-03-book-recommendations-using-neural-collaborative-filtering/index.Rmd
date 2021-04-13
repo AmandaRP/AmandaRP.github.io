@@ -4,7 +4,7 @@ author: Amanda Peterson-Plunkett
 date: '2021-04-03'
 slug: book-recommendations-using-neural-collaborative-filtering
 categories: []
-draft: true
+draft: false
 tags: []
 ---
 
@@ -29,15 +29,15 @@ I decided to build a recommender system.
 
 ## The technical details
 
-A recommender system utilizes user feedback history (either "explicit" such as star ratings or "implicit" such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society. Examples include: 
+A recommender system utilizes user feedback history (either "explicit" feedback, such as star ratings, or "implicit" feedback, such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society; Examples include: 
 
 * Amazon recommends products to buy
 * Facebook recommends friends to connect with
 * YouTube recommends videos to watch 
 
-In this experiment, I'll be using a Neural Collaborative Filtering (NCF) model, which is a deep learning model originally proposed by He et. al. in their [2017 paper](https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------). The model is implemented by the authors using (Python) Keras and is available in [this GitHub repository](https://github.com/hexiangnan/neural_collaborative_filtering). For my own fun exercise, I implemented the model using [R Keras](https://keras.rstudio.com/). You can find it in my [GitHub repository](https://github.com/AmandaRP/NeuralCollaborativeFiltering). 
+In this experiment, I'll be using a Neural Collaborative Filtering (NCF) model, a deep learning model proposed by He et. al. in their [2017 paper](https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------). The model is implemented by the authors using Keras and is available in [this GitHub repository](https://github.com/hexiangnan/neural_collaborative_filtering). For my own fun exercise, I implemented the model using [R Keras](https://keras.rstudio.com/). You can find it in my [GitHub repository](https://github.com/AmandaRP/NeuralCollaborativeFiltering). 
 
-The model is designed for binary feedback (that is, positive and negative user preferences). I'll be using a mixture of explicit and implicit feedback, described in more details in the [Inferring Likes and Dislikes section](#bookmark) of this post. The neural network model architecture is shown below (image from the [NCF paper](https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------)).
+The model is designed for binary feedback (that is, positive and negative user preferences). I'll be using a mixture of explicit and implicit feedback, described in more detail in the [Inferring Likes and Dislikes section](#bookmark) of this post. The image below, from the [NCF paper](https://arxiv.org/pdf/1708.05031.pdf?source=post_page---------------------------), shows the neural network model architecture. 
 
 
 ```{r, echo=FALSE,out.width="90%", out.height="90%",fig.show='hold',fig.align='center'}
@@ -72,7 +72,7 @@ The top book, [The Lion, the Witch and the Wardrobe](https://www.goodreads.com/b
 
 ## Infering Likes and Dislikes {#bookmark}
 
-For the NCF model, we need a list of books that each user liked and a list that they did not like. Some users provided explicit ratings (1 to 5 stars), however, not all users rate the books that they read. Additionally, it may be the case that some users just rate books that they like. To obtain a sufficient amount of training data, I included both explicit and implicit feedback. 
+For the NCF model, we need a list of books that each user liked and a list that they did not like. Some users provided explicit ratings (1 to 5 stars), however, not all users rate the books that they read. Additionally, it may be the case that some users just rate books that they like (or didn't like). To obtain a sufficient amount of training data, I included both explicit and implicit feedback. 
 
 <!-- Five randomly sampled rows of the `interaction` dataframe are shown below. -->
 
@@ -92,8 +92,7 @@ Alternatively, we'll assume that a reader did *not* like a book if they read it 
 
 Note that there exist cases where no rating was provided (value of `rating` is 0), but a text review exists. An enhancement for obtaining more positive and negative examples might be to mine the sentiment of reviews for these instances.
 
-After performing these steps, I filtered out users who did not have at least 3 "positive" book examples (a threshold that could be tweaked). As a result we have a total of `r num_users` users and `r num_books` books.
-
+After performing these steps, I filtered out users who did not have at least 3 "positive" book examples (a threshold that could be tweaked). As a result we have a total of `r sprintf("%d", num_users)` users and `r num_books` books.
 
 
 
@@ -131,11 +130,11 @@ I split the data into train, validation, and test sets following the method used
 
 If a user did not have enough negatives for the 4-to-1 ratio of negatives to positives in the training set, then I sampled "implicit" negatives (i.e. those books that are not on the user's shelf). The empirical popularity distribution of the books provided sampling probabilities, meaning that more popular books were more likely to be sampled. This is often a good idea for training recommender systems since users are likely already aware of the popular items. I sampled these training data points for each epoch of model training.
 
-If the user had *more* negatives than the 4-to-1 ratio, then the extras were put in the test set. Subsequently, if the test set lacked the 100 negatives, then I sampled "implicit" negatives to fill out the test set (using the same strategy as described for the training set). Sampling of the test set was done once prior to model training.
+If the user had *more* negatives than the 4-to-1 ratio, then the extras were put in the test set. Subsequently, if the test set lacked the 100 negatives, then I sampled "implicit" negatives to fill out the test set (using the same strategy described for the training set). Sampling of the test set was done once prior to model training.
 
 ## Results
 
-The distribution of predictions for all books and users in the test is shown below (separated by "good" and "bad" books). 
+The distribution of predictions for all books and users in the test set is shown below (separated by "good" and "bad" books). 
 
 
 ```{r, echo=FALSE,out.width="90%",fig.align='center'}
@@ -147,12 +146,12 @@ I'm happy to see that the most of the "bad" books have low scores while the "goo
 
 The scores can be used to rank the books for each user. A couple of useful metrics for evaluating that ranking are:
 
-* Hit rate (HR) at *k*: The percentage of users who's "good" book appeared in their top *k* recommended books. (Recall the test set is composed of 100 "bad" and 1 "good" book for each user.)
-* Normalized Discounted Cummulative Gain (NDGC) at 10: TODO
+* Hit rate (HR) at *k*: The percentage of users who's "good" book appeared in their top *k* recommended books. (Recall the test set is composed of 100 "bad" and 1 "good" book for each user.) The range is [0, 1].
+* Normalized Discounted Cumulative Gain (NDGC) at 10: "Good" items appearing lower on the list are penalized (only considering the top *k* items). Normalization occurs by dividing the discounted cumulative gain by its "optimal" value. The metric is then averaged over all users. The range is [0, 1].
 
-The result was `r round(hr_test, 2)` HR at 10 and `r round(ndcg_test, 2)` NDGC at 10 (evaluated on the test set). 
+The experiment result was `r round(hr_test, 2)` HR at 10 and `r round(ndcg_test, 2)` NDGC at 10 (evaluated on the test set). 
 
-As a sanity check I also computed the metrics for a recommender "model" based solely on popularity (i.e. everyone's number one recommendation will be "The Lion, The Witch, and The Wardrobe" unless they already have it on their shelf), then it turns out that the HR at 10 is `r round(hr_pop, 2)` and the NDCG at 10 is `r round(ndcg_pop, 2)`. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.
+As a sanity check I also computed the metrics for a recommender "model" based solely on popularity (i.e. everyone's number one recommendation will be [The Lion, The Witch, and The Wardrobe](https://www.goodreads.com/book/show/100915.The_Lion_the_Witch_and_the_Wardrobe?from_search=true&from_srp=true&rank=1) unless they already have it on their shelf), then it turns out that the HR at 10 is `r round(hr_pop, 2)` and the NDCG at 10 is `r round(ndcg_pop, 2)`. These metrics are significantly worse than those from the NCF model, so it paid to add the personalization.
 
 
 
@@ -173,7 +172,7 @@ knitr::include_graphics(str_c(path,"peoplealsoliked.png"))
 
 Looking at the worst scoring books for our group, we find books that we would likely *not* enjoy: [Come On Over (CO2)](https://www.goodreads.com/book/show/22085728-come-on-over#) and [Marry Me Now, Sorry Later](https://www.goodreads.com/book/show/256272615-marry-now-sorry-later) (rank 25,437 and 25,436 respectively). In fact, these books are not even in our preferred genre of Christian fiction. They were mistakenly included due to the author's name: Christian Simamora.
 
-Next, I decided to look at the rank of the top recommended book for each of the authors associated with books that my group enjoyed. The result was:
+Next, I decided to look at the rank of the top recommended book for each of the authors who wrote books that my group enjoyed. The result was (out of 25,437 total books):
 
 * Francine Rivers (#1, [Mark of the Lion Trilogy](https://www.goodreads.com/book/show/95602.Mark_of_the_Lion_Trilogy?from_search=true&from_srp=true&qid=aPoPk0tBes&rank=1))
 * Lori Wick (#30, [Pretense](https://www.goodreads.com/book/show/289745.Pretense?ac=1&from_search=true&qid=J93foRiGvl&rank=1))
@@ -181,7 +180,7 @@ Next, I decided to look at the rank of the top recommended book for each of the 
 * Tessa Afshar (#38, [In the Field of Grace](https://www.goodreads.com/book/show/20702178-in-the-field-of-grace?from_search=true&from_srp=true&qid=ElbF3skUjQ&rank=1))
 * Randy Alcorn (#425, [Deadline](https://www.goodreads.com/book/show/290363.Deadline?ac=1&from_search=true&qid=6dPXAtqezB&rank=5))
 
-Interestingly, I had already ordered Tessa Afshar's "In the Field of Grace" before looking at these recommendations. So, that is right on point. Sadly, Randy Alcorn's highest ranking book is at number 425 (his book, "Safely Home", was one of my favorites).
+Interestingly, I had already ordered Tessa Afshar's [In the Field of Grace](https://www.goodreads.com/book/show/20702178-in-the-field-of-grace?from_search=true&from_srp=true&qid=s7ibzAubn2&rank=1) before looking at these recommendations. So, that is right on point. Sadly, Randy Alcorn's highest ranking book is at number 425 (his book, [Safely Home](https://www.goodreads.com/book/show/290369.Safely_Home?ac=1&from_search=true&qid=k40Ui7fZo6&rank=1), was one of my favorites).
 
 Overall, I'm fairly happy with these recommendations, even though the top of the list doesn't demonstrate as much author variety as I'd like to see. The recommendations do feel tailored to my group's reading interests. 
 
@@ -190,8 +189,8 @@ Overall, I'm fairly happy with these recommendations, even though the top of the
 There are a few areas of improvement that could be made:
 
 1. Due to hardware limitations and slow model training, I didn't perform hyper-parameter tuning.  (I am using a GTX 970 GPU. Each training epoch takes a few hours.) Instead I used the defaults that were used in the NCF paper. A grid search of the hyperparamter space would likely be beneficial.
-1. My group's training data is small (nine books). Compare that to Goodreads, which requires users to rate 20 books before they will provide recommendations.  A model that is better suited for cold start situations (users with little to no training data) may be beneficial. Such models incorporates side features (e.g. author, book description).
-1. As mentioned earlier, the Goodreads data set that I used is a couple of years out of date. It would be great to retrain the model on the newer data.
+1. My group's training data is small (nine books). Compare that to Goodreads.com, which requires users to rate 20 books before they will provide recommendations.  A model that is better suited for cold start situations (users with little to no training data) may be beneficial. Such models incorporates side features (e.g. author, book description).
+1. As mentioned earlier, the Goodreads data set that I used is a couple of years out of date. It would be great to retrain the model on newer data.
 1. There are many other types of recommendation models to try, some of which claim to beat NCF. See [this list of must-read recommender papers](https://github.com/hongleizhang/RSPapers).
 
 In the meantime, I have a few books on my short list to read, but I'm still in search of more. I may try another recommender model. Or, let me know if you have a good suggestion! You can find me on Twitter @DrAmandaRP.
