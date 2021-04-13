@@ -29,7 +29,7 @@ I decided to build a recommender system.
 
 ## The technical details
 
-A recommender system utilizes user feedback history (either "explicit" feedback, such as star ratings, or "implicit" feedback, such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society; Examples include: 
+A recommender system utilizes user feedback history (either "explicit" feedback, such as star ratings, or "implicit" feedback, such as views, clicks, purchases, etc) to recommend items to users. Recommender systems have become ubiquitous in our society; examples include: 
 
 * Amazon recommends products to buy
 * Facebook recommends friends to connect with
